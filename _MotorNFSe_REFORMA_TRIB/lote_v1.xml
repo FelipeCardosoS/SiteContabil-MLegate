@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<PedidoEnvioLoteRPS xmlns="http://www.prefeitura.sp.gov.br/nfe">
+  <Cabecalho Versao="1" xmlns="">
+    <CPFCNPJRemetente>
+      <CNPJ>14292540000109</CNPJ>
+    </CPFCNPJRemetente>
+    <transacao>true</transacao>
+    <dtInicio>2025-12-05</dtInicio>
+    <dtFim>2025-12-05</dtFim>
+    <QtdRPS>1</QtdRPS>
+    <ValorTotalServicos>1500.00</ValorTotalServicos>
+    <ValorTotalDeducoes>0.00</ValorTotalDeducoes>
+  </Cabecalho>
+  <RPS xmlns="">
+    <Assinatura>izyTOiSb+lnaJ6J+4+6UmYrknnbeEwzaXuhNvGSsbAGNltyKl0tCz0fB716vAoEVmuCNacrMc/uD8DioG7r4uuQdGifDJMDWpA13lGDfPd9TfscDdSMr9XWUzjgnOPjjpN6m3sZ73k8IYzEGgKN8CQUboo3K//IMMWqZZJrXJ5SiwM5btYNbHxxdE37qsm5xkZwabEeaghu4WwVKzDDAVJzyf33zbyT23NEt6dsXsOvSNb7s7HoxeJGKQOqoURyRA612R6LKl2YpKYb56I09cCW0ZMVN8A0iANDCJICaczk0KuIadE20XU3QXOKRTgezjZJBGSB2j0lCQyvG865sxA==</Assinatura>
+    <ChaveRPS>
+      <InscricaoPrestador>12345678</InscricaoPrestador>
+      <SerieRPS>AAAAA</SerieRPS>
+      <NumeroRPS>000000000001</NumeroRPS>
+    </ChaveRPS>
+    <TipoRPS>RPS-M</TipoRPS>
+    <DataEmissao>2025-12-05</DataEmissao>
+    <StatusRPS>N</StatusRPS>
+    <TributacaoRPS>T</TributacaoRPS>
+    <ValorServicos>1500.00</ValorServicos>
+    <ValorDeducoes>0.00</ValorDeducoes>
+    <ValorPIS>0.00</ValorPIS>
+    <ValorCOFINS>0.00</ValorCOFINS>
+    <ValorINSS>0.00</ValorINSS>
+    <ValorIR>0.00</ValorIR>
+    <ValorCSLL>0.00</ValorCSLL>
+    <CodigoServico>02698</CodigoServico>
+    <AliquotaServicos>0.05</AliquotaServicos>
+    <ISSRetido>false</ISSRetido>
+    <CPFCNPJTomador>
+      <CNPJ>98765432000190</CNPJ>
+    </CPFCNPJTomador>
+    <RazaoSocialTomador>Empresa Tomadora SA</RazaoSocialTomador>
+    <EnderecoTomador>Rua X, 123</EnderecoTomador>
+    <UFTomador>SP</UFTomador>
+    <CEPTomador>01001000</CEPTomador>
+    <Discriminacao>Serviço de consultoria tributária</Discriminacao>
+  </RPS>
+</PedidoEnvioLoteRPS>

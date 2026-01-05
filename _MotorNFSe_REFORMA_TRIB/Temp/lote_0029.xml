@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<nfe:PedidoEnvioLoteRPS xmlns:nfe="http://www.prefeitura.sp.gov.br/nfe">
+  <Cabecalho Versao="2">
+    <CPFCNPJRemetente>
+      <CNPJ>05379035000105</CNPJ>
+    </CPFCNPJRemetente>
+    <transacao>true</transacao>
+    <dtInicio>2025-12-15</dtInicio>
+    <dtFim>2025-12-15</dtFim>
+    <QtdRPS>1</QtdRPS>
+  </Cabecalho>
+  <RPS>
+    <Assinatura>SsxRToSoSLAfALgZu9YX8XP9lvi4W4BAErarsgeMWZ+BOYNibtwb6+F9hfBssjkPtJqRCznQn9KZsQIV/XA0S+ZipKGXE1lTVg5PkJoenNkK2DN5WQB4MPabQjOnKzf7ZfmPvMZaLjmY4FDk6GGiJ50pJNmko888heAUB11wSyyzIRhfvG+Kgjhg4OYSYTUdwn9dgOzaDGV4HSj2vee9YuNLUpUH+AD3GP8PckX7qTFAisw4uWMw7ZOEYR6jdS7PnPLp2hM/C4Gp1hKkc/zeo+hZOOTcdIEnq65UtKxNFj7/hZnXJbq6+/otccHMXblzXGywHqMuGOKs2aSdNKdD4A==</Assinatura>
+    <ChaveRPS>
+      <InscricaoPrestador>000040095380</InscricaoPrestador>
+      <SerieRPS>1</SerieRPS>
+      <NumeroRPS>0029</NumeroRPS>
+    </ChaveRPS>
+    <TipoRPS>RPS</TipoRPS>
+    <DataEmissao>2025-12-15</DataEmissao>
+    <StatusRPS>N</StatusRPS>
+    <TributacaoRPS>T</TributacaoRPS>
+    <ValorDeducoes>0.00</ValorDeducoes>
+    <ValorPIS>0.00</ValorPIS>
+    <ValorCOFINS>0.00</ValorCOFINS>
+    <ValorINSS>0.00</ValorINSS>
+    <ValorIR>0.00</ValorIR>
+    <ValorCSLL>0.00</ValorCSLL>
+    <CodigoServico>03395</CodigoServico>
+    <AliquotaServicos>0.05</AliquotaServicos>
+    <ISSRetido>false</ISSRetido>
+    <CPFCNPJTomador>
+      <CNPJ>14683671000451</CNPJ>
+    </CPFCNPJTomador>
+    <EnderecoTomador>
+      <Logradouro>Endereço Teste</Logradouro>
+      <NumeroEndereco>S/N</NumeroEndereco>
+      <ComplementoEndereco>69050970</ComplementoEndereco>
+      <Bairro></Bairro>
+      <Cidade>3550308</Cidade>
+      <UF>AM</UF>
+      <CEP></CEP>
+    </EnderecoTomador>
+    <Discriminacao>Teste Emissão</Discriminacao>
+    <ValorInicialCobrado>30000.00</ValorInicialCobrado>
+    <ValorIPI>0.00</ValorIPI>
+    <ExigibilidadeSuspensa>0</ExigibilidadeSuspensa>
+    <PagamentoParceladoAntecipado>0</PagamentoParceladoAntecipado>
+    <NBS>115010000</NBS>
+    <cLocPrestacao>3550308</cLocPrestacao>
+    <IBSCBS>
+      <finNFSe>0</finNFSe>
+      <indFinal>1</indFinal>
+      <cIndOp>100101</cIndOp>
+      <indDest>0</indDest>
+      <valores>
+        <trib>
+          <gIBSCBS>
+            <cClassTrib>000001</cClassTrib>
+          </gIBSCBS>
+        </trib>
+      </valores>
+    </IBSCBS>
+  </RPS>
+</nfe:PedidoEnvioLoteRPS>

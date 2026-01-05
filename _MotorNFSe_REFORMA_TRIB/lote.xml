@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<nfe:PedidoEnvioLoteRPS xmlns:nfe="http://www.prefeitura.sp.gov.br/nfe">
+  <Cabecalho Versao="2">
+    <CPFCNPJRemetente>
+      <CNPJ>05379035000105</CNPJ>
+    </CPFCNPJRemetente>
+    <transacao>true</transacao>
+    <dtInicio>2025-12-05</dtInicio>
+    <dtFim>2025-12-05</dtFim>
+    <QtdRPS>1</QtdRPS>
+  </Cabecalho>
+  <RPS>
+    <Assinatura>oWLYj2e7GvqAEvshSBCFHWDNdIAZMdMF/E+8UfUiI1LaRUWHcbPocrbaEr5uTDbX5goH5RgMVFFFbqPi+9zGmb92XHtF79ddlTS91U8RmaxwksRjNFHaQlqyRJDlRw8HeHqB9kWvtsSGmOA0WfmhXZJ708DwYPjMOuHLisJIxOz6HIDiR5/EPxWkVgOOxnhm4hpZWuq1UlbVrduygdi0vs7uyxLNRdGaL36IWQrbUsfgtuzOn8cqS+EgtSGsoHSRdFRdQidp31lXdiGUXcc9LB2Vc3DSjunwIlJJOfAnLO/y59jE/AdIBfpUIPyFJydMp9h38zNM5/mRdI5HeeddVQ==</Assinatura>
+    <ChaveRPS>
+      <InscricaoPrestador>000040095380</InscricaoPrestador>
+      <SerieRPS>AAAAA</SerieRPS>
+      <NumeroRPS>0005</NumeroRPS>
+    </ChaveRPS>
+    <TipoRPS>RPS</TipoRPS>
+    <DataEmissao>2025-12-05</DataEmissao>
+    <StatusRPS>N</StatusRPS>
+    <TributacaoRPS>T</TributacaoRPS>
+    <ValorDeducoes>0.00</ValorDeducoes>
+    <ValorPIS>0.00</ValorPIS>
+    <ValorCOFINS>0.00</ValorCOFINS>
+    <ValorINSS>0.00</ValorINSS>
+    <ValorIR>0.00</ValorIR>
+    <ValorCSLL>0.00</ValorCSLL>
+    <CodigoServico>02800</CodigoServico>
+    <AliquotaServicos>0.05</AliquotaServicos>
+    <ISSRetido>false</ISSRetido>
+    <CPFCNPJTomador>
+      <CNPJ>05379035000105</CNPJ>
+    </CPFCNPJTomador>
+    <Discriminacao>Desenvolvimento de software customizavel - Teste API V2</Discriminacao>
+    <ValorInicialCobrado>1500.00</ValorInicialCobrado>
+    <ValorIPI>0.00</ValorIPI>
+    <ExigibilidadeSuspensa>0</ExigibilidadeSuspensa>
+    <PagamentoParceladoAntecipado>0</PagamentoParceladoAntecipado>
+    <NBS>115010000</NBS>
+    <cLocPrestacao>3550308</cLocPrestacao>
+    <IBSCBS>
+      <finNFSe>0</finNFSe>
+      <indFinal>1</indFinal>
+      <cIndOp>100101</cIndOp>
+      <indDest>0</indDest>
+      <valores>
+        <trib>
+          <gIBSCBS>
+            <cClassTrib>000001</cClassTrib>
+          </gIBSCBS>
+        </trib>
+      </valores>
+    </IBSCBS>
+  </RPS>
+</nfe:PedidoEnvioLoteRPS>

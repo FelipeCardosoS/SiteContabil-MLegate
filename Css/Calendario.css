@@ -1,0 +1,41 @@
+﻿.calendario .ajax__calendar_container /*formatação da parte externa de onde encontra-se o corpo do calendário */
+{background-color:#fff; border:solid 1px #000;}
+
+.calendario .ajax__calendar_header /*formatação do cabeçalho*/
+{background-color:#ffffff; margin-bottom:3px;  width:170px;}
+
+.calendario .ajax__calendar_title /*formatação do texto que encontra-se no cabeçalho*/
+{color:black;}
+
+.calendario .ajax__calendar_body /*formatação interna de onde se encontra o calendário(onde estão os dias do respectivo mês)*/
+{background-color : white ;border : solid 1px #004000 ;}
+
+.calendario .ajax__calendar_dayname /*formatação da descrição dos dias da semana*/
+{text-align : center ;  margin-bottom : 4px ;margin-top : 2px ;color : #999;}
+
+.calendario .ajax__calendar_day /*formatação dos dias do mês*/
+{text-align : center ;color: #000;}
+
+.calendario .ajax__calendar_hover .ajax__calendar_day /*formatação para quando passar o mause sobre um determinado dia*/
+{color: red;}
+
+.calendario .ajax__calendar_hover .ajax__calendar_month /*formatação para quando passar mause sobre um determinado mês*/
+{color: red;}
+
+.calendario .ajax__calendar_hover .ajax__calendar_year /*formatação para quando passar o mause sobre um determinado ano*/
+{color: red;}
+
+.calendario .ajax__calendar_active /*formatação do dia, quando já possui uma data no textbox de controle*/
+{background-color: #D4D0C8 ;font-weight : bold ; }
+
+.calendario .ajax__calendar_today /*destaque para a data atual(Today)*/
+{ font-weight : bold ; color : black;}
+
+.calendario .ajax__calendar_other .ajax__calendar_day/*formatação dos dias que não pertencem ao mês selecionado*/
+{color:#6A5ACD;}
+
+.calendario .ajax__calendar_hover .ajax__calendar_today /*formatação para quando passar o mouse sobre a data atual(Today)*/
+{color: #FFFFFF}
+
+.calendario .ajax__calendar_hover .ajax__calendar_title /*formatação para quando passar o mouse sobre o texto do título*/
+{color : red ; }

@@ -1,0 +1,50 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36705.20 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Contabil", ".", "{CFFB27D2-3E93-4879-982C-9AEAE26241FB}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.6.1"
+		Debug.AspNetCompiler.VirtualPath = "/contabil"
+		Debug.AspNetCompiler.PhysicalPath = "..\Contabil\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\contabil\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/contabil"
+		Release.AspNetCompiler.PhysicalPath = "..\Contabil\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\contabil\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "47269"
+		SlnRelativePath = "..\Contabil\"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Build|Any CPU = Build|Any CPU
+		Build|x86 = Build|x86
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CFFB27D2-3E93-4879-982C-9AEAE26241FB}.Build|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFFB27D2-3E93-4879-982C-9AEAE26241FB}.Build|Any CPU.Build.0 = Debug|Any CPU
+		{CFFB27D2-3E93-4879-982C-9AEAE26241FB}.Build|x86.ActiveCfg = Debug|Any CPU
+		{CFFB27D2-3E93-4879-982C-9AEAE26241FB}.Build|x86.Build.0 = Debug|Any CPU
+		{CFFB27D2-3E93-4879-982C-9AEAE26241FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFFB27D2-3E93-4879-982C-9AEAE26241FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFFB27D2-3E93-4879-982C-9AEAE26241FB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{CFFB27D2-3E93-4879-982C-9AEAE26241FB}.Debug|x86.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BD96AAEF-810A-4991-9517-47003CA20F97}
+	EndGlobalSection
+EndGlobal

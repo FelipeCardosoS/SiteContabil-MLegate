@@ -1,0 +1,73 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterForm.master.cs" Inherits="MasterForm" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Sistema Contábil - </title>
+    <style type="text/css">@import url(Css/Basico.css);</style>
+    <style type="text/css">@import url(Css/FormatacaoValidacao.css);</style>    
+    <link href="Plugins/chosen.min.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="Js/jquery.js"></script>
+    <script type="text/javascript" src="Js/jquery.maskedinput.js"></script>
+    <script type="text/javascript" src="Plugins/chosen.jquery.js"></script>
+    <script type="text/javascript" src="Plugins/chosen.proto.js"></script>
+    <script type="text/javascript" src="Js/jquery.validate.js"></script>
+    <script type="text/javascript" src="Js/bib_json.js"></script>
+    <script type="text/javascript" src="Js/prince_format_jquery.js"></script>
+    <script type="text/javascript" src="Js/uteis.js"></script>
+    <script type="text/javascript" src="Js/validacao.js"></script>
+    <script type="text/javascript" src="Js/principal.js"></script>    
+    <asp:ContentPlaceHolder id="head" runat="server"></asp:ContentPlaceHolder>
+</head>
+<body id="Body1" runat="server">
+     <script language="javascript" type="text/javascript">   
+         $(document).ready(function () {
+             $('input').keydown(function (e) {
+                 if (e.which == 13) {
+                     e.returnValue = false;
+                     return false;
+                 }
+             });
+         });
+    </script>
+    <form id="form_principal" runat="server" >
+    <asp:ScriptManager ID="ScriptManager1"  EnablePageMethods="true" runat="server">
+    </asp:ScriptManager>
+        <div id="corpo">
+            <div class="logtype" style="float:left; width:186px; height:90px;">
+                 <a href="Default.aspx"><img alt="Logotipo" src="Imagens/logotipo.jpg" width="186" height="90" border="0" /></a>
+            </div>
+            <div id="topo">
+                <div id="barra" style="width:812px;">
+                    <div id="home">
+                        <a href="Default.aspx"><img src="Imagens/icones/house.gif" width="16" height="16" alt="" /></a>
+                        <asp:Literal ID="data_hora" runat="server"></asp:Literal>
+                    </div>
+                    <div id="company">
+                        <img src="Imagens/icones/company.png" width="16" height="16" alt="" />
+                        <asp:Literal ID="empresa_login" runat="server"></asp:Literal>
+                    </div>
+                    <div id="user_on">
+                        <asp:Label ID="labelUsuarioOn" runat="server" Text="" style="width:125px;overflow:hidden;height:15px;"></asp:Label>
+                        <asp:ImageButton ID="botaoLogout" CausesValidation="false" ImageUrl="~/Imagens/icones/cancel.gif" AlternateText="Logout" runat="server" />
+                        <asp:HyperLink ID="linkAlterarSenha" runat="server"><img src="Imagens/icones/key.gif" alt="Alterar Senha" /></asp:HyperLink>
+                        <asp:HyperLink ID="linkAlterarDados" runat="server"><img src="Imagens/icones/pencil.gif" alt="Alterar Dados" /></asp:HyperLink>
+                    </div>
+                </div>
+                <div id="menu" style="width:812px;" class="divMenu" runat="server">
+                </div>
+            </div>
+            <h2 id="areaSubTitulo" runat="server">
+                <img src="Imagens/setaDupla.gif" alt="" />
+                <asp:Literal ID="subTitulo" runat="server"></asp:Literal>
+            </h2>
+            <div class="linha"></div>
+            <div id="conteudo">
+                <asp:ContentPlaceHolder id="areaConteudo" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

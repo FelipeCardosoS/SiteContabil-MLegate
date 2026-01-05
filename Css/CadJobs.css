@@ -1,0 +1,37 @@
+﻿.menu {
+	margin-top: 30px;
+	border: 1px solid #B0C4DE;
+	width: 100%;
+}
+
+	.menu thead tr th {
+		color: blue;
+		border: 1px solid #B0C4DE;
+		font-weight: normal;
+		cursor: pointer;
+	}
+
+		.menu thead tr th.ativo {
+			color: red;
+			background-color: darkblue;
+			font-weight: bold;
+			font-size: 20px;
+			cursor: default;
+		}
+
+.tableLinhaConsultor{
+	width:100%;
+}
+
+.checkEmail{
+	scale:1.5;
+}
+
+.tableStatusConsultor{
+	margin-left:auto;
+	margin-right:auto;
+}
+
+.deletar{
+	display:none
+}

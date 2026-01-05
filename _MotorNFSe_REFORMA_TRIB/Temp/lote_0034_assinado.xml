@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<nfe:PedidoEnvioLoteRPS xmlns:nfe="http://www.prefeitura.sp.gov.br/nfe">
+  <Cabecalho Versao="2">
+    <CPFCNPJRemetente>
+      <CNPJ>05379035000105</CNPJ>
+    </CPFCNPJRemetente>
+    <transacao>true</transacao>
+    <dtInicio>2025-12-16</dtInicio>
+    <dtFim>2025-12-16</dtFim>
+    <QtdRPS>1</QtdRPS>
+  </Cabecalho>
+  <RPS>
+    <Assinatura>AFdVsMStoRBE0udtumu//QzFRYDcyQOjR1gGPcbg+kUnpuRtQ24/7NUCMyJaVgLFVMhFELAh9ntUBge/NIVJDijrNcQ8olLc+2CRd96vy+DU8/V/ZjovGVuWpSAPLw/7hjb1P6HzbiVLd2an5S+R/fXzKhBJ1DEdZSEZAhxSMioCD3WTwgixJkcSnc266SQpVkR5VZGmuznlk04wKrlSm3skZR0DjHp4wu+f2wIDhQLEKvzhR8wYRLK5eU9wTHRYZJepXiAbkJIAXvI/vhQgqNmeEr0Iz7CoR/pEEw+NVmQ9GTdpFpJAMG3whtb1rIChIhpafbWud1lWbwKxms77lA==</Assinatura>
+    <ChaveRPS>
+      <InscricaoPrestador>000040095380</InscricaoPrestador>
+      <SerieRPS>1</SerieRPS>
+      <NumeroRPS>0034</NumeroRPS>
+    </ChaveRPS>
+    <TipoRPS>RPS</TipoRPS>
+    <DataEmissao>2025-12-16</DataEmissao>
+    <StatusRPS>N</StatusRPS>
+    <TributacaoRPS>T</TributacaoRPS>
+    <ValorDeducoes>0.00</ValorDeducoes>
+    <ValorPIS>0.00</ValorPIS>
+    <ValorCOFINS>0.00</ValorCOFINS>
+    <ValorINSS>0.00</ValorINSS>
+    <ValorIR>0.00</ValorIR>
+    <ValorCSLL>0.00</ValorCSLL>
+    <CodigoServico>03395</CodigoServico>
+    <AliquotaServicos>0.05</AliquotaServicos>
+    <ISSRetido>false</ISSRetido>
+    <CPFCNPJTomador>
+      <CNPJ>60975737007245</CNPJ>
+    </CPFCNPJTomador>
+    <EnderecoTomador>
+      <Logradouro>Endereço Teste</Logradouro>
+      <NumeroEndereco>S/N</NumeroEndereco>
+      <ComplementoEndereco></ComplementoEndereco>
+      <Bairro></Bairro>
+      <Cidade>3550308</Cidade>
+      <UF>SP</UF>
+      <CEP>12030180</CEP>
+    </EnderecoTomador>
+    <Discriminacao>Teste Emissão</Discriminacao>
+    <ValorInicialCobrado>1000.00</ValorInicialCobrado>
+    <ValorIPI>0.00</ValorIPI>
+    <ExigibilidadeSuspensa>0</ExigibilidadeSuspensa>
+    <PagamentoParceladoAntecipado>0</PagamentoParceladoAntecipado>
+    <NBS>115010000</NBS>
+    <cLocPrestacao>3550308</cLocPrestacao>
+    <IBSCBS>
+      <finNFSe>0</finNFSe>
+      <indFinal>1</indFinal>
+      <cIndOp>100101</cIndOp>
+      <indDest>0</indDest>
+      <valores>
+        <trib>
+          <gIBSCBS>
+            <cClassTrib>000001</cClassTrib>
+          </gIBSCBS>
+        </trib>
+      </valores>
+    </IBSCBS>
+  </RPS>
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315" /><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256" /><DigestValue>m2wE6rFuRnSWLJQZoRAQA8qPE5TVhqoDz8wH0YMLhsQ=</DigestValue></Reference></SignedInfo><SignatureValue>teTwFpYgrEmx8U7I8iKRLsK5T+KTG2KDxNWUZgaLTkOLcVKbzXK1Zrea0yS69WwF/sS7yu0w9i7j8XMDfpsdK3cLQjExeHWE1punLsD7jz6ylijPk/VucqPCIfUyBXNxkiIlDJBxVYzLlm6NkHy72g2A8i9ozgYDfRbx1ePrNBkqk2oAdGMuj5ifaThT2GqOtidyQNkWaR5EG4aQ+fe1srXKzWEovt3w2dpQaq/VxjM3TxpcIHp3c749ByulbfP3I9aPfr4burP7g2ocKhn9jnvyrdxXYJ//4gfHn3f932RJ46wmBgk3K8mp9ekU4lhgd+FflWLVoEgAaceta/e0ag==</SignatureValue><KeyInfo><X509Data><X509Certificate>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</X509Certificate></X509Data></KeyInfo></Signature></nfe:PedidoEnvioLoteRPS>

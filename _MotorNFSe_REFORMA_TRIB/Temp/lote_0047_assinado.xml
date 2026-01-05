@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<nfe:PedidoEnvioLoteRPS xmlns:nfe="http://www.prefeitura.sp.gov.br/nfe">
+  <Cabecalho Versao="2">
+    <CPFCNPJRemetente>
+      <CNPJ>00387730000197</CNPJ>
+    </CPFCNPJRemetente>
+    <transacao>true</transacao>
+    <dtInicio>2025-12-18</dtInicio>
+    <dtFim>2025-12-18</dtFim>
+    <QtdRPS>1</QtdRPS>
+  </Cabecalho>
+  <RPS>
+    <Assinatura>AS+Yks5MBvQr6uZp/AiXVKgypP4uqraA3Au6/wA309rSJEN1/55WEMM6MgmWhsV4hL8/X+rSuY2RrcpEfODnVyCUhZL/3k8r9q04PbQ2C8FEOMrpHAJ2l72WQLTUTxGTQi6RFzC+0cw2pMf2kikCwxYA2vNqnGhTlMK/P1BH+/vQ+CP+dkZZEfp+sSX6OFfYww932OnCElnx+SprEYRCeMsEYvKy4xgXi+1zU5p6tRc33EKzEa/lxQIfaYKW5sj+VULZxNXDusFk5JYaQCff6q0H9ehbq7tDyvNO+eo1BYVSUc98fdi1e9Fyi4rGoj50psR2IlQptT7ut12+2LC04A==</Assinatura>
+    <ChaveRPS>
+      <InscricaoPrestador>000023202459</InscricaoPrestador>
+      <SerieRPS>1</SerieRPS>
+      <NumeroRPS>0047</NumeroRPS>
+    </ChaveRPS>
+    <TipoRPS>RPS</TipoRPS>
+    <DataEmissao>2025-12-18</DataEmissao>
+    <StatusRPS>N</StatusRPS>
+    <TributacaoRPS>T</TributacaoRPS>
+    <ValorDeducoes>0.00</ValorDeducoes>
+    <ValorPIS>0.00</ValorPIS>
+    <ValorCOFINS>0.00</ValorCOFINS>
+    <ValorINSS>0.00</ValorINSS>
+    <ValorIR>0.00</ValorIR>
+    <ValorCSLL>0.00</ValorCSLL>
+    <CodigoServico>03115</CodigoServico>
+    <AliquotaServicos>0.05</AliquotaServicos>
+    <ISSRetido>false</ISSRetido>
+    <CPFCNPJTomador>
+      <CNPJ>08696063000136</CNPJ>
+    </CPFCNPJTomador>
+    <EnderecoTomador>
+      <Logradouro>Endereço Teste</Logradouro>
+      <NumeroEndereco>S/N</NumeroEndereco>
+      <ComplementoEndereco></ComplementoEndereco>
+      <Bairro></Bairro>
+      <Cidade>3550308</Cidade>
+      <UF>SP</UF>
+      <CEP>04538133</CEP>
+    </EnderecoTomador>
+    <Discriminacao>Prestação de Serviços de Assessoria em DP, Folha de Pagto e E-Social - Mês de Outubro/2020</Discriminacao>
+    <ValorInicialCobrado>5980.18</ValorInicialCobrado>
+    <ValorIPI>0.00</ValorIPI>
+    <ExigibilidadeSuspensa>0</ExigibilidadeSuspensa>
+    <PagamentoParceladoAntecipado>0</PagamentoParceladoAntecipado>
+    <NBS>115010000</NBS>
+    <cLocPrestacao>3550308</cLocPrestacao>
+    <IBSCBS>
+      <finNFSe>0</finNFSe>
+      <indFinal>1</indFinal>
+      <cIndOp>100101</cIndOp>
+      <indDest>0</indDest>
+      <valores>
+        <trib>
+          <gIBSCBS>
+            <cClassTrib>000001</cClassTrib>
+          </gIBSCBS>
+        </trib>
+      </valores>
+    </IBSCBS>
+  </RPS>
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315" /><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256" /><DigestValue>RAQNpejqwermhk0Coz9ysE3Osl3595JJgy+i/0Dr4m8=</DigestValue></Reference></SignedInfo><SignatureValue>rAb89ciYMUePJAw0mOGejnMzzn84V06D72a9vCX9SdA/cL5GLWwGFB8LoWTce/WdCesp/dQ+dHZ05IKFXioDtv+mxY39Z0Rq/2NmaBr8jZgC7Uy6oM++yGOHQlNXozR0XYmhYBhDvup6PJo0/GG6phK5lWvOO+Ni0Ov0/9TDtDvP6w331nUhk5LPmnHAeHiOmWVQem2YwVz9OPrx+/HJbFF1GLUXjIng/+lEFrIZyOT1NrMU+LLYC1S4Ss20RuTfHRdFYefV7dAyNwx50738hsdAyeVtca6HTqOYZ5l9hJ+NDT6C756vw6RX23pQ/UH8qtUTirNJLYyR2LVpw2b6HQ==</SignatureValue><KeyInfo><X509Data><X509Certificate>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</X509Certificate></X509Data></KeyInfo></Signature></nfe:PedidoEnvioLoteRPS>

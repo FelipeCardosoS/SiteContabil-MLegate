@@ -1,0 +1,39 @@
+DATA: 05/01/2026 12:41:19
+EXIT: 0
+ERROS:
+
+SUCESSO:
+==============================================
+   ?? EMISSOR NFSe - MODO: SANDBOX ???
+==============================================
+
+?? Recebidos 1 RPS do sistema externo.
+
+?? Processando RPS: 1655...
+?? Lendo DB: RPS 1655...
+   ?? Emitente: MACSO LEGATE AUDITORES INDEPENDENTES
+   ?? CNPJ: 23037018000163
+   ??? Serviço Original (Banco): 03395 - 
+   ?? Certificado Carregado: MACSO AUDITORES 2026.pfx
+   ??? Modo Sandbox: Adaptando dados para teste...
+      ?? RPS Simulado: De 1655 para 0049
+?? Enviando MODO SÍNCRONO (v2) | SOAP 1.2
+--------------------------------------------------
+?? Status HTTP: OK
+<RetornoEnvioLoteRPS xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.prefeitura.sp.gov.br/nfe">
+  <Cabecalho Versao="2" xmlns="">
+    <Sucesso>true</Sucesso>
+    <InformacoesLote>
+      <NumeroLote>0</NumeroLote>
+      <InscricaoPrestador>52964906</InscricaoPrestador>
+      <CPFCNPJRemetente>
+        <CNPJ>23037018000163</CNPJ>
+      </CPFCNPJRemetente>
+      <DataEnvioLote>2026-01-05T12:41:44</DataEnvioLote>
+      <QtdNotasProcessadas>1</QtdNotasProcessadas>
+      <TempoProcessamento>0</TempoProcessamento>
+      <ValorTotalServicos>0</ValorTotalServicos>
+    </InformacoesLote>
+  </Cabecalho>
+</RetornoEnvioLoteRPS>
+   ? SUCESSO!

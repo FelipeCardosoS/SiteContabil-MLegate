@@ -1,0 +1,3180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <Body>
+    <ReportItems>
+      <Rectangle Name="Rectangle5">
+        <ReportItems>
+          <Textbox Name="PMSP">
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value EvaluationMode="Constant">Documento emitido por sociedade uniprofissional, constituída na forma do artigo 15 da Lei nº 13.701, de 24 de dezembro de 2003 – PMSP.
+
+Dispensado de emissão de nota fiscal conforme inciso III do artigo 1º da Instrução Normativa nº 10 DE 2011 – SUREM/SF PMSP</Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <Top>0.10139cm</Top>
+            <Left>0.1cm</Left>
+            <Height>1.3cm</Height>
+            <Width>18.8cm</Width>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+        </ReportItems>
+        <KeepTogether>true</KeepTogether>
+        <Top>19.45cm</Top>
+        <Height>1.5cm</Height>
+        <Width>19cm</Width>
+        <Style>
+          <Border>
+            <Style>Solid</Style>
+          </Border>
+        </Style>
+      </Rectangle>
+      <Rectangle Name="Rectangle2">
+        <ReportItems>
+          <Line Name="Line5">
+            <Top>0.75cm</Top>
+            <Height>0cm</Height>
+            <Width>19cm</Width>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+            </Style>
+          </Line>
+          <Textbox Name="Tomador">
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value EvaluationMode="Constant">Usuário Final ou Destinatário</Value>
+                    <Style>
+                      <FontSize>12pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <Top>0.06cm</Top>
+            <Left>5.81792cm</Left>
+            <Height>0.6cm</Height>
+            <Width>7.15667cm</Width>
+            <ZIndex>1</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Nome_Razao_Social_Tomador">
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Label>Tomador: Nome ou Razão Social</Label>
+                    <Value>=IIf(First(Fields!INDICADOR_CPF_CNPJ_TOMADOR.Value, "dsFATURAMENTO_NF") = "2",
+ "Razão Social: " &amp; First(Fields!NOME_RAZAO_SOCIAL_TOMADOR.Value, "dsFATURAMENTO_NF"),
+ "Nome: " &amp; First(Fields!NOME_RAZAO_SOCIAL_TOMADOR.Value, "dsFATURAMENTO_NF"))</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <Top>0.92639cm</Top>
+            <Left>0.1cm</Left>
+            <Height>0.57667cm</Height>
+            <Width>18.8cm</Width>
+            <ZIndex>2</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Endereco_Num_Compl_Tomador">
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Label>Tomador: Logradouro - Endereço - Número - Complemento</Label>
+                    <Value>="Endereço: " &amp; IIf(IsNothing(First(Fields!LOGRADOURO_TOMADOR.Value, "dsFATURAMENTO_NF")) Or First(Fields!LOGRADOURO_TOMADOR.Value, "dsFATURAMENTO_NF") = "",
+ First(Fields!ENDERECO_TOMADOR.Value, "dsFATURAMENTO_NF") &amp;
+ IIf(IsNothing(First(Fields!NUM_ENDERECO_TOMADOR.Value, "dsFATURAMENTO_NF")) Or First(Fields!NUM_ENDERECO_TOMADOR.Value, "dsFATURAMENTO_NF") = "",
+ "", " Nº " &amp; First(Fields!NUM_ENDERECO_TOMADOR.Value, "dsFATURAMENTO_NF")) &amp;
+ IIf(IsNothing(First(Fields!COMPL_ENDERECO_TOMADOR.Value, "dsFATURAMENTO_NF")) Or First(Fields!COMPL_ENDERECO_TOMADOR.Value, "dsFATURAMENTO_NF") = "",
+ "", " Compl. " &amp; First(Fields!COMPL_ENDERECO_TOMADOR.Value, "dsFATURAMENTO_NF")),
+ 
+ First(Fields!LOGRADOURO_TOMADOR.Value, "dsFATURAMENTO_NF") &amp; " " &amp; First(Fields!ENDERECO_TOMADOR.Value, "dsFATURAMENTO_NF") &amp;
+ IIf(IsNothing(First(Fields!NUM_ENDERECO_TOMADOR.Value, "dsFATURAMENTO_NF")) Or First(Fields!NUM_ENDERECO_TOMADOR.Value, "dsFATURAMENTO_NF") = "",
+ "", " Nº " &amp; First(Fields!NUM_ENDERECO_TOMADOR.Value, "dsFATURAMENTO_NF")) &amp;
+ IIf(IsNothing(First(Fields!COMPL_ENDERECO_TOMADOR.Value, "dsFATURAMENTO_NF")) Or First(Fields!COMPL_ENDERECO_TOMADOR.Value, "dsFATURAMENTO_NF") = "",
+ "", " Compl. " &amp; First(Fields!COMPL_ENDERECO_TOMADOR.Value, "dsFATURAMENTO_NF")))</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <Top>1.67945cm</Top>
+            <Left>0.1cm</Left>
+            <Height>0.57667cm</Height>
+            <Width>18.8cm</Width>
+            <ZIndex>3</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="CEP_Tomador">
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Label>Tomador: CEP</Label>
+                    <Value>="CEP: " &amp; IIf(IsNothing(First(Fields!CEP_TOMADOR.Value, "dsFATURAMENTO_NF")) Or First(Fields!CEP_TOMADOR.Value, "dsFATURAMENTO_NF") = "",
+ "", Left(First(Fields!CEP_TOMADOR.Value, "dsFATURAMENTO_NF"), 5) &amp; "-" &amp; Right(First(Fields!CEP_TOMADOR.Value, "dsFATURAMENTO_NF"), 3))</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <Top>2.43251cm</Top>
+            <Left>0.1cm</Left>
+            <Height>0.57667cm</Height>
+            <Width>3cm</Width>
+            <ZIndex>4</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="CPF_CNPJ_Tomador">
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Label>Tomador: CPF ou CNPJ</Label>
+                    <Value>=IIf(First(Fields!INDICADOR_CPF_CNPJ_TOMADOR.Value, "dsFATURAMENTO_NF") = "2",
+ "CNPJ: "
+ &amp; Left(First(Fields!CPF_CNPJ_TOMADOR.Value, "dsFATURAMENTO_NF"), 2)
+ &amp; "." &amp; Mid(First(Fields!CPF_CNPJ_TOMADOR.Value, "dsFATURAMENTO_NF"), 3, 3)
+ &amp; "." &amp; Mid(First(Fields!CPF_CNPJ_TOMADOR.Value, "dsFATURAMENTO_NF"), 6, 3)
+ &amp; "/" &amp; Mid(First(Fields!CPF_CNPJ_TOMADOR.Value, "dsFATURAMENTO_NF"), 9, 4)
+ &amp; "-" &amp; Right(First(Fields!CPF_CNPJ_TOMADOR.Value, "dsFATURAMENTO_NF"), 2),
+
+ IIf(First(Fields!INDICADOR_CPF_CNPJ_TOMADOR.Value, "dsFATURAMENTO_NF") = "1",
+ "CPF: "
+ &amp; Left(First(Fields!CPF_CNPJ_TOMADOR.Value, "dsFATURAMENTO_NF"), 3)
+ &amp; "." &amp; Mid(First(Fields!CPF_CNPJ_TOMADOR.Value, "dsFATURAMENTO_NF"), 4, 3)
+ &amp; "." &amp; Mid(First(Fields!CPF_CNPJ_TOMADOR.Value, "dsFATURAMENTO_NF"), 7, 3)
+ &amp; "-" &amp; Right(First(Fields!CPF_CNPJ_TOMADOR.Value, "dsFATURAMENTO_NF"), 2),
+ 
+ ""))</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <Top>3.18557cm</Top>
+            <Left>0.1cm</Left>
+            <Height>0.57667cm</Height>
+            <Width>18.8cm</Width>
+            <ZIndex>5</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="IM_Tomador">
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Label>Tomador: Inscrição Municipal</Label>
+                    <Value>="Inscrição Municipal: " &amp; First(Fields!IM_TOMADOR.Value, "dsFATURAMENTO_NF")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <Top>3.93862cm</Top>
+            <Left>0.1cm</Left>
+            <Height>0.57667cm</Height>
+            <Width>8.9cm</Width>
+            <ZIndex>6</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Bairro_Tomador">
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Label>Tomador: Bairro</Label>
+                    <Value>="Bairro: " &amp; First(Fields!BAIRRO_TOMADOR.Value, "dsFATURAMENTO_NF")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <Top>2.43251cm</Top>
+            <Left>3.27639cm</Left>
+            <Height>0.57667cm</Height>
+            <Width>6.54722cm</Width>
+            <ZIndex>7</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Municipio_Tomador">
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Label>Tomador: Município</Label>
+                    <Value>="Município: " &amp; First(Fields!MUNICIPIO_TOMADOR.Value, "dsFATURAMENTO_NF")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <Top>2.43251cm</Top>
+            <Left>10cm</Left>
+            <Height>0.57667cm</Height>
+            <Width>7.22361cm</Width>
+            <ZIndex>8</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="UF_Tomador">
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Label>UF</Label>
+                    <Value>="UF: " &amp; First(Fields!UF_TOMADOR.Value, "dsFATURAMENTO_NF")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <Top>2.43251cm</Top>
+            <Left>17.4cm</Left>
+            <Height>0.57667cm</Height>
+            <Width>1.5cm</Width>
+            <ZIndex>9</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="IE_Tomador">
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Label>Tomador: Inscrição Estadual</Label>
+                    <Value>="Inscrição Estadual: " &amp; First(Fields!IE_TOMADOR.Value, "dsFATURAMENTO_NF")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <Top>3.93862cm</Top>
+            <Left>10cm</Left>
+            <Height>0.57667cm</Height>
+            <Width>8.9cm</Width>
+            <ZIndex>10</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+        </ReportItems>
+        <KeepTogether>true</KeepTogether>
+        <Top>5.125cm</Top>
+        <Height>4.75cm</Height>
+        <Width>19cm</Width>
+        <ZIndex>1</ZIndex>
+        <Style>
+          <Border>
+            <Style>Solid</Style>
+          </Border>
+        </Style>
+      </Rectangle>
+      <Rectangle Name="Rectangle1">
+        <ReportItems>
+          <Line Name="Line1">
+            <Left>9.5cm</Left>
+            <Height>5cm</Height>
+            <Width>0cm</Width>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+            </Style>
+          </Line>
+          <Line Name="Line2">
+            <Top>1.2cm</Top>
+            <Left>10cm</Left>
+            <Height>0cm</Height>
+            <Width>8.5cm</Width>
+            <ZIndex>1</ZIndex>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+            </Style>
+          </Line>
+          <Line Name="Line3">
+            <Top>4cm</Top>
+            <Left>0.5cm</Left>
+            <Height>0cm</Height>
+            <Width>8.5cm</Width>
+            <ZIndex>2</ZIndex>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+            </Style>
+          </Line>
+          <Line Name="Line4">
+            <Top>0.1cm</Top>
+            <Left>15.5325cm</Left>
+            <Height>1cm</Height>
+            <Width>0cm</Width>
+            <ZIndex>3</ZIndex>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+            </Style>
+          </Line>
+          <Textbox Name="RPS">
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value EvaluationMode="Constant">RECIBO DE PRESTAÇÃO
+DE SERVIÇOS</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <Top>0.05cm</Top>
+            <Left>10cm</Left>
+            <Height>1cm</Height>
+            <Width>5cm</Width>
+            <ZIndex>4</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Numero_Serie">
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Label>Número / Série</Label>
+                    <Value>=IIf(First(Fields!SERIE_RPS.Value, "dsFATURAMENTO_NF") = "1", "Número" &amp; VbCRLF &amp; First(Fields!NUMERO_RPS.Value, "dsFATURAMENTO_NF"),
+ "Número / Série" &amp; VbCRLF &amp; First(Fields!NUMERO_RPS.Value, "dsFATURAMENTO_NF") &amp; " / " &amp; First(Fields!SERIE_RPS.Value, "dsFATURAMENTO_NF"))</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                      <Color>Red</Color>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <Top>0.05cm</Top>
+            <Left>15.60306cm</Left>
+            <Height>1cm</Height>
+            <Width>2.89694cm</Width>
+            <ZIndex>5</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Site">
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value EvaluationMode="Constant">http://www.mlegate.com</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <ActionInfo>
+              <Actions>
+                <Action>
+                  <Hyperlink>http://www.mlegate.com</Hyperlink>
+                </Action>
+              </Actions>
+            </ActionInfo>
+            <Top>2.35583cm</Top>
+            <Left>2.5cm</Left>
+            <Height>0.57667cm</Height>
+            <Width>4.28625cm</Width>
+            <ZIndex>6</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="CPF_CNPJ">
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Label>CPF ou CNPJ</Label>
+                    <Value>=IIf(First(Fields!INDICADOR_CPF_CNPJ_EMITENTE.Value, "dsFATURAMENTO_NF") = "2",
+ "Inscrição no CNPJ Nº:   "
+ &amp; Left(First(Fields!CPF_CNPJ_EMITENTE.Value, "dsFATURAMENTO_NF"), 2)
+ &amp; "." &amp; Mid(First(Fields!CPF_CNPJ_EMITENTE.Value, "dsFATURAMENTO_NF"), 3, 3)
+ &amp; "." &amp; Mid(First(Fields!CPF_CNPJ_EMITENTE.Value, "dsFATURAMENTO_NF"), 6, 3)
+ &amp; "/" &amp; Mid(First(Fields!CPF_CNPJ_EMITENTE.Value, "dsFATURAMENTO_NF"), 9, 4)
+ &amp; "-" &amp; Right(First(Fields!CPF_CNPJ_EMITENTE.Value, "dsFATURAMENTO_NF"), 2),
+
+ IIf(First(Fields!INDICADOR_CPF_CNPJ_EMITENTE.Value, "dsFATURAMENTO_NF") = "1",
+ "CPF                      Nº:   "
+ &amp; Left(First(Fields!CPF_CNPJ_EMITENTE.Value, "dsFATURAMENTO_NF"), 3)
+ &amp; "." &amp; Mid(First(Fields!CPF_CNPJ_EMITENTE.Value, "dsFATURAMENTO_NF"), 4, 3)
+ &amp; "." &amp; Mid(First(Fields!CPF_CNPJ_EMITENTE.Value, "dsFATURAMENTO_NF"), 7, 3)
+ &amp; "-" &amp; Right(First(Fields!CPF_CNPJ_EMITENTE.Value, "dsFATURAMENTO_NF"), 2),
+ 
+ "Inscrição no CNPJ Nº:   "))</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <Top>1.23528cm</Top>
+            <Left>10cm</Left>
+            <Height>0.57667cm</Height>
+            <Width>8.5cm</Width>
+            <ZIndex>7</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="IM">
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Label>Inscrição Municipal</Label>
+                    <Value>="Inscrição Municipal Nº:   " &amp; First(Fields!IM_EMITENTE.Value, "dsFATURAMENTO_NF")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <Top>1.84723cm</Top>
+            <Left>10cm</Left>
+            <Height>0.57667cm</Height>
+            <Width>8.5cm</Width>
+            <ZIndex>8</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="IE">
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Label>Inscrição Estadual</Label>
+                    <Value>="Inscrição Estadual  Nº:   " &amp; First(Fields!IE_EMITENTE.Value, "dsFATURAMENTO_NF")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <Top>2.45917cm</Top>
+            <Left>10cm</Left>
+            <Height>0.57667cm</Height>
+            <Width>8.5cm</Width>
+            <ZIndex>9</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Natureza_Operacao">
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Label>Natureza da Operação</Label>
+                    <Value>="Natureza da Operação:   " &amp; First(Fields!DESCRICAO_NATUREZA_OPERACAO.Value, "dsFATURAMENTO_NF")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <Top>3.07112cm</Top>
+            <Left>10cm</Left>
+            <Height>0.57667cm</Height>
+            <Width>8.5cm</Width>
+            <ZIndex>10</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Prestacao_Servicos">
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Label>Prestação de Serviços</Label>
+                    <Value>="Prestação de Serviços:   " &amp; First(Fields!DESCRICAO_PRESTACAO_SERVICO.Value, "dsFATURAMENTO_NF")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <Top>3.68307cm</Top>
+            <Left>10cm</Left>
+            <Height>0.57667cm</Height>
+            <Width>8.5cm</Width>
+            <ZIndex>11</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Data_Emissao">
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Label>Data de Emissao</Label>
+                    <Value>="Data de Emissao:          " &amp; CDate(First(Fields!DATA_EMISSAO_RPS.Value, "dsFATURAMENTO_NF")).ToString("dd/MM/yyyy")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <Top>4.29502cm</Top>
+            <Left>10cm</Left>
+            <Height>0.57667cm</Height>
+            <Width>8.5cm</Width>
+            <ZIndex>12</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Nome_Razao_Social">
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Label>Nome ou Razão Social</Label>
+                    <Value>=First(Fields!NOME_RAZAO_SOCIAL_EMITENTE.Value, "dsFATURAMENTO_NF")</Value>
+                    <Style>
+                      <FontSize>12pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <Height>1.5cm</Height>
+            <Width>9.5cm</Width>
+            <ZIndex>13</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Telefone">
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value EvaluationMode="Constant">Fone: (0 xx 11) 5080-7500</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <Top>1.5cm</Top>
+            <Height>0.75cm</Height>
+            <Width>9.5cm</Width>
+            <ZIndex>14</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Endereco_Num_Compl">
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Label>Logradouro - Endereço - Número - Complemento</Label>
+                    <Value>=IIf(IsNothing(First(Fields!LOGRADOURO_EMITENTE.Value, "dsFATURAMENTO_NF")) Or First(Fields!LOGRADOURO_EMITENTE.Value, "dsFATURAMENTO_NF") = "",
+ First(Fields!ENDERECO_EMITENTE.Value, "dsFATURAMENTO_NF") &amp;
+ IIf(IsNothing(First(Fields!NUM_ENDERECO_EMITENTE.Value, "dsFATURAMENTO_NF")) Or First(Fields!NUM_ENDERECO_EMITENTE.Value, "dsFATURAMENTO_NF") = "",
+ "", " Nº " &amp; First(Fields!NUM_ENDERECO_EMITENTE.Value, "dsFATURAMENTO_NF")) &amp;
+ IIf(IsNothing(First(Fields!COMPL_ENDERECO_EMITENTE.Value, "dsFATURAMENTO_NF")) Or First(Fields!COMPL_ENDERECO_EMITENTE.Value, "dsFATURAMENTO_NF") = "",
+ "", " Compl. " &amp; First(Fields!COMPL_ENDERECO_EMITENTE.Value, "dsFATURAMENTO_NF")),
+ 
+ First(Fields!LOGRADOURO_EMITENTE.Value, "dsFATURAMENTO_NF") &amp; " " &amp; First(Fields!ENDERECO_EMITENTE.Value, "dsFATURAMENTO_NF") &amp;
+ IIf(IsNothing(First(Fields!NUM_ENDERECO_EMITENTE.Value, "dsFATURAMENTO_NF")) Or First(Fields!NUM_ENDERECO_EMITENTE.Value, "dsFATURAMENTO_NF") = "",
+ "", " Nº " &amp; First(Fields!NUM_ENDERECO_EMITENTE.Value, "dsFATURAMENTO_NF")) &amp;
+ IIf(IsNothing(First(Fields!COMPL_ENDERECO_EMITENTE.Value, "dsFATURAMENTO_NF")) Or First(Fields!COMPL_ENDERECO_EMITENTE.Value, "dsFATURAMENTO_NF") = "",
+ "", " Compl. " &amp; First(Fields!COMPL_ENDERECO_EMITENTE.Value, "dsFATURAMENTO_NF")))</Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <Top>3.42333cm</Top>
+            <Left>0.5cm</Left>
+            <Height>0.57667cm</Height>
+            <Width>8.5cm</Width>
+            <ZIndex>15</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="CEP_Bairro_Municipio_UF">
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Label>CEP - Bairro - Município - UF</Label>
+                    <Value>=IIf(IsNothing(First(Fields!CEP_EMITENTE.Value, "dsFATURAMENTO_NF")) Or First(Fields!CEP_EMITENTE.Value, "dsFATURAMENTO_NF") = "",
+ "" &amp;
+ IIf(IsNothing(First(Fields!BAIRRO_EMITENTE.Value, "dsFATURAMENTO_NF")) Or First(Fields!BAIRRO_EMITENTE.Value, "dsFATURAMENTO_NF") = "",
+ "", First(Fields!BAIRRO_EMITENTE.Value, "dsFATURAMENTO_NF")) &amp;
+ IIf(IsNothing(First(Fields!MUNICIPIO_EMITENTE.Value, "dsFATURAMENTO_NF")) Or First(Fields!MUNICIPIO_EMITENTE.Value, "dsFATURAMENTO_NF") = "",
+ "", "   " &amp; First(Fields!MUNICIPIO_EMITENTE.Value, "dsFATURAMENTO_NF")) &amp;
+ IIf(IsNothing(First(Fields!UF_EMITENTE.Value, "dsFATURAMENTO_NF")) Or First(Fields!UF_EMITENTE.Value, "dsFATURAMENTO_NF") = "",
+ "", IIf(IsNothing(First(Fields!MUNICIPIO_EMITENTE.Value, "dsFATURAMENTO_NF")) Or First(Fields!MUNICIPIO_EMITENTE.Value, "dsFATURAMENTO_NF") = "",
+ "", " / " &amp; First(Fields!UF_EMITENTE.Value, "dsFATURAMENTO_NF"))),
+
+ "CEP: " &amp; Left(First(Fields!CEP_EMITENTE.Value, "dsFATURAMENTO_NF"), 5) &amp; "-" &amp; Right(First(Fields!CEP_EMITENTE.Value, "dsFATURAMENTO_NF"), 3) &amp;
+ IIf(IsNothing(First(Fields!BAIRRO_EMITENTE.Value, "dsFATURAMENTO_NF")) Or First(Fields!BAIRRO_EMITENTE.Value, "dsFATURAMENTO_NF") = "",
+ "", "   " &amp; First(Fields!BAIRRO_EMITENTE.Value, "dsFATURAMENTO_NF")) &amp;
+ IIf(IsNothing(First(Fields!MUNICIPIO_EMITENTE.Value, "dsFATURAMENTO_NF")) Or First(Fields!MUNICIPIO_EMITENTE.Value, "dsFATURAMENTO_NF") = "",
+ "", "   " &amp; First(Fields!MUNICIPIO_EMITENTE.Value, "dsFATURAMENTO_NF")) &amp;
+ IIf(IsNothing(First(Fields!UF_EMITENTE.Value, "dsFATURAMENTO_NF")) Or First(Fields!UF_EMITENTE.Value, "dsFATURAMENTO_NF") = "",
+ "", IIf(IsNothing(First(Fields!MUNICIPIO_EMITENTE.Value, "dsFATURAMENTO_NF")) Or First(Fields!MUNICIPIO_EMITENTE.Value, "dsFATURAMENTO_NF") = "",
+ "", " / " &amp; First(Fields!UF_EMITENTE.Value, "dsFATURAMENTO_NF"))))</Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <Top>4.07056cm</Top>
+            <Left>0.5cm</Left>
+            <Height>0.57667cm</Height>
+            <Width>8.5cm</Width>
+            <ZIndex>16</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+        </ReportItems>
+        <KeepTogether>true</KeepTogether>
+        <Height>5cm</Height>
+        <Width>19cm</Width>
+        <ZIndex>2</ZIndex>
+        <Style>
+          <Border>
+            <Style>Solid</Style>
+          </Border>
+        </Style>
+      </Rectangle>
+      <Rectangle Name="Rectangle3">
+        <ReportItems>
+          <Line Name="Line6">
+            <Top>0.75cm</Top>
+            <Height>0cm</Height>
+            <Width>15.5325cm</Width>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+            </Style>
+          </Line>
+          <Line Name="Line7">
+            <Top>8.2cm</Top>
+            <Height>0cm</Height>
+            <Width>15.5325cm</Width>
+            <ZIndex>1</ZIndex>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+            </Style>
+          </Line>
+          <Textbox Name="VALOR_TOTAL">
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value EvaluationMode="Constant">VALOR TOTAL:</Value>
+                    <Style>
+                      <FontSize>14pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <Top>8.35cm</Top>
+            <Left>10cm</Left>
+            <Height>0.70583cm</Height>
+            <Width>5cm</Width>
+            <ZIndex>2</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Discriminacao_Servicos">
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value EvaluationMode="Constant">Discriminação dos Serviços</Value>
+                    <Style>
+                      <FontSize>12pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <Top>0.06cm</Top>
+            <Left>3.02104cm</Left>
+            <Height>0.6cm</Height>
+            <Width>7.71229cm</Width>
+            <ZIndex>3</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Tablix Name="Servicos_Jobs">
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>14.5cm</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>0.5cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="NOME_SERVICO">
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Label>Serviços</Label>
+                                  <Value>=IIf(Count(Fields!COD_SERVICO.Value, "dsFATURAMENTO_NF_SERVICOS_JOBS_IMPOSTOS") = 1, "", Fields!COD_SERVICO_PREFEITURA.Value &amp; " - ") &amp; Fields!NOME_SERVICO.Value</Value>
+                                  <Style>
+                                    <FontSize>9pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>NOME_SERVICO</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember />
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember>
+                  <Group Name="NOME_SERVICO">
+                    <GroupExpressions>
+                      <GroupExpression>=Fields!COD_SERVICO.Value</GroupExpression>
+                    </GroupExpressions>
+                  </Group>
+                  <SortExpressions>
+                    <SortExpression>
+                      <Value>=Fields!NOME_SERVICO.Value</Value>
+                    </SortExpression>
+                  </SortExpressions>
+                </TablixMember>
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <DataSetName>dsFATURAMENTO_NF_SERVICOS_JOBS</DataSetName>
+            <Top>0.9cm</Top>
+            <Left>0.5cm</Left>
+            <Height>0.5cm</Height>
+            <Width>14.5cm</Width>
+            <ZIndex>4</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Tablix>
+          <Tablix Name="Retencoes">
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>10.23333cm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>4.26667cm</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>0.5cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Titulo_Retencoes">
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value EvaluationMode="Constant">Retenções</Value>
+                                  <Style>
+                                    <FontSize>9pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                        <ColSpan>2</ColSpan>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell />
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.5cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="APRESENTACAO">
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!APRESENTACAO.Value</Value>
+                                  <Style>
+                                    <FontSize>9pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>APRESENTACAO</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="VALOR_RETENCAO">
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!VALOR.Value</Value>
+                                  <Style>
+                                    <FontSize>9pt</FontSize>
+                                    <Format>#,0.00;(#,0.00)</Format>
+                                    <Language>es-ES</Language>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember />
+                <TablixMember />
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember>
+                  <KeepWithGroup>After</KeepWithGroup>
+                </TablixMember>
+                <TablixMember>
+                  <Group Name="APRESENTACAO" />
+                  <SortExpressions>
+                    <SortExpression>
+                      <Value>=Fields!APRESENTACAO.Value</Value>
+                    </SortExpression>
+                  </SortExpressions>
+                </TablixMember>
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <DataSetName>dsFATURAMENTO_NF_RETENCOES</DataSetName>
+            <Top>3.2175cm</Top>
+            <Left>0.5cm</Left>
+            <Height>1cm</Height>
+            <Width>14.5cm</Width>
+            <ZIndex>5</ZIndex>
+            <Visibility>
+              <Hidden>=IIf(Count(Fields!COD_FATURAMENTO_NF.Value) = 0, True, False)</Hidden>
+            </Visibility>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Tablix>
+          <Tablix Name="Vencimento">
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>4.23333cm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>4.26667cm</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>0.5cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Titulo_Data_Vencimento">
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value EvaluationMode="Constant">Data de Vencimento</Value>
+                                  <Style>
+                                    <FontSize>9pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Titulo_Valor">
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value EvaluationMode="Constant">Valor</Value>
+                                  <Style>
+                                    <FontSize>9pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.5cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="DATA_VENCIMENTO">
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Label>DATA_VENCIMENTO</Label>
+                                  <Value>=CDate(Fields!DATA_VENCIMENTO.Value).ToString("dd/MM/yyyy")</Value>
+                                  <Style>
+                                    <FontSize>9pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="VALOR_VENCIMENTO">
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!VALOR.Value</Value>
+                                  <Style>
+                                    <FontSize>9pt</FontSize>
+                                    <Format>#,0.00;(#,0.00)</Format>
+                                    <Language>es-ES</Language>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember />
+                <TablixMember />
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember>
+                  <KeepWithGroup>After</KeepWithGroup>
+                </TablixMember>
+                <TablixMember>
+                  <Group Name="DATA_VENCIMENTO" />
+                  <SortExpressions>
+                    <SortExpression>
+                      <Value>=Fields!DATA_VENCIMENTO.Value</Value>
+                    </SortExpression>
+                  </SortExpressions>
+                </TablixMember>
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <DataSetName>dsFATURAMENTO_NF_DATA_VENCIMENTO</DataSetName>
+            <Top>6.2175cm</Top>
+            <Left>0.5cm</Left>
+            <Height>1cm</Height>
+            <Width>8.5cm</Width>
+            <ZIndex>6</ZIndex>
+            <Visibility>
+              <Hidden>=IIf(Count(Fields!COD_FATURAMENTO_NF.Value) = 0, True, False)</Hidden>
+            </Visibility>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Tablix>
+          <Tablix Name="Narrativas">
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>15.25611cm</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>0.5cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="DESCRICAO">
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!DESCRICAO.Value</Value>
+                                  <Style>
+                                    <FontSize>8pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember />
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember>
+                  <Group Name="DESCRICAO" />
+                  <SortExpressions>
+                    <SortExpression>
+                      <Value>=Fields!DESCRICAO.Value</Value>
+                    </SortExpression>
+                  </SortExpressions>
+                </TablixMember>
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <DataSetName>dsFATURAMENTO_NF_NARRATIVAS</DataSetName>
+            <Top>7.4675cm</Top>
+            <Left>0.1cm</Left>
+            <Height>0.5cm</Height>
+            <Width>15.25611cm</Width>
+            <ZIndex>7</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Tablix>
+          <Tablix Name="Espacamento">
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>14.5cm</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>0.5cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="ROW">
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value EvaluationMode="Constant" />
+                                  <Style>
+                                    <FontSize>9pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>ROW</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember />
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember>
+                  <Group Name="ROW" />
+                  <Visibility>
+                    <Hidden>=IIf(Fields!ROW.Value &gt; (19 - ((Count(Fields!COD_SERVICO.Value, "dsFATURAMENTO_NF_SERVICOS_JOBS_IMPOSTOS") * 2) + Count(Fields!COD_FATURAMENTO_NF.Value, "dsFATURAMENTO_NF_RETENCOES")
+ + Count(Fields!COD_FATURAMENTO_NF.Value, "dsFATURAMENTO_NF_DATA_VENCIMENTO") + Count(Fields!COD_FATURAMENTO_NF.Value, "dsFATURAMENTO_NF_NARRATIVAS"))), True, False)</Hidden>
+                  </Visibility>
+                </TablixMember>
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <DataSetName>dsFATURAMENTO_NF_ESPACAMENTO</DataSetName>
+            <Top>5.4675cm</Top>
+            <Left>0.5cm</Left>
+            <Height>0.5cm</Height>
+            <Width>14.5cm</Width>
+            <ZIndex>8</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Tablix>
+          <Textbox Name="DISCRIMINACAO_OBSERVACAO">
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Label>Observações</Label>
+                    <Value>="Observações: " &amp; First(Fields!DISCRIMINACAO_OBSERVACAO.Value, "dsFATURAMENTO_NF")</Value>
+                    <Style>
+                      <FontSize>7pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <Top>1.65cm</Top>
+            <Left>0.1cm</Left>
+            <Height>1.3175cm</Height>
+            <Width>15.25611cm</Width>
+            <ZIndex>9</ZIndex>
+            <Visibility>
+              <Hidden>=IIf(IsNothing(First(Fields!DISCRIMINACAO_OBSERVACAO.Value, "dsFATURAMENTO_NF")) Or First(Fields!DISCRIMINACAO_OBSERVACAO.Value, "dsFATURAMENTO_NF") = "", True, False)</Hidden>
+            </Visibility>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <VerticalAlign>Top</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Tablix Name="Servicos_Jobs_Impostos">
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>14.5cm</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>0.5cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Tributos">
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Label>Valor aproximado dos tributos</Label>
+                                  <Value>=IIf(Count(Fields!COD_SERVICO.Value, "dsFATURAMENTO_NF_SERVICOS_JOBS_IMPOSTOS") = 1, "", Fields!COD_SERVICO_PREFEITURA.Value &amp; " - ")
+ &amp; "Valor aproximado dos tributos: R$ " &amp;
+ ((CDbl(Sum(Fields!VALOR.Value)) * CDbl(Fields!IMPOSTOS.Value)) / 100).ToString("#,0.00;(#,0.00)", new System.Globalization.CultureInfo("es-ES"))
+ &amp; " (" &amp; CDbl(Fields!IMPOSTOS.Value).ToString("#,0.00;(#,0.00)", new System.Globalization.CultureInfo("es-ES")) &amp; "%)"</Value>
+                                  <Style>
+                                    <FontSize>9pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.5cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Fonte_IBPT">
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value EvaluationMode="Constant">Fonte: IBPT</Value>
+                                  <Style>
+                                    <FontSize>9pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember />
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember>
+                  <Group Name="Impostos">
+                    <GroupExpressions>
+                      <GroupExpression>=Fields!COD_SERVICO.Value</GroupExpression>
+                    </GroupExpressions>
+                  </Group>
+                  <SortExpressions>
+                    <SortExpression>
+                      <Value>=Fields!NOME_SERVICO.Value</Value>
+                    </SortExpression>
+                  </SortExpressions>
+                </TablixMember>
+                <TablixMember>
+                  <KeepWithGroup>Before</KeepWithGroup>
+                </TablixMember>
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <DataSetName>dsFATURAMENTO_NF_SERVICOS_JOBS</DataSetName>
+            <Top>4.4675cm</Top>
+            <Left>0.5cm</Left>
+            <Height>1cm</Height>
+            <Width>14.5cm</Width>
+            <ZIndex>10</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Tablix>
+        </ReportItems>
+        <KeepTogether>true</KeepTogether>
+        <Top>10.125cm</Top>
+        <Height>9.14861cm</Height>
+        <Width>15.5325cm</Width>
+        <ZIndex>3</ZIndex>
+        <Style>
+          <Border>
+            <Style>Solid</Style>
+          </Border>
+        </Style>
+      </Rectangle>
+      <Rectangle Name="Rectangle4">
+        <ReportItems>
+          <Line Name="Line8">
+            <Top>0.75cm</Top>
+            <Height>0cm</Height>
+            <Width>3.4675cm</Width>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+            </Style>
+          </Line>
+          <Line Name="Line9">
+            <Top>8.2cm</Top>
+            <Height>0cm</Height>
+            <Width>3.4675cm</Width>
+            <ZIndex>1</ZIndex>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+            </Style>
+          </Line>
+          <Textbox Name="Preco_Total">
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value EvaluationMode="Constant">Preço Total</Value>
+                    <Style>
+                      <FontSize>12pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <Top>0.06cm</Top>
+            <Left>0.07056cm</Left>
+            <Height>0.6cm</Height>
+            <Width>3.29694cm</Width>
+            <ZIndex>2</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Tablix Name="Servicos_Jobs_Valor">
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>3.29694cm</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>0.5cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="VALOR">
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Sum(Fields!VALOR.Value)</Value>
+                                  <Style>
+                                    <FontSize>9pt</FontSize>
+                                    <Format>#,0.00;(#,0.00)</Format>
+                                    <Language>es-ES</Language>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember />
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember>
+                  <Group Name="NOME_SERVICO_VALOR">
+                    <GroupExpressions>
+                      <GroupExpression>=Fields!COD_SERVICO.Value</GroupExpression>
+                    </GroupExpressions>
+                  </Group>
+                  <SortExpressions>
+                    <SortExpression>
+                      <Value>=Fields!NOME_SERVICO.Value</Value>
+                    </SortExpression>
+                  </SortExpressions>
+                </TablixMember>
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <DataSetName>dsFATURAMENTO_NF_SERVICOS_JOBS</DataSetName>
+            <Top>0.9cm</Top>
+            <Left>0.07056cm</Left>
+            <Height>0.5cm</Height>
+            <Width>3.29694cm</Width>
+            <ZIndex>3</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Tablix>
+          <Textbox Name="Valor_Servicos">
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Label>Valor Serviços</Label>
+                    <Value>=First(Fields!VALOR_SERVICOS.Value, "dsFATURAMENTO_NF")</Value>
+                    <Style>
+                      <Format>#,0.00;(#,0.00)</Format>
+                      <Language>es-ES</Language>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Right</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <Top>8.35cm</Top>
+            <Left>0.07056cm</Left>
+            <Height>0.70583cm</Height>
+            <Width>3.29694cm</Width>
+            <ZIndex>4</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Tablix Name="Espacamento2">
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>3.29694cm</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>0.5cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="ROW2">
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value EvaluationMode="Constant" />
+                                  <Style>
+                                    <FontSize>9pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>ROW</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember />
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember>
+                  <Group Name="ROW2" />
+                  <Visibility>
+                    <Hidden>=IIf(Fields!ROW.Value &gt; (19 - ((Count(Fields!COD_SERVICO.Value, "dsFATURAMENTO_NF_SERVICOS_JOBS_IMPOSTOS") * 2) + Count(Fields!COD_FATURAMENTO_NF.Value, "dsFATURAMENTO_NF_RETENCOES")
+ + Count(Fields!COD_FATURAMENTO_NF.Value, "dsFATURAMENTO_NF_DATA_VENCIMENTO") + Count(Fields!COD_FATURAMENTO_NF.Value, "dsFATURAMENTO_NF_NARRATIVAS"))), True, False)</Hidden>
+                  </Visibility>
+                </TablixMember>
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <DataSetName>dsFATURAMENTO_NF_ESPACAMENTO</DataSetName>
+            <Top>5.4675cm</Top>
+            <Left>0.07056cm</Left>
+            <Height>0.5cm</Height>
+            <Width>3.29694cm</Width>
+            <ZIndex>5</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Tablix>
+          <Tablix Name="Vencimento2">
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>1.6318cm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1.66514cm</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>0.5cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Titulo_Data_Vencimento2">
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value EvaluationMode="Constant" />
+                                  <Style>
+                                    <FontSize>9pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Titulo_Valor2">
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value EvaluationMode="Constant" />
+                                  <Style>
+                                    <FontSize>9pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.5cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="DATA_VENCIMENTO2">
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value EvaluationMode="Constant" />
+                                  <Style>
+                                    <FontSize>9pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="VALOR_VENCIMENTO2">
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value EvaluationMode="Constant" />
+                                  <Style>
+                                    <FontSize>9pt</FontSize>
+                                    <Format>#,0.00;(#,0.00)</Format>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember />
+                <TablixMember />
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember>
+                  <KeepWithGroup>After</KeepWithGroup>
+                </TablixMember>
+                <TablixMember>
+                  <Group Name="DATA_VENCIMENTO2" />
+                  <SortExpressions>
+                    <SortExpression>
+                      <Value>=Fields!DATA_VENCIMENTO.Value</Value>
+                    </SortExpression>
+                  </SortExpressions>
+                </TablixMember>
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <DataSetName>dsFATURAMENTO_NF_DATA_VENCIMENTO</DataSetName>
+            <Top>6.2175cm</Top>
+            <Left>0.07056cm</Left>
+            <Height>1cm</Height>
+            <Width>3.29694cm</Width>
+            <ZIndex>6</ZIndex>
+            <Visibility>
+              <Hidden>=Microsoft.VisualBasic.Interaction.IIf(Count(Fields!COD_FATURAMENTO_NF.Value) = 0, True, False)</Hidden>
+            </Visibility>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Tablix>
+          <Tablix Name="Narrativas2">
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>3.29694cm</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>0.5cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="DESCRICAO2">
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value EvaluationMode="Constant" />
+                                  <Style>
+                                    <FontSize>8pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember />
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember>
+                  <Group Name="DESCRICAO2" />
+                  <SortExpressions>
+                    <SortExpression>
+                      <Value>=Fields!DESCRICAO.Value</Value>
+                    </SortExpression>
+                  </SortExpressions>
+                </TablixMember>
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <DataSetName>dsFATURAMENTO_NF_NARRATIVAS</DataSetName>
+            <Top>7.4675cm</Top>
+            <Left>0.07056cm</Left>
+            <Height>0.5cm</Height>
+            <Width>3.29694cm</Width>
+            <ZIndex>7</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Tablix>
+          <Tablix Name="Retencoes2">
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>1.8cm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1.49694cm</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>0.5cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Titulo_Retencoes2">
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value EvaluationMode="Constant" />
+                                  <Style>
+                                    <FontSize>9pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                        <ColSpan>2</ColSpan>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell />
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.5cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="APRESENTACAO2">
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value EvaluationMode="Constant" />
+                                  <Style>
+                                    <FontSize>9pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>APRESENTACAO</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="VALOR_RETENCAO2">
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value EvaluationMode="Constant" />
+                                  <Style>
+                                    <FontSize>9pt</FontSize>
+                                    <Format>#,0.00;(#,0.00)</Format>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember />
+                <TablixMember />
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember>
+                  <KeepWithGroup>After</KeepWithGroup>
+                </TablixMember>
+                <TablixMember>
+                  <Group Name="APRESENTACAO2" />
+                  <SortExpressions>
+                    <SortExpression>
+                      <Value>=Fields!APRESENTACAO.Value</Value>
+                    </SortExpression>
+                  </SortExpressions>
+                </TablixMember>
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <DataSetName>dsFATURAMENTO_NF_RETENCOES</DataSetName>
+            <Top>3.2175cm</Top>
+            <Left>0.07056cm</Left>
+            <Height>1cm</Height>
+            <Width>3.29694cm</Width>
+            <ZIndex>8</ZIndex>
+            <Visibility>
+              <Hidden>=Microsoft.VisualBasic.Interaction.IIf(Count(Fields!COD_FATURAMENTO_NF.Value) = 0, True, False)</Hidden>
+            </Visibility>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Tablix>
+          <Textbox Name="DISCRIMINACAO_OBSERVACAO2">
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Label>Observações</Label>
+                    <Value EvaluationMode="Constant" />
+                    <Style>
+                      <FontSize>7pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <Top>1.65cm</Top>
+            <Left>0.07056cm</Left>
+            <Height>1.3175cm</Height>
+            <Width>3.29694cm</Width>
+            <ZIndex>9</ZIndex>
+            <Visibility>
+              <Hidden>=Microsoft.VisualBasic.Interaction.IIf(Microsoft.VisualBasic.Information.IsNothing(First(Fields!DISCRIMINACAO_OBSERVACAO.Value, "dsFATURAMENTO_NF")) Or First(Fields!DISCRIMINACAO_OBSERVACAO.Value, "dsFATURAMENTO_NF") = "", True, False)</Hidden>
+            </Visibility>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <VerticalAlign>Top</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Tablix Name="Servicos_Jobs_Impostos2">
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>3.29694cm</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>0.5cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Tributos2">
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value EvaluationMode="Constant" />
+                                  <Style>
+                                    <FontSize>9pt</FontSize>
+                                    <Format>#,0.00;(#,0.00)</Format>
+                                    <Language>es-ES</Language>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.5cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Fonte_IBPT_2">
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value EvaluationMode="Constant" />
+                                  <Style>
+                                    <FontSize>9pt</FontSize>
+                                    <Language>es-ES</Language>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember />
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember>
+                  <Group Name="Impostos2">
+                    <GroupExpressions>
+                      <GroupExpression>=Fields!COD_SERVICO.Value</GroupExpression>
+                    </GroupExpressions>
+                  </Group>
+                  <SortExpressions>
+                    <SortExpression>
+                      <Value>=Fields!NOME_SERVICO.Value</Value>
+                    </SortExpression>
+                  </SortExpressions>
+                </TablixMember>
+                <TablixMember>
+                  <KeepWithGroup>Before</KeepWithGroup>
+                </TablixMember>
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <DataSetName>dsFATURAMENTO_NF_SERVICOS_JOBS</DataSetName>
+            <Top>4.4675cm</Top>
+            <Left>0.07056cm</Left>
+            <Height>1cm</Height>
+            <Width>3.29694cm</Width>
+            <ZIndex>10</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Tablix>
+        </ReportItems>
+        <KeepTogether>true</KeepTogether>
+        <Top>10.125cm</Top>
+        <Left>15.5325cm</Left>
+        <Height>9.14861cm</Height>
+        <Width>3.4675cm</Width>
+        <ZIndex>4</ZIndex>
+        <Style>
+          <Border>
+            <Style>Solid</Style>
+          </Border>
+        </Style>
+      </Rectangle>
+    </ReportItems>
+    <Height>8.24803in</Height>
+    <Style />
+  </Body>
+  <Width>7.48031in</Width>
+  <Page>
+    <PageHeight>29.7cm</PageHeight>
+    <PageWidth>21cm</PageWidth>
+    <LeftMargin>1cm</LeftMargin>
+    <RightMargin>1cm</RightMargin>
+    <TopMargin>1cm</TopMargin>
+    <BottomMargin>1cm</BottomMargin>
+    <ColumnSpacing>0.13cm</ColumnSpacing>
+    <Style />
+  </Page>
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="RelatoriosDAO">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>ce75685b-35fb-4ef6-9eed-ec59711f22f2</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="dsFATURAMENTO_NF">
+      <Query>
+        <DataSourceName>RelatoriosDAO</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="COD_FATURAMENTO_NF">
+          <DataField>COD_FATURAMENTO_NF</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="NUMERO_NF">
+          <DataField>NUMERO_NF</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="DATA_EMISSAO_NF">
+          <DataField>DATA_EMISSAO_NF</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="COD_VERIFICACAO_NF">
+          <DataField>COD_VERIFICACAO_NF</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TIPO_REGISTRO">
+          <DataField>TIPO_REGISTRO</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="NUMERO_RPS">
+          <DataField>NUMERO_RPS</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="DATA_EMISSAO_RPS">
+          <DataField>DATA_EMISSAO_RPS</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="TIPO_RPS">
+          <DataField>TIPO_RPS</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SERIE_RPS">
+          <DataField>SERIE_RPS</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="COD_EMPRESA">
+          <DataField>COD_EMPRESA</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="COD_EMITENTE">
+          <DataField>COD_EMITENTE</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="NOME_RAZAO_SOCIAL_EMITENTE">
+          <DataField>NOME_RAZAO_SOCIAL_EMITENTE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="INDICADOR_CPF_CNPJ_EMITENTE">
+          <DataField>INDICADOR_CPF_CNPJ_EMITENTE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CPF_CNPJ_EMITENTE">
+          <DataField>CPF_CNPJ_EMITENTE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IM_EMITENTE">
+          <DataField>IM_EMITENTE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IE_EMITENTE">
+          <DataField>IE_EMITENTE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="LOGRADOURO_EMITENTE">
+          <DataField>LOGRADOURO_EMITENTE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ENDERECO_EMITENTE">
+          <DataField>ENDERECO_EMITENTE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="NUM_ENDERECO_EMITENTE">
+          <DataField>NUM_ENDERECO_EMITENTE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="COMPL_ENDERECO_EMITENTE">
+          <DataField>COMPL_ENDERECO_EMITENTE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="BAIRRO_EMITENTE">
+          <DataField>BAIRRO_EMITENTE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MUNICIPIO_EMITENTE">
+          <DataField>MUNICIPIO_EMITENTE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="UF_EMITENTE">
+          <DataField>UF_EMITENTE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CEP_EMITENTE">
+          <DataField>CEP_EMITENTE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="EMAIL_EMITENTE">
+          <DataField>EMAIL_EMITENTE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="COD_TOMADOR">
+          <DataField>COD_TOMADOR</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="NOME_RAZAO_SOCIAL_TOMADOR">
+          <DataField>NOME_RAZAO_SOCIAL_TOMADOR</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="INDICADOR_CPF_CNPJ_TOMADOR">
+          <DataField>INDICADOR_CPF_CNPJ_TOMADOR</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CPF_CNPJ_TOMADOR">
+          <DataField>CPF_CNPJ_TOMADOR</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IM_TOMADOR">
+          <DataField>IM_TOMADOR</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IE_TOMADOR">
+          <DataField>IE_TOMADOR</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="LOGRADOURO_TOMADOR">
+          <DataField>LOGRADOURO_TOMADOR</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ENDERECO_TOMADOR">
+          <DataField>ENDERECO_TOMADOR</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="NUM_ENDERECO_TOMADOR">
+          <DataField>NUM_ENDERECO_TOMADOR</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="COMPL_ENDERECO_TOMADOR">
+          <DataField>COMPL_ENDERECO_TOMADOR</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="BAIRRO_TOMADOR">
+          <DataField>BAIRRO_TOMADOR</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MUNICIPIO_TOMADOR">
+          <DataField>MUNICIPIO_TOMADOR</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="UF_TOMADOR">
+          <DataField>UF_TOMADOR</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CEP_TOMADOR">
+          <DataField>CEP_TOMADOR</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="EMAIL_TOMADOR">
+          <DataField>EMAIL_TOMADOR</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="COD_INTERMEDIARIO">
+          <DataField>COD_INTERMEDIARIO</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="NOME_RAZAO_SOCIAL_INTERMEDIARIO">
+          <DataField>NOME_RAZAO_SOCIAL_INTERMEDIARIO</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="INDICADOR_CPF_CNPJ_INTERMEDIARIO">
+          <DataField>INDICADOR_CPF_CNPJ_INTERMEDIARIO</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CPF_CNPJ_INTERMEDIARIO">
+          <DataField>CPF_CNPJ_INTERMEDIARIO</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IM_INTERMEDIARIO">
+          <DataField>IM_INTERMEDIARIO</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IE_INTERMEDIARIO">
+          <DataField>IE_INTERMEDIARIO</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="REPASSE_PLANO_SAUDE">
+          <DataField>REPASSE_PLANO_SAUDE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="COD_NATUREZA_OPERACAO">
+          <DataField>COD_NATUREZA_OPERACAO</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="COD_PRESTACAO_SERVICO">
+          <DataField>COD_PRESTACAO_SERVICO</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="OPTANTE_SIMPLES">
+          <DataField>OPTANTE_SIMPLES</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SITUACAO_NF">
+          <DataField>SITUACAO_NF</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DATA_CANCELAMENTO">
+          <DataField>DATA_CANCELAMENTO</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="NUMERO_NF_SUBSTITUTA">
+          <DataField>NUMERO_NF_SUBSTITUTA</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="NUMERO_GUIA">
+          <DataField>NUMERO_GUIA</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DATA_QUIT_GUIA_VINC_NF">
+          <DataField>DATA_QUIT_GUIA_VINC_NF</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="VALOR_SERVICOS">
+          <DataField>VALOR_SERVICOS</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="VALOR_DEDUCOES">
+          <DataField>VALOR_DEDUCOES</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="VALOR_CREDITO">
+          <DataField>VALOR_CREDITO</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="ALIQUOTA">
+          <DataField>ALIQUOTA</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="ISS_DEVIDO">
+          <DataField>ISS_DEVIDO</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="ISS_RETIDO">
+          <DataField>ISS_RETIDO</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ISS_PAGO">
+          <DataField>ISS_PAGO</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="ISS_A_PAGAR">
+          <DataField>ISS_A_PAGAR</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="PIS_PASEP">
+          <DataField>PIS_PASEP</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="COFINS">
+          <DataField>COFINS</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="INSS">
+          <DataField>INSS</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="IR">
+          <DataField>IR</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="CSLL">
+          <DataField>CSLL</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="CARGA_TRIBUT_VALOR">
+          <DataField>CARGA_TRIBUT_VALOR</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="CARGA_TRIBUT_PORCENTAGEM">
+          <DataField>CARGA_TRIBUT_PORCENTAGEM</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="CARGA_TRIBUT_RETIDO_FONTE">
+          <DataField>CARGA_TRIBUT_RETIDO_FONTE</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="CEI">
+          <DataField>CEI</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MATRICULA_OBRA">
+          <DataField>MATRICULA_OBRA</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="COD_MUNICIPIO_PRESTACAO">
+          <DataField>COD_MUNICIPIO_PRESTACAO</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="SITUACAO_ACEITE">
+          <DataField>SITUACAO_ACEITE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CAMPO_RESERVADO">
+          <DataField>CAMPO_RESERVADO</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DISCRIMINACAO_OBSERVACAO">
+          <DataField>DISCRIMINACAO_OBSERVACAO</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="NOME_NATUREZA_OPERACAO">
+          <DataField>NOME_NATUREZA_OPERACAO</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DESCRICAO_NATUREZA_OPERACAO">
+          <DataField>DESCRICAO_NATUREZA_OPERACAO</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="NATUREZA_OPERACAO">
+          <DataField>NATUREZA_OPERACAO</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="NOME_PRESTACAO_SERVICO">
+          <DataField>NOME_PRESTACAO_SERVICO</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DESCRICAO_PRESTACAO_SERVICO">
+          <DataField>DESCRICAO_PRESTACAO_SERVICO</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>RelatoriosDAO</rd:DataSetName>
+        <rd:SchemaPath>C:\Bitbucket\Contabil\App_Code\DAO\RelatoriosDAO.xsd</rd:SchemaPath>
+        <rd:TableName>FATURAMENTO_NF</rd:TableName>
+        <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
+        <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
+        <rd:TableAdapterName>FATURAMENTO_NFTableAdapter</rd:TableAdapterName>
+      </rd:DataSetInfo>
+    </DataSet>
+    <DataSet Name="dsFATURAMENTO_NF_RETENCOES">
+      <Query>
+        <DataSourceName>RelatoriosDAO</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="COD_FATURAMENTO_NF">
+          <DataField>COD_FATURAMENTO_NF</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="COD_RETENCAO">
+          <DataField>COD_RETENCAO</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="NOME">
+          <DataField>NOME</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="VALOR">
+          <DataField>VALOR</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="APRESENTACAO">
+          <DataField>APRESENTACAO</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>RelatoriosDAO</rd:DataSetName>
+        <rd:SchemaPath>C:\Bitbucket\Contabil\App_Code\DAO\RelatoriosDAO.xsd</rd:SchemaPath>
+        <rd:TableName>FATURAMENTO_NF_RETENCOES</rd:TableName>
+        <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
+        <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
+        <rd:TableAdapterName>FATURAMENTO_NF_RETENCOESTableAdapter</rd:TableAdapterName>
+      </rd:DataSetInfo>
+    </DataSet>
+    <DataSet Name="dsFATURAMENTO_NF_SERVICOS_JOBS">
+      <Query>
+        <DataSourceName>RelatoriosDAO</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="COD_SERVICO">
+          <DataField>COD_SERVICO</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="NOME_SERVICO">
+          <DataField>NOME_SERVICO</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="VALOR">
+          <DataField>VALOR</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="COD_SERVICO_PREFEITURA">
+          <DataField>COD_SERVICO_PREFEITURA</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IMPOSTOS">
+          <DataField>IMPOSTOS</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>RelatoriosDAO</rd:DataSetName>
+        <rd:SchemaPath>C:\Bitbucket\Contabil\Contabil\App_Code\DAO\RelatoriosDAO.xsd</rd:SchemaPath>
+        <rd:TableName>FATURAMENTO_NF_SERVICOS_JOBS</rd:TableName>
+        <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
+        <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
+        <rd:TableAdapterName>FATURAMENTO_NF_SERVICOS_JOBSTableAdapter</rd:TableAdapterName>
+      </rd:DataSetInfo>
+    </DataSet>
+    <DataSet Name="dsFATURAMENTO_NF_DATA_VENCIMENTO">
+      <Query>
+        <DataSourceName>RelatoriosDAO</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="COD_FATURAMENTO_NF">
+          <DataField>COD_FATURAMENTO_NF</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="DATA_VENCIMENTO">
+          <DataField>DATA_VENCIMENTO</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="VALOR">
+          <DataField>VALOR</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>RelatoriosDAO</rd:DataSetName>
+        <rd:SchemaPath>C:\Bitbucket\Contabil\App_Code\DAO\RelatoriosDAO.xsd</rd:SchemaPath>
+        <rd:TableName>FATURAMENTO_NF_DATA_VENCIMENTO</rd:TableName>
+        <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
+        <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
+        <rd:TableAdapterName>FATURAMENTO_NF_DATA_VENCIMENTOTableAdapter</rd:TableAdapterName>
+      </rd:DataSetInfo>
+    </DataSet>
+    <DataSet Name="dsFATURAMENTO_NF_NARRATIVAS">
+      <Query>
+        <DataSourceName>RelatoriosDAO</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="COD_FATURAMENTO_NF">
+          <DataField>COD_FATURAMENTO_NF</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="COD_NARRATIVA">
+          <DataField>COD_NARRATIVA</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="NOME">
+          <DataField>NOME</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DESCRICAO">
+          <DataField>DESCRICAO</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>RelatoriosDAO</rd:DataSetName>
+        <rd:SchemaPath>C:\Bitbucket\Contabil\App_Code\DAO\RelatoriosDAO.xsd</rd:SchemaPath>
+        <rd:TableName>FATURAMENTO_NF_NARRATIVAS</rd:TableName>
+        <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
+        <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
+        <rd:TableAdapterName>FATURAMENTO_NF_NARRATIVASTableAdapter</rd:TableAdapterName>
+      </rd:DataSetInfo>
+    </DataSet>
+    <DataSet Name="dsFATURAMENTO_NF_ESPACAMENTO">
+      <Query>
+        <DataSourceName>RelatoriosDAO</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="ROW">
+          <DataField>ROW</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>RelatoriosDAO</rd:DataSetName>
+        <rd:SchemaPath>C:\Bitbucket\Contabil\App_Code\DAO\RelatoriosDAO.xsd</rd:SchemaPath>
+        <rd:TableName>FATURAMENTO_NF_ESPACAMENTO</rd:TableName>
+        <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
+        <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
+        <rd:TableAdapterName>FATURAMENTO_NF_ESPACAMENTOTableAdapter</rd:TableAdapterName>
+      </rd:DataSetInfo>
+    </DataSet>
+    <DataSet Name="dsFATURAMENTO_NF_SERVICOS_JOBS_IMPOSTOS">
+      <Query>
+        <DataSourceName>RelatoriosDAO</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="COD_SERVICO">
+          <DataField>COD_SERVICO</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="NOME_SERVICO">
+          <DataField>NOME_SERVICO</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="COD_SERVICO_PREFEITURA">
+          <DataField>COD_SERVICO_PREFEITURA</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IMPOSTOS">
+          <DataField>IMPOSTOS</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>RelatoriosDAO</rd:DataSetName>
+        <rd:SchemaPath>C:\Bitbucket\Contabil\Contabil\App_Code\DAO\RelatoriosDAO.xsd</rd:SchemaPath>
+        <rd:TableName>FATURAMENTO_NF_SERVICOS_JOBS_IMPOSTOS</rd:TableName>
+        <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
+        <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
+        <rd:TableAdapterName>FATURAMENTO_NF_SERVICOS_JOBS_IMPOSTOSTableAdapter</rd:TableAdapterName>
+      </rd:DataSetInfo>
+    </DataSet>
+  </DataSets>
+  <rd:ReportUnitType>Cm</rd:ReportUnitType>
+  <rd:ReportID>8776ee72-c423-464a-bc0c-f6ac011e699b</rd:ReportID>
+</Report>

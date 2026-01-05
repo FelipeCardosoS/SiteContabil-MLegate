@@ -1,0 +1,132 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterGrid.master.cs" Inherits="MasterGrid" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title>Sistema Contábil - </title>
+    <style type="text/css">@import url(Css/Basico.css);</style>
+    <style type="text/css">@import url(Css/FormatacaoValidacao.css);</style>
+    <script type="text/javascript" src="Js/jquery.js"></script>
+    <script type="text/javascript" src="Js/jquery.maskedinput.js"></script>
+    <script type="text/javascript" src="Js/jquery.tooltipster.js"></script>
+    <script type="text/javascript" src="Js/principal.js"></script>
+    <asp:ContentPlaceHolder id="head" runat="server"></asp:ContentPlaceHolder>
+</head>
+<body onload="horizontal('');">
+     <script language="javascript" type="text/javascript">   
+         $(document).ready(function () {
+             $('input').keydown(function (e) {
+                 if (e.which == 13) {
+                     e.returnValue = false;
+                     return false;
+                 }
+             });
+         });
+    </script>
+    <form id="form_principal" runat="server">
+    <asp:ScriptManager ID="ScriptManager1" EnablePageMethods="true" runat="server">
+        <Scripts>
+            <asp:ScriptReference Path="Js/Metodos.js" />
+        </Scripts>
+    </asp:ScriptManager>
+        <div id="corpo">
+            <div class="logtype" style="float:left; width:186px; height:90px;">
+                <a href="Default.aspx"><img alt="Logotipo" src="Imagens/logotipo.jpg" width="186" height="90" border="0" /></a>
+            </div>
+            <div id="topo">
+                <div id="barra" style="width:812px;">
+                    <div id="home">
+                        <a href="Default.aspx"><img src="Imagens/icones/house.gif" alt="" /></a>
+                        <asp:Literal ID="data_hora" runat="server"></asp:Literal>
+                    </div>
+                    <div id="company">
+                        <img src="Imagens/icones/company.png" width="16" height="16" alt="" />
+                        <asp:Literal ID="empresa_login" runat="server"></asp:Literal>
+                    </div>
+                    <div id="user_on">
+                        <asp:Label ID="labelUsuarioOn" runat="server" Text="" style="width:125px;overflow:hidden;height:15px;"></asp:Label>
+                        <asp:ImageButton ID="botaoLogout" CausesValidation="false" ImageUrl="~/Imagens/icones/cancel.gif" AlternateText="Logout" runat="server" />
+                        <asp:HyperLink ID="linkAlterarSenha" runat="server"><img src="Imagens/icones/key.gif" alt="Alterar Senha" /></asp:HyperLink>
+                        <asp:HyperLink ID="linkAlterarDados" runat="server"><img src="Imagens/icones/pencil.gif" alt="Alterar Dados" /></asp:HyperLink>
+                    </div>
+                </div>
+                <div id="menu" class="divMenu" style="width:812px;" runat="server"></div>
+            </div>
+            <h2 id="areaSubTitulo" runat="server">
+                <img src="Imagens/setaDupla.gif" alt="" />
+                <asp:Literal ID="subTitulo" runat="server"></asp:Literal>
+            </h2>
+            <div class="linha"></div>
+            <div id="conteudo">
+                <div id="boxFiltro">
+                    <h3>Filtro de Dados</h3>
+                    <div id="areaFiltro">
+                        <fieldset id="form_filtro">
+                            <asp:ContentPlaceHolder id="areaFiltro" runat="server">
+                            
+                            </asp:ContentPlaceHolder>
+                        </fieldset>
+                        <asp:Button ID="botaoFiltrar" CssClass="botao" runat="server" Text="Filtrar" />
+                    </div>
+                </div>
+                <div id="boxGrid">
+                    <div id="nav">
+                        <div class="funcoes">
+                            <strong>Selecionar:</strong> 
+                            <a href="javascript:marcaTodos();">todas</a>, 
+                            <a href="javascript:desmarcaTodos();">nenhuma</a></div>
+                        <div class="ordenar">
+                            <span><strong>Ordenar:</strong></span>
+                            <asp:DropDownList ID="comboOrdenar" AutoPostBack="true" runat="server">
+                            </asp:DropDownList>
+                        </div>
+                        <div id="areaBotoesGrid" class="botoes" style="top:0 !important;" runat="server">
+                            <asp:HyperLink ID="botaoNovo" CssClass="botaoNovo" runat="server">Novo</asp:HyperLink>
+                            <asp:Button ID="botaoContabilizar" CssClass="BotaoAcaoGrid" Text="Contabilizar" Visible="false" runat="server" />
+                            <asp:Button ID="botaoGerarArquivo" CssClass="BotaoAcaoGrid" Text="Gerar TXT" Visible="false" runat="server" />
+                            <asp:Button ID="botaoImportarArquivo" CssClass="BotaoAcaoGrid" Text="Importar CSV" Visible="false" runat="server" />
+                            <asp:Button ID="botaoDeletar" CssClass="BotaoAcaoGrid" Text="Deletar" runat="server" />
+                        </div>
+                    </div>
+                    <div id="grid">
+                        <asp:ContentPlaceHolder id="areaGrid" runat="server">
+                        
+                        </asp:ContentPlaceHolder>
+                        <asp:Label ID="labelNenhumRegistro" runat="server" Text="Nenhum registro encontrado!" Visible="false"></asp:Label>
+                    </div>
+                    <div id="boxPaginacao" class="boxPaginacao" runat="server">
+                        <asp:LinkButton ID="linkPrimeira" runat="server"><<</asp:LinkButton>
+                        <asp:LinkButton ID="linkPaginacaoAnterior" CssClass="botaoPaginacaoAnterior" runat="server"> < </asp:LinkButton>
+                        <asp:LinkButton ID="linkPaginacao1" runat="server"></asp:LinkButton>
+                        <asp:LinkButton ID="linkPaginacao2" runat="server"></asp:LinkButton>
+                        <asp:LinkButton ID="linkPaginacao3" runat="server"></asp:LinkButton>
+                        <asp:LinkButton ID="linkPaginacao4" runat="server"></asp:LinkButton>
+                        <asp:LinkButton ID="linkPaginacao5" runat="server"></asp:LinkButton>
+                        <asp:LinkButton ID="linkPaginacao6" runat="server"></asp:LinkButton>
+                        <asp:LinkButton ID="linkPaginacao7" runat="server"></asp:LinkButton>
+                        <asp:LinkButton ID="linkPaginacao8" runat="server"></asp:LinkButton>
+                        <asp:LinkButton ID="linkPaginacao9" runat="server"></asp:LinkButton>
+                        <asp:LinkButton ID="linkPaginacao10" runat="server"></asp:LinkButton>
+                        <asp:LinkButton ID="linkPaginacaoProximo" CssClass="botaoPaginacaoProximo" runat="server"> > </asp:LinkButton>
+                        <asp:LinkButton ID="linkUltima" runat="server">>></asp:LinkButton>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <script type="text/javascript" src="Js/prince_format_jquery.js"></script>
+    <script type="text/javascript" src="Js/uteis.js"></script>
+    <script type="text/javascript" src="Js/validacao.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('tr').mouseover(function () { $(this).css('background', '#EFEFFF'); });
+            $('tr').mouseout(function () { $(this).css('background', '#FFFFFF'); });
+            $('tr:even').mouseout(function () { $(this).css('background', '#FBFBFB'); });
+            $("tr:even").css("background-color", '#FBFBFB');
+
+            $('.tooltip').tooltipster();
+        });
+    </script>
+</body>
+</html>

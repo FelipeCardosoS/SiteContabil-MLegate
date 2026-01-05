@@ -1,0 +1,37 @@
+﻿
+table
+{
+	width:100%;
+	border-left:5px solid #fff;
+	border-right:5px solid #fff;
+	text-align:left;
+	
+}
+table tr td
+{
+	padding:2px 0 2px 0;
+	font-size:12px;
+	text-align:left;
+}
+table tr td.valores
+{
+	text-align:left;
+}
+table tr td.valores a
+{
+	color:#000;
+	text-decoration:underline;
+	text-align:left;
+}
+table tr.titulo td
+{
+	padding:2px 0 5px 0;
+	font-weight:bold;
+	font-size:14px;
+	text-align:left;
+	background:#C6CFF7;
+}
+table tr.linha td
+{
+	text-align:left;
+}

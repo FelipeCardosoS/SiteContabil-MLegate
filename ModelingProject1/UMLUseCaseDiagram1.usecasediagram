@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<useCaseModelRoot xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" dslVersion="1.0.0.0" Id="8b2312bd-3564-49f6-a29a-1b5ba7ce1ff9" name="UMLUseCaseDiagram1" linkedPackageId="90871fd2-9c2f-4c0d-b63a-e6955b1e50e9" xmlns="http://schemas.microsoft.com/dsltools/UseCaseModel">
+  <profileInstances>
+    <packageHasProfileInstances Id="a222e2b2-862b-4490-86d8-174773cef073">
+      <profileInstance Id="79156358-6876-4e18-a528-214aae91f160" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="e2c0427e-460c-440b-a14e-3651f3a4d4f2">
+      <profileInstance Id="f782bcd3-7e44-425d-844c-f2477ce7df08" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <useCaseModelRootHasTypes>
+      <actor Id="052814c4-6057-4be5-9817-821a83b55fd6" name="Usuario" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="875246ad-0eb3-4bb4-997f-210d0053c700" />
+        <suppliersInternal>
+          <dependency Id="0269943c-0586-44a8-88db-c4b34b7be428">
+            <useCaseMoniker Id="4a278ece-db99-4cc8-a278-2a94e6b6c85f" LastKnownName="Cadastrar Usuario" />
+            <elementDefinition Id="68b4d44e-38e9-463f-8c8e-7824387831a6" />
+          </dependency>
+        </suppliersInternal>
+      </actor>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="4a278ece-db99-4cc8-a278-2a94e6b6c85f" name="Cadastrar Usuario" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="43f12523-04f1-4318-90ca-4d0e797e835f" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+  </packagedElements>
+  <package Id="90871fd2-9c2f-4c0d-b63a-e6955b1e50e9" name="ModelingProject1">
+    <elementDefinition Id="813e100b-6d41-468d-bd20-dbd889e9c5ee" />
+  </package>
+</useCaseModelRoot>

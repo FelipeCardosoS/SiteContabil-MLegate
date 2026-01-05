@@ -1,0 +1,438 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Text;
+using System.Data;
+
+
+/// <summary>
+/// Summary description for Import
+/// </summary>
+/// 
+
+public class Vencimento
+{
+    public int ordem;
+    public decimal valor;
+    public DateTime vencto;
+    public string formaPagamento;
+
+}
+
+
+
+public class Import 
+{
+    private Conexao conn;
+    public Import(Conexao c)
+    {
+        conn = c;
+    }
+    int codigodomodelo;
+    string caminho;
+    string contachequeboleto;
+    string contacartao;
+    string contareceita;
+    DateTime date;
+    int job;
+
+
+    public List<string> importar()
+    {
+        
+        Microsoft.Office.Interop.Excel.Application appExcel = null;
+        Microsoft.Office.Interop.Excel.Workbook excelWb = null;
+        object oMissing = System.Reflection.Missing.Value;
+        Microsoft.Office.Interop.Excel.Range c1 = null;
+        List<string> erros = new List<string>();
+        try
+        {
+            appExcel = new Microsoft.Office.Interop.Excel.Application();
+            Microsoft.Office.Interop.Excel.Sheets excelSS;
+            excelWb = appExcel.Workbooks.Open(caminho, 0, true, 5, "",
+                "", true, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "\t", false, false, 0, true, null, null);
+            excelSS = excelWb.Worksheets;
+
+            foreach (Microsoft.Office.Interop.Excel.Worksheet ws in excelWb.Worksheets)
+            {
+                int linha = 2;
+
+                if (ws.Name == "CONTRATOS")
+                {
+                    while (1 == 1)
+                    {
+                        bool boleto = false;
+                        bool cheque = false;
+                        bool cartao = false;
+                        decimal totalpag = 0;
+                        bool juridica = false;
+                        string contrato = "";
+                        string codigocliente = "";
+                        string cnpjCpf = "";
+                        string cliente = "";
+                        string nomeFantasia = "";
+                        string endereco = "";
+                        string bairro = "";
+                        string numero = "";
+                        string complemento = "";
+                        string municipio = "";
+                        string codigomunicipio = "";
+                        string uf = "";
+                        string cep = "";
+                        string pais = "";
+                        string codigopais = "";
+                        string ierg = "";
+                        string nire = "";
+                        string valortotal = "";
+                        string data = "";
+
+                        contrato = ws.get_Range(ws.Cells[linha, 1], ws.Cells[linha, 1]).Text.ToString();
+                       
+                        if (contrato == "")
+                        {
+                            break;
+                        }
+                        codigocliente = ws.get_Range(ws.Cells[linha, 2], ws.Cells[linha, 2]).Text.ToString();
+
+                        cnpjCpf = ws.get_Range(ws.Cells[linha, 3], ws.Cells[linha, 3]).Text.ToString();
+
+                        cliente = ws.get_Range(ws.Cells[linha, 4], ws.Cells[linha, 4]).Text.ToString();
+
+                        nomeFantasia = ws.get_Range(ws.Cells[linha, 5], ws.Cells[linha, 5]).Text.ToString();
+
+                        endereco = ws.get_Range(ws.Cells[linha, 6], ws.Cells[linha, 6]).Text.ToString();
+
+                        bairro = ws.get_Range(ws.Cells[linha, 7], ws.Cells[linha, 7]).Text.ToString();
+
+                        numero = ws.get_Range(ws.Cells[linha, 8], ws.Cells[linha, 8]).Text.ToString();
+
+                        complemento = ws.get_Range(ws.Cells[linha, 9], ws.Cells[linha, 9]).Text.ToString();
+
+                        municipio = ws.get_Range(ws.Cells[linha, 10], ws.Cells[linha, 10]).Text.ToString();
+
+                        codigomunicipio = ws.get_Range(ws.Cells[linha, 11], ws.Cells[linha, 11]).Text.ToString();
+
+                        uf = ws.get_Range(ws.Cells[linha, 12], ws.Cells[linha, 12]).Text.ToString();
+
+                        cep = ws.get_Range(ws.Cells[linha, 13], ws.Cells[linha, 13]).Text.ToString();
+
+                        pais = ws.get_Range(ws.Cells[linha, 14], ws.Cells[linha, 14]).Text.ToString();
+
+                        codigopais = ws.get_Range(ws.Cells[linha, 15], ws.Cells[linha, 15]).Text.ToString();
+
+                        ierg = ws.get_Range(ws.Cells[linha, 16], ws.Cells[linha, 16]).Text.ToString();
+
+                        nire = ws.get_Range(ws.Cells[linha, 17], ws.Cells[linha, 17]).Text.ToString();
+
+                        valortotal = ws.get_Range(ws.Cells[linha, 18], ws.Cells[linha, 18]).Text.ToString();
+
+                        data = ws.get_Range(ws.Cells[linha, 19], ws.Cells[linha, 19]).Text.ToString();
+
+                        if (string.IsNullOrEmpty(contrato))
+                        {
+                            erros.Add("Contrato não informado na linha " + linha);
+                        }
+
+                        if (string.IsNullOrEmpty(cliente))
+                        {
+                            erros.Add("Cliente não informado na linha " + linha);
+                        }
+
+                        if (string.IsNullOrEmpty(cnpjCpf))
+                        {
+                            erros.Add("cnpj ou Cpf não informado na linha " + linha);
+                        }
+                        else
+                        {
+                            string cnpjcpfcount = cnpjCpf.Replace(",", "").Replace("-", "").Replace("/", "").Replace(".", "");
+                            if (cnpjcpfcount.Length == 14)
+                            {
+                                juridica = true;
+                            }
+                        }
+
+                        if (string.IsNullOrEmpty(nomeFantasia) && juridica == true)
+                        {
+                            erros.Add("Nome Fantasia não informado na linha " + linha);
+                        }
+
+                        if (string.IsNullOrEmpty(endereco))
+                        {
+                            erros.Add("Endereço não informado na linha " + linha);
+                        }
+
+                        if (string.IsNullOrEmpty(municipio))
+                        {
+                            erros.Add("Municipio não informado na linha " + linha);
+                        }
+
+                        if (string.IsNullOrEmpty(uf))
+                        {
+                            erros.Add("Uf não informado na linha " + linha);
+                        }
+
+                        if (string.IsNullOrEmpty(cep))
+                        {
+                            erros.Add("CEP Fantasia não informado na linha " + linha);
+                        }
+
+                        if (string.IsNullOrEmpty(pais))
+                        {
+                            erros.Add("Pais Fantasia não informado na linha " + linha);
+                        }
+
+                        if (string.IsNullOrEmpty(nire))
+                        {
+                            erros.Add("Nire Fantasia não informado na linha " + linha);
+                        }
+
+                        if (string.IsNullOrEmpty(valortotal))
+                        {
+                            erros.Add("Valor Total Fantasia não informado na linha " + linha);
+                        }
+
+                        if (string.IsNullOrEmpty(data))
+                        {
+                            erros.Add("Data Fantasia não informado na linha " + linha);
+                        }
+
+
+                        if (erros.Count == 0)
+                        {
+
+                            int coluna = 20;
+                            decimal totalcartao = 0;
+                            decimal totaldinheiro = 0;
+                            List<Vencimento> vencimentos = new List<Vencimento>();
+                            int total = 4;
+                            while (1 == 1)
+                            {
+                                int ordem = 0;
+                                decimal valor;
+                                DateTime vencto = new DateTime();
+                                string formaPagamento;
+
+                                if (!int.TryParse(ws.get_Range(ws.Cells[linha, coluna], ws.Cells[linha, coluna]).Text.ToString(), out ordem))
+                                {
+                                    break;
+                                }
+
+                                decimal.TryParse(ws.get_Range(ws.Cells[linha, coluna + 1], ws.Cells[linha, coluna + 1]).Text.ToString(), out valor);
+
+                                DateTime.TryParse(ws.get_Range(ws.Cells[linha, coluna + 2], ws.Cells[linha, coluna + 2]).Text.ToString(), out vencto);
+
+                                formaPagamento = ws.get_Range(ws.Cells[linha, coluna + 3], ws.Cells[linha, coluna + 3]).Text.ToString();
+
+                                Vencimento v = new Vencimento();
+
+                                totalpag = totalpag + valor;
+                                v.ordem = ordem;
+                                v.valor = valor;
+                                v.vencto = vencto;
+                                if(formaPagamento == "BOLETO")
+                                {
+                                    boleto = true;
+                                    totaldinheiro = totaldinheiro + valor;
+                                }
+
+                                if(formaPagamento == "CHEQUE")
+                                {
+                                    cheque = true;
+                                    totaldinheiro = totaldinheiro + valor;
+                                }
+                                if(formaPagamento == "CARTAO DE CREDITO")
+                                {
+                                    cartao = true;
+                                    totalcartao = totalcartao + valor;
+                                }
+                                v.formaPagamento = formaPagamento;                                
+                                vencimentos.Add(v);
+
+                                coluna = coluna + total;
+
+                            }
+
+                            if (totalpag != Convert.ToDecimal(valortotal))
+                            {
+                                erros.Add("Valor total das parcelas diferente do valor total");
+                            }
+
+                            if (erros.Count == 0)
+                            {
+                                string fj = "";
+                                if (juridica == true)
+                                {
+                                    fj = "JURIDICA";
+                                }
+                                else
+                                {
+                                    fj = "FISICA";
+                                }
+                                if( codigocliente == "")
+                                {
+                                    empresasDAO verificarcnpjcpf = new empresasDAO(conn);
+                                    verificarcnpjcpf.insert(SessionView.EmpresaSession, cliente, nomeFantasia, cnpjCpf,
+                                                    endereco, numero, complemento, "", cep, municipio, "", ierg, uf, "CLIENTE_FORNECEDOR", 0, 0, fj, 0, 0, false, municipio, pais, nire);
+                                    
+                                }
+
+                                List<SLancamento> arr = new List<SLancamento>();
+
+                                //CARREGANDO DADOS
+                                Job jobclass = new Job(conn);
+                                jobclass.codigo = job;
+                                jobclass.load();
+                                LinhaNegocio linhaNegocioClass = new LinhaNegocio(conn);
+                                linhaNegocioClass.codigo = jobclass.linhaNegocio;
+                                linhaNegocioClass.load();
+                                Divisao divisaoclass = new Divisao(conn);
+                                divisaoclass.codigo = jobclass.divisao;
+                                divisaoclass.load();
+                                Cliente clienteclass = new Cliente(conn);
+                                clienteclass.codigo = jobclass.cliente;
+                                clienteclass.load();
+                                ContaContabil contacontabilclass = new ContaContabil(conn);
+                                contacontabilclass.codigo = contacartao;
+                                string descricaocontacartao = contacontabilclass.codigo;
+                                contacontabilclass.codigo = contachequeboleto;
+                                string descricaocontadinheiro = contacontabilclass.codigo;
+                                contacontabilclass.codigo = contareceita;
+                                string descricaocontareceita = contacontabilclass.codigo;
+
+
+                                //CRIANDO PRIMEIRO LANÇAMENTO
+                                SLancamento prim_lancamento = new SLancamento();
+                                prim_lancamento.seqLote = 1;
+                                prim_lancamento.dataLancamento = Convert.ToDateTime(data);
+                                prim_lancamento.job = jobclass.codigo;
+                                prim_lancamento.descJob = jobclass.descricao;
+                                prim_lancamento.linhaNegocio = jobclass.linhaNegocio;
+                                prim_lancamento.descLinhaNegocio = linhaNegocioClass.descricao;
+                                prim_lancamento.divisao = jobclass.divisao;
+                                prim_lancamento.descDivisao = divisaoclass.descricao;
+                                prim_lancamento.descCliente = clienteclass.nomeFantasia;                           
+                                prim_lancamento.cliente = clienteclass.codigo;
+                                prim_lancamento.qtd = 1;
+                                prim_lancamento.descTerceiro = cliente;
+                                prim_lancamento.terceiro = Convert.ToInt32(codigocliente);
+                                prim_lancamento.titulo = true;
+
+
+                                bool criaUltimoLancto = false;
+                                if (totalcartao > 0)
+                                {
+                                    prim_lancamento.valor = totalcartao;
+                                    prim_lancamento.conta = contacartao;
+                                    prim_lancamento.descConta = descricaocontacartao;
+                                    for (int x = 0; x < vencimentos.Count; x++)
+                                    {
+                                        if (!(vencimentos[x].formaPagamento == "BOLETO" || vencimentos[x].formaPagamento == "CHEQUE"))
+                                        {
+                                            SVencimento venc = new SVencimento(vencimentos[x].vencto, vencimentos[x].valor);
+                                            prim_lancamento.vencimentos.Add(venc);
+                                        }
+                                    }
+
+                                    if (totaldinheiro > 0)
+                                        criaUltimoLancto = true;
+                                }
+                                else
+                                {
+                                    prim_lancamento.valor = totaldinheiro;
+                                    prim_lancamento.conta = contachequeboleto;
+
+                                    for (int x = 0; x < vencimentos.Count; x++)
+                                    {
+                                        if (vencimentos[x].formaPagamento == "BOLETO" || vencimentos[x].formaPagamento == "CHEQUE")
+                                        {
+                                            SVencimento venc = new SVencimento(vencimentos[x].vencto, vencimentos[x].valor);
+                                            prim_lancamento.vencimentos.Add(venc);
+                                        }
+                                    }
+                                }
+
+
+                                //CRIANDO SEGUNDO LANÇAMENTO
+                                SLancamento segun_lancamento = new SLancamento();
+                                segun_lancamento.seqLote = 2;
+                                segun_lancamento.dataLancamento = Convert.ToDateTime(data);
+                                segun_lancamento.job = jobclass.codigo;
+                                segun_lancamento.descJob = jobclass.descricao;
+                                segun_lancamento.linhaNegocio = jobclass.linhaNegocio;
+                                segun_lancamento.descLinhaNegocio = linhaNegocioClass.descricao;
+                                segun_lancamento.divisao = jobclass.divisao;
+                                segun_lancamento.descDivisao = divisaoclass.descricao;
+                                segun_lancamento.descCliente = clienteclass.nomeFantasia;
+                                segun_lancamento.cliente = clienteclass.codigo;
+                                segun_lancamento.qtd = 1;
+                                segun_lancamento.descTerceiro = cliente;
+                                segun_lancamento.terceiro = Convert.ToInt32(codigocliente);
+                                segun_lancamento.titulo = false;
+
+                                segun_lancamento.valor = totalpag;
+                                segun_lancamento.conta = contareceita;
+                                segun_lancamento.descConta = descricaocontareceita;
+
+
+
+                                //CRIANDO TERCEIRO LANÇAMENTO
+                                if (criaUltimoLancto)
+                                {
+                                    SLancamento terc_lancamento = new SLancamento();
+                                    terc_lancamento.seqLote = 3;
+                                    terc_lancamento.dataLancamento = Convert.ToDateTime(data);
+                                    terc_lancamento.job = jobclass.codigo;
+                                    terc_lancamento.descJob = jobclass.descricao;
+                                    terc_lancamento.linhaNegocio = jobclass.linhaNegocio;
+                                    terc_lancamento.descLinhaNegocio = linhaNegocioClass.descricao;
+                                    terc_lancamento.divisao = jobclass.divisao;
+                                    terc_lancamento.descDivisao = divisaoclass.descricao;
+                                    terc_lancamento.descCliente = clienteclass.nomeFantasia;
+                                    terc_lancamento.cliente = clienteclass.codigo;
+                                    terc_lancamento.qtd = 1;
+                                    terc_lancamento.descTerceiro = cliente;
+                                    terc_lancamento.terceiro = Convert.ToInt32(codigocliente);
+                                    terc_lancamento.titulo = true;
+
+                                    terc_lancamento.valor = totaldinheiro;
+                                    terc_lancamento.conta = contachequeboleto;
+                                    terc_lancamento.descConta = descricaocontadinheiro;
+
+                                    for (int x = 0; x < vencimentos.Count; x++)
+                                    {
+                                            SVencimento venc = new SVencimento(vencimentos[x].vencto, vencimentos[x].valor);
+                                            terc_lancamento.vencimentos.Add(venc);
+                                    }
+                                }
+                            }
+
+                            
+                        }
+
+                        linha++;
+                    }
+                }
+            }
+
+            return erros;
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+        finally
+        {
+            if (appExcel != null)
+            {
+                if (excelWb != null)
+                {
+
+                    excelWb.Close(null, null, null);
+                }
+                appExcel.Workbooks.Close();
+                appExcel.Quit();
+            }
+        }
+    }
+}

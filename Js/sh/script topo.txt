@@ -1,0 +1,10 @@
+    <link href="Js/sh/shThemeDefault.css" rel="stylesheet" type="text/css" />
+    <script src="Js/sh/shBrushJScript.js" type="text/javascript"></script>
+    <link href="Js/sh/shCore.css" rel="stylesheet" type="text/css" />
+    <script src="Js/sh/shCore.js" type="text/javascript"></script>
+    <script src="Js/sh/jquery.searchabledropdown-1.0.8.src.js" type="text/javascript"></script>
+    	<script type="text/javascript">
+		$(document).ready(function() {
+			$("select").searchable();
+        });
+        </script>

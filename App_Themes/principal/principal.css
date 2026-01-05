@@ -1,0 +1,1393 @@
+﻿body
+{
+	background-image: url(../../Imagens/background_page.jpg);
+	background-repeat:repeat-x;
+}
+fieldset
+{
+    margin:10px 0 0 0;
+    padding:0;
+    color:#000;
+    position:relative;
+    display:table;
+    width:998px;
+}
+fieldset legend
+{
+	margin:0 0 10px 0;
+	font-weight:bold;
+    font-size: 13px !important;
+}
+fieldset span.linha{
+    display:inline-block;
+    width:100%;
+}
+fieldset input,fieldset label,fieldset select{
+    display:block;
+    float:left;
+}
+fieldset .campoLinha_dir
+{
+    margin:0 6px 0 0;
+}
+fieldset label{
+    text-align:right;
+    width:130px;
+    padding:3px 10px 10px 0;
+    font-size:12px;
+    height: 29px;
+}
+fieldset label.lado{
+    width:40px;
+}
+fieldset label.obrigatorio{
+    font-weight:bold;
+}
+fieldset input,fieldset select,fieldset textarea{
+	font-size:12px;
+	padding:4px;
+}
+fieldset select{
+	font-size:12px;
+	padding:0;
+	float:left;
+}
+fieldset table.campoRadio{
+    float:left;
+}
+fieldset table.campoRadio tr td{
+    text-align:left;
+}
+fieldset table.campoRadio tr td label{
+    display:inline;
+    float:left;
+    padding:3px 0 0 5px;
+    text-align:left;
+    font-size:12px;
+}
+fieldset table.campoRadio tr td input{
+    display:inline;
+    float:left;
+}
+.listaChecks
+{
+    margin:0 0 0 20px;
+}
+.listaChecks tr td
+{
+    padding:2px;
+}
+.listaChecks label{
+    display:inline;
+    float:none;
+    padding:0 0 0 5px;
+}
+
+body div.botoes
+{
+    display:inline-block;
+    position:relative;
+    top:10px;
+	text-align:right;
+	width:978px;
+	border-top:1px solid #ccc;
+}
+fieldset div.botoes
+{
+    display:inline-block;
+	text-align:right;
+	position:relative;
+	top:5px;
+	width:100%;
+	border:0px;
+	padding:0px;
+	margin:0px;
+}
+fieldset div.botoes input
+{
+    float:right;
+}
+fieldset .botaoLado
+{
+    position:relative;
+    left:4px;
+}
+div.botoes .botaoVoltar
+{
+	float:left;
+}
+div.legendaForm
+{
+	width:988px;
+	position:relative;
+	padding:5px 10px 5px 10px;
+	font-size:11px;
+	color:#2145BD;
+	background-color:#EFEFFF;
+	font-weight:bold;
+}
+
+#box_etapas
+{
+    position:relative;
+    margin:0px 0px 5px 0px;
+}
+
+#box_etapas .etapa
+{
+    position:relative;
+    display:inline;
+    margin:0px 15px 0 15px;
+}
+#box_etapas .etapa .etapa_numero
+{
+    color:#717175;
+    font-size:16px;
+    font-weight:bold;
+    position:relative;
+    display:inline-block;
+    background-color:#9B9DA3;
+    padding:8px 12px 8px 12px;
+    margin-top: 6px;
+}
+
+#box_etapas .etapa .etapa_texto
+{
+    color:Gray;
+    font-size:14px;
+}
+
+/* Box Etapa Moeda */
+
+#etapaMoeda, #etapaMoedaInclusaoLancto {
+    float:right;
+    color:#000;
+    padding:3px 12px;
+}
+
+.etapaTipoMoeda {
+    float:left !important;
+    margin:2px 10px 0 0;
+    font-size: 11px;
+    display:block;
+}
+
+.etapaComboMoeda {
+    float:left !important;
+    display:block;
+    clear: both;
+}
+
+#etapaMoeda .etapaComboMoeda select, #etapaMoedaInclusaoLancto .etapaComboMoeda select {
+    float:right !important;
+    width:200px !important;
+}
+
+/* Box Etapa Moeda */
+
+#box_etapas .ativo .etapa_numero
+{
+    color:#fff;
+    background:Green;
+}
+#box_etapas .ativo .etapa_texto
+{
+    color:Green;
+}
+fieldset.form_inclusao_titulo
+{
+	margin:0;
+}
+fieldset.form_inclusao_titulo
+{
+	width:998px;
+	padding:5px 0 5px 0;
+	border-top:2px solid #252E57;
+}
+fieldset.form_inclusao_titulo .linha_form
+{
+    display:block;
+    padding:2px 0px 2px 0px;
+    overflow: auto;
+    height: 45px;
+}
+fieldset.form_inclusao_titulo label
+{
+    display:table;
+    padding:0;
+    width:auto;
+    float:left;
+    position:relative;
+    margin:0px 5px 0px 5px;
+    left:4px;
+}
+fieldset.form_inclusao_titulo label span
+{
+    display:table;
+    padding:0;
+    width:auto;
+    float:none;
+    position:relative;
+    top:2px;
+}
+fieldset.form_inclusao_titulo label input, fieldset.form_inclusao_titulo label select
+{
+    display:inline-block;
+    padding:0;
+    width:auto;
+    float:left;
+    position:relative;
+    top:4px;
+    padding:2px;
+    border:1px solid #C6CFF7;
+}
+fieldset.form_inclusao_titulo label select
+{
+    padding:1px;
+}
+fieldset.form_inclusao_titulo label.gera_credito
+{
+    top:17px;
+}
+fieldset.form_inclusao_titulo label.gera_credito span
+{
+    color:red;
+    display:inline-block;
+}
+fieldset.form_inclusao_titulo label.gera_credito input
+{
+    float:none;
+    border:0px;
+}
+fieldset.form_inclusao_titulo label input.botaoCalendario
+{
+	background:transparent url(../../Imagens/icones/calendar.gif);
+	background-position:left;
+	background-repeat:no-repeat;
+	border:0px;
+	width:20px;
+	height:20px;
+	position:relative;
+	left:4px;
+    cursor:pointer;
+}
+fieldset#formVencimento label
+{
+	width:30px;
+	font-weight:bold;
+}
+fieldset.formLancamento
+{
+	width:996px;
+	background-color:#C6CFF7;
+	margin:0px;
+	border:1px solid #C6CFF7;
+	border-top:1px solid #252E57;
+	font-size:11px;
+	position:relative;
+	top:10px;
+	float:none;
+	display:inline-block;
+}
+fieldset.formLancamento input.botao
+{
+    margin:0;
+    padding:0px;
+    background-color:#C6CFF7;
+    border:0px;
+    font-weight:bold;
+    font-size:11px;
+    float:right;
+    padding:0 5px 0 5px;
+}
+input.botao_vencimentos
+{
+	font-size:12px;
+	font-family:Arial;
+	font-weight:bold;
+	background-color:#DE5D29;
+	color:#fff;
+	border:1px solid #DE5D29;
+	padding:4px 10px 4px 10px;
+}
+fieldset.formLancamento .linha_form
+{
+    display:table;
+    padding:2px 0px 2px 0px;
+    width:100%;
+}
+fieldset.formLancamento label
+{
+    display:inline-block;
+    text-align:left;
+    float:left;
+    margin:0;
+    padding:1px;
+    width:auto;
+    margin:0px 2px 0 2px;
+    font-size:11px;
+    height:40px;
+}
+fieldset.formLancamento label span
+{
+    display:table;
+}
+fieldset.formLancamento label span div
+{
+	display:inline;
+	float:left;
+}
+fieldset.formLancamento textarea
+{
+	font-size:12px;
+}
+fieldset.formLancamento label input, fieldset.formLancamento label select
+{
+    float:left;
+    margin:0;
+    font-size:12px;
+    background:#fff;
+    color:#000;
+    border:1px solid #C6CFF7;
+}
+fieldset.formLancamento label .checkJobAtivo label
+{
+    padding:0px;
+    margin:0px;
+    height:auto;
+}
+fieldset.formLancamento label input[type='checkbox']
+{
+    border:0px;
+    background:none;
+    margin:0px;
+    padding:0px;
+    background-color:Aqua;
+    
+   
+}
+fieldset.formLancamento label select
+{
+    padding:1px;
+}
+fieldset.formLancamento label .botaoCalendario
+{
+	background:transparent url(../../Imagens/icones/calendar.gif);
+	background-position:left;
+	background-repeat:no-repeat;
+	border:0px;
+	width:20px;
+	height:20px;
+}
+#formTipoNotaFiscal label
+{
+    width:100%;
+}
+#formTipoNotaFiscal label span
+{
+    width:100%;
+    text-align:center;
+    font-size:16px;
+    margin:auto;
+    display:inline-block;
+    float:none;
+    font-weight:bold;
+}
+#formTipoNotaFiscal label select
+{
+    float:none;
+    margin:auto;
+    background:#fff;
+    font-size:14px;
+    padding:2px;
+    margin-top:5px;
+}
+.boxBotaoTerminei
+{
+	text-align:center;
+	padding:20px 0 0 0;
+	display:table;
+	width:998px;
+}
+.boxBotaoTerminei .botao
+{
+	float:right;
+}
+.boxBotaoTerminei .voltar
+{
+    float:left;
+}
+.boxLog
+{
+	color:#999;
+	position:relative;
+	font-size:9px;
+	height:20px;
+	text-align:left;
+	top:11px;
+}
+span#boxLoading
+{
+	font-size:10px;
+	color:Red;
+	float:left;
+	font-weight:bold;
+	width:500px;
+}
+.boxBotaoTerminei input
+{
+	font-size:12px;
+	font-family:Arial;
+	font-weight:bold;
+	background-color:#DE5D29;
+	color:#fff;
+	border:1px solid #DE5D29;
+	padding:4px 10px 4px 10px;
+}
+
+div#boxTotalizador
+{
+	border:1px solid #000;
+	width:996px;
+	display:inline-block;
+	position:relative;
+	top:11px;
+}
+div#boxTotalizador table tr td
+{
+	font-weight:bold;
+	font-size:11px;
+	color:#454545;
+}
+div#boxTotalizador table tr td.celulaDebito
+{
+	width:200px;
+}
+div#boxTotalizador table tr td.celulaCredito
+{
+	width:200px;
+}
+div#boxTotalizador table tr td.celulaTotalizador
+{
+	width:200px;
+}
+div#boxTotalizador table tr td.celulaLabelTotal
+{
+	width:70px;
+	color:Red;
+}
+div#boxTotalizador table tr td span
+{
+	font-weight:normal;
+	color:#000;
+}
+table.gridLancamentos
+{
+	position:relative;
+	top:11px;
+	width:998px;
+	border-top:1px solid #fff;
+}
+table.gridLancamentos tr.cab
+{
+	background-color:#252E57;
+}
+table.gridLancamentos tr.cab td
+{
+	background-color:#252E57;
+	color:#fff;
+	font-size:9px;
+	text-align:left;
+}
+table.gridLancamentos tr.linha
+{
+	background-color:#eee;
+}
+table.gridLancamentos tr.linha td
+{
+	background-color:#eee;
+	color:#000;
+	font-size:9px;
+	text-align:left;
+}
+table.gridLancamentos tr.linhaMarcada
+{
+	background-color:#DEDEDE;
+}
+table.gridLancamentos tr.linhaMarcada td
+{
+	background-color:#DEDEDE;
+	color:#000;
+	font-size:9px;
+	text-align:left;
+}
+table.gridLancamentos tr.linhaSelecionada
+{
+	background-color:#D6D6D6;
+}
+table.gridLancamentos tr.linhaSelecionada td
+{
+	background-color:#D6D6D6;
+	color:#000;
+	font-size:9px;
+	text-align:left;
+}
+table.gridLancamentos tr td
+{
+	padding:5px;
+}
+table.gridLancamentos tr td.debCred
+{
+	width:2%;
+	padding:5px 0 5px 0;
+}
+table.gridLancamentos tr td.dataLancto
+{
+	width:2%;
+}
+table.gridLancamentos tr td.conta
+{
+	width:25%;
+}
+table.gridLancamentos tr td.job
+{
+	width:25%;
+}
+table.gridLancamentos tr td.linhaNegocio
+{
+	width:80px;
+}
+table.gridLancamentos tr td.divisao
+{
+	width:60px;
+}
+table.gridLancamentos tr td.valor
+{
+	width:10%;
+}
+table.gridLancamentos tr td.historico
+{
+	width:18%;
+}
+table.gridLancamentos tr td.cotacao
+{
+	width:2%;
+}
+table.gridLancamentos tr td.fornecedor
+{
+	width:18%;
+}
+table.gridLancamentos tr td.titulo
+{
+	padding:5px 2px 5px 2px;
+	width:2%;
+	text-align:right;
+}
+table.gridLancamentos tr td.deletar
+{
+	padding:5px 3px 5px 3px;
+	width:0px;
+	text-align:right;
+}
+table.gridLancamentos tr td.parcelas
+{
+	width:50px;
+}
+#corpo
+{
+	width:998px;
+	margin:0 auto 0 auto;
+	display:table;
+}
+#topo
+{
+	
+}
+#topo #barra
+{
+	width:100%;
+	color:#000;
+	display:table;
+	padding:5px 0 5px 0;
+}
+#topo #barra #home
+{
+	float:left;
+}
+
+#topo #barra #company
+{
+	margin-left:5px;
+	float:left;
+	width:410px;
+    overflow:hidden;
+    height: 17px;
+}
+
+#topo #barra #home img, #topo #barra #company img
+{
+	float:left;
+	margin:0 10px 0 5px;
+	border:0;
+}
+#topo #barra #user_on
+{
+	float:right;
+}
+#topo #barra #user_on span
+{
+	float:left;
+	text-align:right;
+}
+#topo #barra #user_on input
+{
+	float:right;
+	margin:0 5px 0 5px;
+}
+#topo #barra #user_on a
+{
+	display:block;
+	float:right;
+	margin:0 5px 0 5px;
+}
+#topo #barra #user_on img
+{
+	border:0px;
+}
+#topo #barra #user_on input
+{
+	padding:0;
+}
+#topo .divMenu
+{
+	width:100%;
+	color:#fff;
+	display:table;
+}
+
+ul.menubar{
+  margin: 0px;
+  padding: 0px;
+  z-index:1000;
+}
+ 
+ul.menubar .submenu{
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+  float:left;
+  display:inline;
+  z-index:1000;
+}
+ul.menubar .submenu a
+{
+	color:#fff;
+}
+ul.menubar .submenu a:hover
+{
+	color:#fff;
+	text-decoration:underline !important;
+}
+ul.menubar .submenu .submenu a:hover
+{
+	background-color:#E8EB63;
+}
+ 
+ul.menubar ul.menu{
+  display: none;
+  position: absolute;
+  margin: 0px;
+  z-index:1000;
+}
+ 
+ul.menubar a{
+  display:block;
+  text-decoration: none;
+  padding: 10px;
+  color:#fff;
+  font-weight:bold;
+}
+ul.menubar a:hover
+{
+	color:#DE5D29;
+}
+ 
+ul.menu, ul.menu ul{
+  margin: 0;
+  padding: 0;
+  border-bottom: 1px solid #EFEAA9;
+  background-color:#CEDBBE;
+  background-color:#EFEAA9;
+  background-color:#F5F8B0;
+  background-color:#F4F6B9;
+  width: 150px; /* Width of Menu Items */
+}
+
+ul.menu, ul.menu .submenu{
+  background-color:#F4F6B9;
+  width: 150px;
+}
+ul.menu, ul.menu .submenu a
+{
+	color:#565742;
+}
+ul.menu, ul.menu .submenu a:hover
+{
+	color:#565742;
+}
+ 
+ul.menu li{
+  position: relative;
+  list-style: none;
+  border: 0px;
+}
+ 
+ul.menu li a{
+  display: block;
+  text-decoration: none;
+  border-bottom: 0px;
+  padding: 5px 10px 5px 5px;
+  color:#565742;
+}
+ 
+ul.menu li sup{
+  font-weight:bold;
+  font-size:7px;
+  color: red;
+}
+ 
+/* Fix IE. Hide from IE Mac \*/
+* html ul.menu li { float: left; height: 1%; }
+* html ul.menu li a { height: 1%; }
+/* End */
+ 
+ul.menu ul{
+  position: absolute;
+  display: none;
+  
+  left: 149px; /* Set 1px less than menu width */
+  top: 0px;
+}
+ 
+ul.menu li.submenu ul { display: none; } /* Hide sub-menus initially */
+ 
+/*ul.menu li.submenu { background: transparent url(arrow.gif) right center no-repeat; }*/
+ 
+ul.menu li a:hover { color: #DE5D29; }
+
+h2
+{
+	font-size:14px !important;
+	font-family:Arial !important;
+	font-weight:bold !important;
+	color:#DE5D29 !important;
+	margin:4px 0 0 0 !important;
+	padding:4px 0 0 0;
+	float:left;
+}
+h2 a
+{
+	font-size:14px;
+	font-family:Arial;
+	font-weight:bold;
+	color:#DE5D29;
+}
+h2 img
+{
+	border-width:0px;
+	margin:3px 5px 0 0;
+}
+div.linha
+{
+	background-image: url(../../Imagens/linha.gif);
+	background-repeat:repeat-x;
+	width:998px;
+	height:10px;
+	margin-bottom:5px;
+	float:left;
+}
+#conteudo
+{
+    display:table;
+    width:998px;
+    letter-spacing: 0px!important;
+}
+#boxFiltro
+{
+	border-bottom:1px solid #C6CFF7;
+	border-top:2px solid #C6CFF7;
+	float:left;
+	width:998px;
+}
+#boxFiltro h3
+{
+	margin:0;
+	font-size:12px;
+	padding:8px;
+	color:#2145BD;
+}
+#areaFiltro
+{
+	float:left;
+	width:988px;
+	padding-left:10px;
+	margin-bottom:10px;
+}
+#boxFiltro #form_filtro
+{
+	margin:0;
+	padding:0;
+	float:left;
+}
+#boxFiltro #form_filtro input.botao
+{
+    margin:15px 0 0 10px;
+    padding:0px;
+    float:left;
+}
+#boxFiltro #form_filtro label
+{
+    display:inline-block;
+    text-align:left;
+    float:left;
+    margin:0;
+    padding:2px;
+    width:auto;
+    margin:0px 5px 0 5px;
+}
+#boxFiltro #form_filtro span
+{
+    display:table;
+}
+#boxFiltro #form_filtro input,select
+{
+    float:left;
+    margin:0;
+    padding:1px;
+    background-color:#FAFAFA;
+    border:1px solid #DFDFDF;
+}
+
+#boxFiltro .botao
+{
+	float:right;
+	padding:3px 5px 3px 5px;
+	background-color:#fff;
+	border:0px;
+}
+#boxGrid
+{
+	background-color:#EFEFFF;
+	padding:5px 5px 0 5px;
+	width:988px;
+	float:left;
+}
+#nav
+{
+	width:988px;
+	padding:4px 0 4px 0;
+	float:left;
+}
+#nav .funcoes
+{
+	float:left;
+}
+#nav .ordenar
+{
+	float:left;
+	margin-left:20px;
+}
+#nav .ordenar select
+{
+	padding:0;
+	font-size:10px;
+	float:none;
+	display:inline;
+}
+#nav .botoes
+{
+	float:right;
+	padding:0;
+	display:inline;
+	width:auto;
+	margin:0;
+	border:0px;
+}
+#nav .botaoNovo
+{
+	font-weight:bold;
+	color:#2145BD;
+}
+#nav .botaoNovo img
+{
+	float:left;
+	margin-left:10px;
+	border:0px;
+}
+#nav .BotaoAcaoGrid
+{
+		border: 0px;
+		background-color: #EFEFFF;
+		font-weight: bold;
+		color: #2145BD;
+		background-position: left;
+		background-repeat: no-repeat;
+		padding-left: 10px;
+}
+#grid
+{
+	background-color:#fff;
+	border-top:1px solid #C6CFF7;
+	float:left;
+	width:988px;
+}
+#grid div.item
+{
+	width:982px;
+	display:table;
+	padding:5px 3px 5px 3px;
+}
+#grid div.item table
+{
+	width:982px;
+}
+#grid div.item table .funcoes
+{
+	width:120px;
+	text-align:right;
+}
+#grid div.item table .funcoes a
+{
+	color:#DD1708;
+}
+#grid div.item table .body p
+{
+	margin:0;
+	padding:2px 0px 2px 12px;
+}
+#grid div.item .check
+{
+	float:left;
+	margin:0 5px 0 0;
+}
+#grid div.separador
+{
+	color:#eee;
+	width:782px;
+	text-align:center;
+}
+table#tabelaGrid
+{
+	width:988px;
+}
+table#tabelaGrid tr td
+{
+	font-size:11px;
+	padding:3px 5px 3px 5px;
+}
+table#tabelaGrid tr.titulo td
+{
+	font-size:11px;
+	padding:3px 0 3px 0;
+	background-color:#C6CFF7;
+}
+
+table#tabelaGrid tr td.funcoes
+{
+	text-align:right;
+}
+table#tabelaGrid tr td.funcoes a
+{
+	color:#DD1708;
+}
+table#tabelaGrid tr td.funcoes a:hover
+{
+	color:#DD1708;
+	text-decoration:underline;
+}
+table#tabelaGrid tr td.valor
+{
+	text-align:right;
+}
+table#tabelaGrid tr td.check
+{
+	width:10px;
+}
+.boxPaginacao
+{
+	float:left;
+	width:988px;
+	padding:4px 0 4px 0;
+	text-align:center;
+	height:10px;
+}
+.boxPaginacao a
+{
+	color:#2145BD;
+	padding:1px;
+}
+
+.pop_background
+{
+     background-color: #000;
+     filter: alpha(opacity=70);
+     opacity: 0.7;
+}
+.pop{
+    background-color:#fff;
+    border:2px solid #084070;
+    width:400px;
+    padding:0 0 10px 0;
+}
+.pop .top
+{
+    text-align:right;
+    width:395px;
+    padding:3px 5px 3px 0;
+    background-color:#084070;
+    color:#fff;
+    display:table;
+}
+.pop .top .popTitulo
+{
+    color:#fff;
+    float:left;
+    font-weight:bold;
+    font-size:14px;
+    padding:0 0 0 5px;
+}
+.pop .top a
+{
+    font-weight:bold;
+    font-size:14px;
+    color:#fff;
+}
+.pop .conteudo
+{
+    width:395px;
+    padding:3px 5px 3px 5px;
+}
+.boxLote
+{
+	color:#fff;
+	font-weight:bold;
+	background-color:#252E57;
+	float:right;
+	padding:5px;
+    margin: -32px 0 2px 0;
+    position: relative;
+}
+.boxModelo
+{
+	background-color:#F2F897;
+	border:1px solid #EEE77E;
+
+	padding:5px 5px 5px 5px;
+	float:left;
+	margin-bottom:5px;
+	width:886px;
+}
+fieldset.form_baixa_titulo
+{
+	margin:0;
+	width:998px;
+	padding:0;
+}
+fieldset.form_baixa_titulo h3
+{
+	font-size:12px;
+	font-weight:normal;
+	margin:0;
+	padding:0 0 0 0;
+	float:left;
+}
+fieldset.form_baixa_titulo input.botao
+{
+    margin:15px 0 0 10px;
+    padding:0px;
+    float:left;
+}
+fieldset.form_baixa_titulo label
+{
+    display:inline-block;
+    text-align:left;
+    float:left;
+    margin:0;
+    padding:2px;
+    width:auto;
+    margin:0px 5px 0 5px;
+}
+fieldset.form_baixa_titulo span.linha
+{
+	margin-bottom:10px;
+}
+fieldset.form_baixa_titulo span
+{
+    display:table;
+}
+fieldset.form_baixa_titulo input,select
+{
+    float:left;
+    margin:0;
+    padding:1px;
+    background-color:#FAFAFA;
+    border:1px solid #DFDFDF;
+}
+fieldset.form_baixa_titulo legend
+{
+	font-weight:bold;
+	font-size:14px;
+	color:#252E57;
+	margin-bottom:10px;
+}
+
+fieldset.form_baixa_titulo input.inputData
+{
+	float:right;
+}
+
+fieldset.form_baixa_titulo .botao
+{
+	float:right;
+	padding:3px 5px 3px 5px;
+	background-color:#fff;
+	border:0px;
+}
+.boxBaixa
+{
+	border-top:2px solid #252E57;
+	border-bottom:3px solid #252E57;	
+	margin:5px 0 5px 0;
+	float:left;
+}
+table.gridLanctosBaixa
+{
+	width:998px;
+}
+table.gridLanctosBaixa input
+{
+	border:0px;
+}
+table.gridLanctosBaixa tr td
+{
+	font-size:11px;
+	padding:3px 2px 3px 2px;
+}
+table.gridLanctosBaixa tr.titulo td
+{
+	font-size:11px;
+	padding:3px 0 3px 0;
+	font-weight:bold;
+}
+
+table.gridLanctosBaixatr td.funcoes
+{
+	text-align:right;
+}
+table.gridLanctosBaixa tr td.valor
+{
+	text-align:right;
+}
+table.gridLanctosBaixa tr td.check
+{
+	width:10px;
+}
+#boxTotalBaixa
+{
+	width:988px;
+	float:left;
+	padding:5px;
+	text-align:right;
+}
+#boxTotalBaixa #totalBaixa
+{
+	float:right;
+	padding:0 0 0 5px;
+}
+p.totalizador
+{
+	text-align:right;
+	margin:0;
+	padding:2px 0 2px 0;
+	font-size:11px;
+	color:Red;
+	width:998px;
+	display:table;
+}
+p.totalizador span
+{
+	display:inline;
+}
+
+.tooltip {
+	display:none;
+	background:url(http://static.flowplayer.org/tools/img/tooltip/black_arrow_big.png);
+	height:163px;
+	padding:40px 30px 10px 30px;
+	width:310px;
+	font-size:11px;
+	color:#fff;
+}
+
+/* a .label element inside tooltip */
+.tooltip .label {
+	color:yellow;
+	width:35px;
+}
+
+.tooltip a {
+	color:#ad4;
+	font-size:11px;
+	font-weight:bold;
+}
+
+.paginacaoAtendimento
+{
+	float:left;
+	width:988px;
+	padding:4px 0 4px 0;
+	text-align:center;
+	height:10px;
+	display:table;
+}
+.paginacaoAtendimento a
+{
+	color:#000;
+	font-weight:bold;
+	padding:3px;
+}
+
+fieldset .aki
+{
+    border:0px;
+}
+
+#ctl00_areaConteudo_comboFornecedor 
+{
+	float:none;
+	padding:auto;
+	margin:4px 0 0 0;
+	display:block;
+    width:auto;
+    position:inherit;
+    top:auto;
+    border:auto;
+    text-align:left;
+}
+
+.line {
+	border-width: medium 1px 1px medium; border-style: none solid solid none; border-color: currentColor rgb(225, 230, 251) rgb(225, 230, 251) currentColor;
+}
+
+.btnexp {
+    width:11px;
+    height:11px;
+    float:left;
+    background:url(../../Imagens/expand.jpg) no-repeat;
+    margin-top: 16px;
+    cursor:pointer;
+}
+
+.btnCotacao {
+    background:url(../../Imagens/calendario.fw.png);
+    width:28px !important;
+    height:28px !important;
+    border:none;
+    cursor:pointer;
+    border:none !important;
+}
+
+.expand {
+    display:none;
+}
+
+/* COTAÇÃO */
+
+.gridCotacao {
+    overflow-y:scroll; 
+    height:300px; 
+    text-align:center;
+}
+
+.tblCotacao {
+    width:100%;
+}
+
+.margin_left
+{
+    margin-left:100px;
+}
+
+.margin_left_padrao
+{
+    margin-left:50px;
+}
+
+.margin_left_label
+{
+    margin-left:85px;
+    font-weight:bold;
+    color:black;
+}
+
+.margin_left_padrao_label
+{
+    margin-left:51px;
+    font-weight:bold;
+    color:black;
+}
+
+.margin_top
+{
+    margin-top:10px;
+}
+
+.margin_bottom
+{
+    margin-bottom:10px;
+}
+
+table thead tr.titulo th
+{
+	font-size:11px;
+	padding:3px 0 3px 0;
+	background-color:#C6CFF7;
+}
+
+.fntdeletar
+{
+    color:red;
+    margin-left:9px !important;
+    font-size:14px !important;
+}
+
+.fntup
+{
+    color:green;
+    font-size:14px !important;
+    margin-left:9px !important;
+}
+
+.fntdown
+{
+    color:orange;
+    font-size:14px !important;
+    margin-left:9px !important;
+}
+.fnteditar 
+{
+    color:blue;
+    font-size:14px !important;
+}
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+  background-color: rgba(205, 172, 10, 0.258824)!important;
+}
+
+.botaoInverter{
+	cursor:pointer;
+}
+
+.celulaInverter{
+	width:43%;
+	text-align:right;
+}

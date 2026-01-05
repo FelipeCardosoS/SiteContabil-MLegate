@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="getCadastroDivisoes">
+        <s:complexType />
+      </s:element>
+      <s:element name="getCadastroDivisoesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getCadastroDivisoesResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getCadastroProjetos">
+        <s:complexType />
+      </s:element>
+      <s:element name="getCadastroProjetosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getCadastroProjetosResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getCadastroClientes">
+        <s:complexType />
+      </s:element>
+      <s:element name="getCadastroClientesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getCadastroClientesResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getCadastroConsultores">
+        <s:complexType />
+      </s:element>
+      <s:element name="getCadastroConsultoresResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getCadastroConsultoresResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getCadastroJobs">
+        <s:complexType />
+      </s:element>
+      <s:element name="getCadastroJobsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getCadastroJobsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="getCadastroDivisoesSoapIn">
+    <wsdl:part name="parameters" element="tns:getCadastroDivisoes" />
+  </wsdl:message>
+  <wsdl:message name="getCadastroDivisoesSoapOut">
+    <wsdl:part name="parameters" element="tns:getCadastroDivisoesResponse" />
+  </wsdl:message>
+  <wsdl:message name="getCadastroProjetosSoapIn">
+    <wsdl:part name="parameters" element="tns:getCadastroProjetos" />
+  </wsdl:message>
+  <wsdl:message name="getCadastroProjetosSoapOut">
+    <wsdl:part name="parameters" element="tns:getCadastroProjetosResponse" />
+  </wsdl:message>
+  <wsdl:message name="getCadastroClientesSoapIn">
+    <wsdl:part name="parameters" element="tns:getCadastroClientes" />
+  </wsdl:message>
+  <wsdl:message name="getCadastroClientesSoapOut">
+    <wsdl:part name="parameters" element="tns:getCadastroClientesResponse" />
+  </wsdl:message>
+  <wsdl:message name="getCadastroConsultoresSoapIn">
+    <wsdl:part name="parameters" element="tns:getCadastroConsultores" />
+  </wsdl:message>
+  <wsdl:message name="getCadastroConsultoresSoapOut">
+    <wsdl:part name="parameters" element="tns:getCadastroConsultoresResponse" />
+  </wsdl:message>
+  <wsdl:message name="getCadastroJobsSoapIn">
+    <wsdl:part name="parameters" element="tns:getCadastroJobs" />
+  </wsdl:message>
+  <wsdl:message name="getCadastroJobsSoapOut">
+    <wsdl:part name="parameters" element="tns:getCadastroJobsResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ServiceSoap">
+    <wsdl:operation name="getCadastroDivisoes">
+      <wsdl:input message="tns:getCadastroDivisoesSoapIn" />
+      <wsdl:output message="tns:getCadastroDivisoesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getCadastroProjetos">
+      <wsdl:input message="tns:getCadastroProjetosSoapIn" />
+      <wsdl:output message="tns:getCadastroProjetosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getCadastroClientes">
+      <wsdl:input message="tns:getCadastroClientesSoapIn" />
+      <wsdl:output message="tns:getCadastroClientesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getCadastroConsultores">
+      <wsdl:input message="tns:getCadastroConsultoresSoapIn" />
+      <wsdl:output message="tns:getCadastroConsultoresSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getCadastroJobs">
+      <wsdl:input message="tns:getCadastroJobsSoapIn" />
+      <wsdl:output message="tns:getCadastroJobsSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ServiceSoap" type="tns:ServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="getCadastroDivisoes">
+      <soap:operation soapAction="http://tempuri.org/getCadastroDivisoes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCadastroProjetos">
+      <soap:operation soapAction="http://tempuri.org/getCadastroProjetos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCadastroClientes">
+      <soap:operation soapAction="http://tempuri.org/getCadastroClientes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCadastroConsultores">
+      <soap:operation soapAction="http://tempuri.org/getCadastroConsultores" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCadastroJobs">
+      <soap:operation soapAction="http://tempuri.org/getCadastroJobs" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ServiceSoap12" type="tns:ServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="getCadastroDivisoes">
+      <soap12:operation soapAction="http://tempuri.org/getCadastroDivisoes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCadastroProjetos">
+      <soap12:operation soapAction="http://tempuri.org/getCadastroProjetos" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCadastroClientes">
+      <soap12:operation soapAction="http://tempuri.org/getCadastroClientes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCadastroConsultores">
+      <soap12:operation soapAction="http://tempuri.org/getCadastroConsultores" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCadastroJobs">
+      <soap12:operation soapAction="http://tempuri.org/getCadastroJobs" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Service">
+    <wsdl:port name="ServiceSoap" binding="tns:ServiceSoap">
+      <soap:address location="http://51.81.167.10/WSTimesheet/Service.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ServiceSoap12" binding="tns:ServiceSoap12">
+      <soap12:address location="http://51.81.167.10/WSTimesheet/Service.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

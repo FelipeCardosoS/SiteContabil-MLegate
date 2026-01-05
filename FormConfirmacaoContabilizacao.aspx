@@ -1,0 +1,2 @@
+﻿<%@ Page Language="C#" MasterPageFile="~/MasterForm.master" StylesheetTheme="principal" AutoEventWireup="true" CodeFile="FormConfirmacaoContabilizacao.aspx.cs" Inherits="FormConfirmacaoContabilizacao" %>
+<%@ MasterType VirtualPath="~/MasterForm.master" %>

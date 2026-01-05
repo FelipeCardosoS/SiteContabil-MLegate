@@ -1,0 +1,51 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterRelatorio.master.cs" Inherits="MasterRelatorio" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Relatório</title>
+    <style type="text/css">@import url(Css/Basico.css);</style>
+    <script type="text/javascript" src="Js/jquery.js"></script>
+    <asp:ContentPlaceHolder id="head" runat="server"></asp:ContentPlaceHolder>
+</head>
+<body>
+     <script language="javascript" type="text/javascript">   
+         $(document).ready(function () {
+             $('input').keydown(function (e) {
+                 if (e.which == 13) {
+                     e.returnValue = false;
+                     return false;
+                 }
+             });
+         });
+    </script>
+    <form id="form1" runat="server">
+        <div id="corpo" style="position: relative; overflow:auto;">
+            <div id="topo">
+                <div id="detalhes">
+                    <h3 style="padding-left:10px;"><asp:Literal ID="lNomeEmpresa" runat="server"></asp:Literal></h3>
+                    <hr style="height:1px solid; background:#000;" />
+                    <h2 style="color:Blue;"><asp:Literal ID="lNomeRelatorio" runat="server"></asp:Literal></h2>
+                    <asp:Literal ID="lDetalhes" runat="server" ></asp:Literal>
+                    <p><a href="javascript:history.go(-1);">< Voltar</a></p>
+                </div>
+                <div id="dataGeracao">
+                    Gerado em: <asp:Literal ID="lDataGeracao" runat="server"></asp:Literal>
+                </div>
+            </div>
+            <div id="relatorio">
+            
+                <asp:ContentPlaceHolder id="areaConteudo" runat="server">
+           
+                </asp:ContentPlaceHolder>
+            </div>
+        </div>
+    </form>
+    <script type="text/javascript" src="Js/jquery.maskedinput.js"></script>
+    <script type="text/javascript" src="Js/prince_format_jquery.js"></script>
+    <script type="text/javascript" src="Js/uteis.js"></script>
+    <script type="text/javascript" src="Js/validacao.js"></script>
+    <script type="text/javascript" src="Js/principal.js"></script>
+</body>
+</html>
