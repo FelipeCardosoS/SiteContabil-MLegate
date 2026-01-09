@@ -59,19 +59,19 @@
                                 <label style="color:blue;">IBS (0,1%):</label>
                             </td>
                             <td>
-                                <asp:TextBox ID="txtAliquotaIBS" runat="server" Width="40px" Enabled="false" Text="0,10" style="text-align:center; background-color:#f0f0f0;"></asp:TextBox> %
+                                <asp:TextBox ID="txtAliquotaIBS" runat="server" ClientIDMode="Static" Width="40px" ReadOnly="true" Text="0,10" style="text-align:center; background-color:#f0f0f0;"></asp:TextBox> %
                                 &nbsp; 
                                 <label style="color:blue;">Valor:</label> R$ 
-                                <asp:TextBox ID="txtValorIBS" runat="server" Width="80px" Enabled="false" style="text-align:right; background-color:#f0f0f0;"></asp:TextBox>
+                                <asp:TextBox ID="txtValorIBS" runat="server" ClientIDMode="Static" Width="80px" ReadOnly="true" style="text-align:right; background-color:#f0f0f0;"></asp:TextBox>
                             </td>
                             <td style="width: 100px;">
                                 <label style="color:blue;">CBS (0,9%):</label>
                             </td>
                             <td>
-                                <asp:TextBox ID="txtAliquotaCBS" runat="server" Width="40px" Enabled="false" Text="0,90" style="text-align:center; background-color:#f0f0f0;"></asp:TextBox> %
+                                <asp:TextBox ID="txtAliquotaCBS" runat="server" ClientIDMode="Static" Width="40px" ReadOnly="true" Text="0,90" style="text-align:center; background-color:#f0f0f0;"></asp:TextBox> %
                                 &nbsp; 
                                 <label style="color:blue;">Valor:</label> R$ 
-                                <asp:TextBox ID="txtValorCBS" runat="server" Width="80px" Enabled="false" style="text-align:right; background-color:#f0f0f0;"></asp:TextBox>
+                                <asp:TextBox ID="txtValorCBS" runat="server" ClientIDMode="Static" Width="80px" ReadOnly="true" style="text-align:right; background-color:#f0f0f0;"></asp:TextBox>
                             </td>
                         </tr>
                     </table>
