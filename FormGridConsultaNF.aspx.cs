@@ -8,8 +8,10 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
-using System.Diagnostics;   
-
+using System.Diagnostics;
+using System.Data.SqlClient;
+using System.Configuration;
+using System.Security.Cryptography.X509Certificates;
 
 
 
@@ -50,6 +52,14 @@ public partial class FormGridConsultaNF : BaseGridForm
     {
         base.Page_Load(sender, e);
         this.btnAcaoRoboV2.Click += new EventHandler(this.btnAcaoRoboV2_Click);
+
+        hdfBtnAcaoRoboV2Uid.Value = btnAcaoRoboV2.UniqueID;
+
+
+        if (!IsPostBack)
+        {
+            BindCertificados();
+        }
     }
 
     protected override void verificaTarefas()
@@ -1055,6 +1065,177 @@ public partial class FormGridConsultaNF : BaseGridForm
             avisos.Add("Nota enviada, mas erro ao atualizar status no banco: " + ex.Message);
         }
     }
+
+
+    // Certificados FELIPE -----
+
+    private string GetConnString()
+    {
+        return ConfigurationManager.ConnectionStrings["strConexao"].ConnectionString;
+    }
+
+    private void BindCertificados()
+    {
+        var dt = new DataTable();
+
+        using (var conn = new SqlConnection(GetConnString()))
+        using (var cmd = conn.CreateCommand())
+        {
+            cmd.CommandText = @"
+            SELECT CertId, Alias, ArquivoNome, ValidadeFim
+            FROM dbo.NFSe_Certificados
+            WHERE Ativo = 1
+            ORDER BY ValidadeFim DESC, Alias ASC;";
+
+            conn.Open();
+            using (var da = new SqlDataAdapter(cmd))
+                da.Fill(dt);
+        }
+
+        dt.Columns.Add("ValidadeFimFmt", typeof(string));
+        dt.Columns.Add("StatusTexto", typeof(string));
+        dt.Columns.Add("BadgeClass", typeof(string));
+
+        var hoje = DateTime.Today;
+
+        foreach (DataRow r in dt.Rows)
+        {
+            var fim = Convert.ToDateTime(r["ValidadeFim"]);
+            r["ValidadeFimFmt"] = fim.ToString("dd/MM/yyyy");
+
+            var dias = (fim.Date - hoje).Days;
+            if (dias < 0) { r["StatusTexto"] = "Vencido"; r["BadgeClass"] = "expired"; }
+            else if (dias <= 30) { r["StatusTexto"] = "Vence em 30 dias"; r["BadgeClass"] = "warn"; }
+            else { r["StatusTexto"] = "Válido"; r["BadgeClass"] = "ok"; }
+        }
+
+        rptCertificados.DataSource = dt;
+        rptCertificados.DataBind();
+    }
+
+    protected void btnSalvarCertificado_Click(object sender, EventArgs e)
+    {
+        lblUploadErro.Text = "";
+
+        // Proteção simples contra double-click / double-postback
+        var lockKey = "CERT_UPLOAD_LOCK";
+        var now = DateTime.Now;
+
+        if (Session[lockKey] != null)
+        {
+            DateTime last;
+            if (DateTime.TryParse(Session[lockKey].ToString(), out last))
+            {
+                if ((now - last).TotalSeconds < 3)
+                {
+                    lblUploadErro.Text = "Upload já em andamento. Aguarde um momento.";
+                    return;
+                }
+            }
+        }
+        Session[lockKey] = now.ToString("o");
+
+        try
+        {
+            var alias = (txtAliasCert.Text ?? "").Trim();
+            if (alias.Length == 0)
+                throw new Exception("Informe o Alias / Identificação do certificado.");
+
+            if (!fuCertificado.HasFile)
+                throw new Exception("Selecione um arquivo .pfx ou .p12.");
+
+            var senha = txtSenhaCert.Text ?? "";
+            if (senha.Length == 0)
+                throw new Exception("Informe a senha do certificado.");
+
+            var fileName = Path.GetFileName(fuCertificado.FileName);
+            var ext = (Path.GetExtension(fileName) ?? "").ToLowerInvariant();
+            if (ext != ".pfx" && ext != ".p12")
+                throw new Exception("Formato inválido. Envie um arquivo .pfx ou .p12.");
+
+            byte[] bin;
+            using (var ms = new MemoryStream())
+            {
+                fuCertificado.PostedFile.InputStream.CopyTo(ms);
+                bin = ms.ToArray();
+            }
+
+            X509Certificate2 cert;
+            try
+            {
+                cert = new X509Certificate2(
+                    bin,
+                    senha,
+                    X509KeyStorageFlags.MachineKeySet |
+                    X509KeyStorageFlags.PersistKeySet |
+                    X509KeyStorageFlags.Exportable
+                );
+            }
+            catch
+            {
+                throw new Exception("Não foi possível ler o certificado. Verifique o arquivo e a senha.");
+            }
+
+            DateTime validadeFim = cert.NotAfter;
+            var thumb = (cert.Thumbprint ?? "").Trim().ToUpperInvariant();
+
+            if (thumb.Length == 0)
+                throw new Exception("Não foi possível obter o Thumbprint do certificado.");
+
+            using (var conn = new SqlConnection(GetConnString()))
+            using (var cmd = conn.CreateCommand())
+            {
+                cmd.CommandText = @"
+INSERT INTO dbo.NFSe_Certificados
+    (Alias, ArquivoNome, ArquivoBin, Senha, ValidadeFim, Thumbprint, Ativo, DataCadastro)
+VALUES
+    (@Alias, @ArquivoNome, @ArquivoBin, @Senha, @ValidadeFim, @Thumbprint, 1, GETDATE());
+";
+
+                cmd.Parameters.AddWithValue("@Alias", alias);
+                cmd.Parameters.AddWithValue("@ArquivoNome", (object)fileName ?? DBNull.Value);
+                cmd.Parameters.Add("@ArquivoBin", SqlDbType.VarBinary, -1).Value = bin;
+                cmd.Parameters.AddWithValue("@Senha", senha);
+                cmd.Parameters.AddWithValue("@ValidadeFim", validadeFim);
+                cmd.Parameters.AddWithValue("@Thumbprint", thumb);
+
+                conn.Open();
+
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                }
+                catch (SqlException ex)
+                {
+                    // 2601/2627 = violação de UNIQUE (duplicado)
+                    if (ex.Number == 2601 || ex.Number == 2627)
+                    {
+                        lblUploadErro.Text = "Esse certificado já existe no banco (upload duplicado).";
+                        return;
+                    }
+
+                    // outro erro de SQL: propaga
+                    throw;
+                }
+            }
+
+            BindCertificados();
+
+            txtAliasCert.Text = "";
+            txtSenhaCert.Text = "";
+
+            hdfVoltarListaAposUpload.Value = "1";
+        }
+        catch (Exception ex)
+        {
+            lblUploadErro.Text = ex.Message;
+        }
+        finally
+        {
+            Session.Remove(lockKey);
+        }
+    }
+
 
 
 
