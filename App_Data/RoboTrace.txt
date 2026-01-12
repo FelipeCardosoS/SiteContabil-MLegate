@@ -1,0 +1,28 @@
+2026-01-12T09:18:17 | Entrou no btnAcaoRoboV2_Click
+2026-01-12T09:18:17 | caminhoExecutavel=C:\Users\Felipe-MLegate\Desktop\Nova pasta\SiteContabil---ReformaTributaria2026 BACKUP - Copia\_MotorNFSe_REFORMA_TRIB\FC.NFSe.Sandbox.exe
+2026-01-12T09:18:17 | qtdSelecionada=1 | argsRps=[1652]
+2026-01-12T09:18:18 | certTempPath=C:\Users\Felipe-MLegate\Desktop\Nova pasta\SiteContabil---ReformaTributaria2026 BACKUP - Copia\App_Data\NFSeCertTemp\cert_1_9bc93cac40e94330b0518ab1d9bc06da.pfx
+2026-01-12T09:18:18 | Iniciando Process.Start... wd=C:\Users\Felipe-MLegate\Desktop\Nova pasta\SiteContabil---ReformaTributaria2026 BACKUP - Copia\_MotorNFSe_REFORMA_TRIB
+2026-01-12T09:18:23 | Process finalizou. ExitCode=0
+2026-01-12T09:18:23 | finally: apagou certTemp e vai montar grid
+2026-01-12T09:18:36 | Entrou no btnAcaoRoboV2_Click
+2026-01-12T09:18:36 | caminhoExecutavel=C:\Users\Felipe-MLegate\Desktop\Nova pasta\SiteContabil---ReformaTributaria2026 BACKUP - Copia\_MotorNFSe_REFORMA_TRIB\FC.NFSe.Sandbox.exe
+2026-01-12T09:18:36 | qtdSelecionada=1 | argsRps=[1652]
+2026-01-12T09:18:36 | certTempPath=C:\Users\Felipe-MLegate\Desktop\Nova pasta\SiteContabil---ReformaTributaria2026 BACKUP - Copia\App_Data\NFSeCertTemp\cert_1_3d271204c9bb4423b0e2dcb3843d0222.pfx
+2026-01-12T09:18:36 | Iniciando Process.Start... wd=C:\Users\Felipe-MLegate\Desktop\Nova pasta\SiteContabil---ReformaTributaria2026 BACKUP - Copia\_MotorNFSe_REFORMA_TRIB
+2026-01-12T09:18:38 | Process finalizou. ExitCode=0
+2026-01-12T09:18:38 | finally: apagou certTemp e vai montar grid
+2026-01-12T09:18:49 | Entrou no btnAcaoRoboV2_Click
+2026-01-12T09:18:49 | caminhoExecutavel=C:\Users\Felipe-MLegate\Desktop\Nova pasta\SiteContabil---ReformaTributaria2026 BACKUP - Copia\_MotorNFSe_REFORMA_TRIB\FC.NFSe.Sandbox.exe
+2026-01-12T09:18:49 | qtdSelecionada=1 | argsRps=[1652]
+2026-01-12T09:18:50 | certTempPath=C:\Users\Felipe-MLegate\Desktop\Nova pasta\SiteContabil---ReformaTributaria2026 BACKUP - Copia\App_Data\NFSeCertTemp\cert_1_0721069eeb014319918631a705b4892a.pfx
+2026-01-12T09:18:50 | Iniciando Process.Start... wd=C:\Users\Felipe-MLegate\Desktop\Nova pasta\SiteContabil---ReformaTributaria2026 BACKUP - Copia\_MotorNFSe_REFORMA_TRIB
+2026-01-12T09:18:52 | Process finalizou. ExitCode=0
+2026-01-12T09:18:52 | finally: apagou certTemp e vai montar grid
+2026-01-12T09:19:10 | Entrou no btnAcaoRoboV2_Click
+2026-01-12T09:19:10 | caminhoExecutavel=C:\Users\Felipe-MLegate\Desktop\Nova pasta\SiteContabil---ReformaTributaria2026 BACKUP - Copia\_MotorNFSe_REFORMA_TRIB\FC.NFSe.Sandbox.exe
+2026-01-12T09:19:10 | qtdSelecionada=1 | argsRps=[1652]
+2026-01-12T09:19:10 | certTempPath=C:\Users\Felipe-MLegate\Desktop\Nova pasta\SiteContabil---ReformaTributaria2026 BACKUP - Copia\App_Data\NFSeCertTemp\cert_1_bcc094ede4474bdb95b477b353b6199e.pfx
+2026-01-12T09:19:10 | Iniciando Process.Start... wd=C:\Users\Felipe-MLegate\Desktop\Nova pasta\SiteContabil---ReformaTributaria2026 BACKUP - Copia\_MotorNFSe_REFORMA_TRIB
+2026-01-12T09:19:12 | Process finalizou. ExitCode=0
+2026-01-12T09:19:12 | finally: apagou certTemp e vai montar grid

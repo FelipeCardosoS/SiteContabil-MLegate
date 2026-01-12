@@ -1,5 +1,9 @@
-DATA: 08/01/2026 16:10:10
+DATA: 12/01/2026 09:19:12
 EXIT: 0
+ARGS: 1652
+CERT_ID: 1
+CERT_THUMB: 0A0B07DDA3378F003F7839024819E22D4AC39E4F
+CERT_PATH: C:\Users\Felipe-MLegate\Desktop\Nova pasta\SiteContabil---ReformaTributaria2026 BACKUP - Copia\App_Data\NFSeCertTemp\cert_1_bcc094ede4474bdb95b477b353b6199e.pfx
 ERROS:
 
 SUCESSO:
@@ -9,8 +13,8 @@ SUCESSO:
 
 ?? Recebidos 1 RPS do sistema externo.
 
-?? Processando RPS: 1653...
-?? Lendo DB: RPS 1653...
+?? Processando RPS: 1652...
+?? Lendo DB: RPS 1652...
    ?? Emitente: MACSO LEGATE AUDITORES INDEPENDENTES
    ?? CNPJ: 23037018000163
    ??? Serviço Original (Banco): 03395 - 

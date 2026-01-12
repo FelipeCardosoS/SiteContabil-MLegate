@@ -1,27 +1,27 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.14.36705.20 d17.14
+# Visual Studio Version 18
+VisualStudioVersion = 18.1.11304.174 d18.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Contabil", ".", "{CFFB27D2-3E93-4879-982C-9AEAE26241FB}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "SiteContabil---ReformaTributaria2026 BACKUP - Copia", ".", "{CFFB27D2-3E93-4879-982C-9AEAE26241FB}"
 	ProjectSection(WebsiteProperties) = preProject
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.6.1"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.8"
 		Debug.AspNetCompiler.VirtualPath = "/contabil"
-		Debug.AspNetCompiler.PhysicalPath = "..\Contabil\"
+		Debug.AspNetCompiler.PhysicalPath = "..\SiteContabil---ReformaTributaria2026 BACKUP - Copia\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\contabil\"
 		Debug.AspNetCompiler.Updateable = "true"
 		Debug.AspNetCompiler.ForceOverwrite = "true"
 		Debug.AspNetCompiler.FixedNames = "false"
 		Debug.AspNetCompiler.Debug = "True"
 		Release.AspNetCompiler.VirtualPath = "/contabil"
-		Release.AspNetCompiler.PhysicalPath = "..\Contabil\"
+		Release.AspNetCompiler.PhysicalPath = "..\SiteContabil---ReformaTributaria2026 BACKUP - Copia\"
 		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\contabil\"
 		Release.AspNetCompiler.Updateable = "true"
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
 		VWDPort = "47269"
-		SlnRelativePath = "..\Contabil\"
+		SlnRelativePath = "..\SiteContabil---ReformaTributaria2026 BACKUP - Copia\"
 	EndProjectSection
 EndProject
 Global

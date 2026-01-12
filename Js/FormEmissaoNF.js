@@ -13,13 +13,16 @@
         let total = 0;
 
         $('.txtValorServicoJob').each(function () {
-            if ($(this).val() != '') //Se o usuário voltar a página, o Valor estará preenchido com os dados anteriores e a página será recarregada.
-                location.reload(); //Recarrega a tela.
-
+            // IMPORTANTE:
+            // Removido o location.reload() que causava loop e impedia qualquer cálculo de IBS/CBS.
             if ($(this).val() != '' && $(this).val() != ',' && $(this).val() != '.')
                 total += parseFloat($(this).val().replaceAll('.', '').replace(',', '.'));
         });
+
         $('.lblTotal').html('Total: R$ ' + total.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }));
+
+        // Calcula IBS/CBS ao carregar a tela (com base no total inicial)
+        Calcular_Reforma_Tributaria(total);
 
         Total_Liquido();
 
@@ -27,9 +30,8 @@
         total = 0;
 
         $('.txtValorVencimento').each(function () {
-            if ($(this).val() != '') //Se o usuário voltar a página, o Valor estará preenchido com os dados anteriores e a página será recarregada.
-                location.reload(); //Recarrega a tela.
-
+            // IMPORTANTE:
+            // Removido o location.reload() que causava loop.
             if ($(this).val() != '' && $(this).val() != ',' && $(this).val() != '.')
                 total += parseFloat($(this).val().replaceAll('.', '').replace(',', '.'));
         });
@@ -692,22 +694,64 @@ function btnGerarNF_Click() {
         alert(mensagem_erros);
     }
     $('.btnGerarNF').prop('disabled', false);
+}
 
-    // --- FUNÇÃO NOVA: Calcula IBS e CBS em Tempo Real ---
-    function Calcular_Reforma_Tributaria(valorTotal) {
-        // Regra de Teste 2026: IBS 0.1% e CBS 0.9%
-        // Converto para Float seguro para evitar erros de arredondamento JS
-        let valIBS = valorTotal * 0.001;
-        let valCBS = valorTotal * 0.009;
+// =====================================================================================
+//  IBS / CBS (Reforma Tributária - EC 132/2023)
+//  - Calcula automaticamente com base no TOTAL BRUTO (lblTotal)
+//  - Compatível com WebForms: se o ClientID vier prefixado, usamos seletor [id$='...']
+// =====================================================================================
 
-        // Atualiza os campos na tela (requer que você tenha adicionado as classes CSS no ASPX conforme conversamos)
-        // Se não achar os campos pela classe, tente pelo ID direto (ex: ctl00_areaConteudo_txtValorIBS)
-        // Mas o ideal é manter as classes .txtValorIBS e .txtValorCBS que combinamos.
+function GetCtrlBySuffix(suffix) {
+    // Retorna um jQuery object (pode vir vazio)
+    return $("[id$='" + suffix + "']");
+}
 
-        if ($('.txtValorIBS').length > 0) {
-            $('.txtValorIBS').val(valIBS.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }));
-            $('.txtValorCBS').val(valCBS.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }));
-        }
+function ParseNumeroPtBr(valor) {
+    if (valor == null) return 0;
+
+    let s = String(valor).trim();
+
+    // Remove tudo que não for número, vírgula, ponto ou sinal
+    s = s.replace(/[^\d,.\-]/g, '');
+
+    // Se tiver vírgula, assume vírgula como decimal: remove pontos de milhar e troca vírgula por ponto
+    if (s.indexOf(',') >= 0) {
+        s = s.replace(/\./g, '').replace(',', '.');
     }
 
+    let n = parseFloat(s);
+    return isNaN(n) ? 0 : n;
 }
+
+function FormataDinheiroPtBr(n) {
+    return (Number(n || 0)).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
+
+/**
+ * Calcula IBS e CBS e preenche as TextBoxes.
+ * totalBase deve ser NUMÉRICO (ex.: 120.50)
+ */
+function Calcular_Reforma_Tributaria(totalBase) {
+    // Localiza os controles (suporta ClientIDMode Auto/Static)
+    const $aliqIBS = GetCtrlBySuffix("txtAliquotaIBS");
+    const $aliqCBS = GetCtrlBySuffix("txtAliquotaCBS");
+    const $valIBS = GetCtrlBySuffix("txtValorIBS");
+    const $valCBS = GetCtrlBySuffix("txtValorCBS");
+
+    // Se a tela não tem esses campos, sai sem erro
+    if ($aliqIBS.length === 0 || $aliqCBS.length === 0 || $valIBS.length === 0 || $valCBS.length === 0) return;
+
+    const base = Number(totalBase || 0);
+    const aliqIBS = ParseNumeroPtBr($aliqIBS.val()); // ex: "0,10" => 0.10 (%)
+    const aliqCBS = ParseNumeroPtBr($aliqCBS.val()); // ex: "0,90" => 0.90 (%)
+
+    const valorIBS = base * (aliqIBS / 100.0);
+    const valorCBS = base * (aliqCBS / 100.0);
+
+    $valIBS.val(FormataDinheiroPtBr(valorIBS));
+    $valCBS.val(FormataDinheiroPtBr(valorCBS));
+}
+
+// (Opcional) deixa disponível globalmente, caso queira chamar manualmente no console:
+// window.Calcular_Reforma_Tributaria = Calcular_Reforma_Tributaria;

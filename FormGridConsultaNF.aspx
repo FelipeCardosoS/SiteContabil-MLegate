@@ -9,6 +9,8 @@
     <!-- JS legado da tela -->
     <script type="text/javascript" src="Js/FormConsultaNF.js"></script>
 
+    <script src="Js/FormGridCertificados.js?v=20260112a"></script>
+
     <label><span>Emitente</span>
         <select id="ddlEmitente" style="width:250px" runat="server" />
     </label>
@@ -246,7 +248,16 @@
             </div>
 
             <div class="cert-actions">
-                <input type="button" class="btn-prim" value="Confirmar e continuar" onclick="usarCertificadoSelecionado(); return false;" />
+                <asp:Button ID="btnConfirmarCertificado"
+                               ClientIDMode="Static"
+                               runat="server"
+                               CssClass="btn-prim"
+                               Text="Confirmar e continuar"
+                               CausesValidation="false"
+                               UseSubmitBehavior="false"
+                               OnClientClick="return usarCertificadoSelecionado();"
+                               
+                            />
                 <input type="button" class="btn-sec" value="Cancelar" onclick="fecharModalCertificados(); return false;" />
             </div>
         </div>

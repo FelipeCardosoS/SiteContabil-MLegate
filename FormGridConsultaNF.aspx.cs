@@ -1,21 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
-using System.Diagnostics;
-using System.Data.SqlClient;
-using System.Configuration;
-using System.Security.Cryptography.X509Certificates;
-
-
-
-
 
 
 public partial class FormGridConsultaNF : BaseGridForm
@@ -948,35 +944,70 @@ public partial class FormGridConsultaNF : BaseGridForm
     {
         mpeImportarCSV.Hide();
 
+        // ====== LOG DIR (App_Data) ======
+        string logDir = Server.MapPath("~/App_Data");
+        System.IO.Directory.CreateDirectory(logDir);
+
+        string tracePath = System.IO.Path.Combine(logDir, "RoboTrace.txt");
+        string execLogPath = System.IO.Path.Combine(logDir, "Log_Ultima_Execucao.txt");
+        string errPath = System.IO.Path.Combine(logDir, "RoboErro.txt");
+
+        Action<string> Trace = delegate (string msg)
+        {
+            try
+            {
+                System.IO.File.AppendAllText(
+                    tracePath,
+                    DateTime.Now.ToString("s") + " | " + msg + Environment.NewLine
+                );
+            }
+            catch { }
+        };
+
+        // (Opcional) Debug visual — depois você remove
+        ScriptManager.RegisterStartupScript(
+            this, GetType(), "DBG_HIT",
+            "alert('✅ CHEGUEI NO SERVIDOR: btnAcaoRoboV2_Click');",
+            true
+        );
+
+        Trace("Entrou no btnAcaoRoboV2_Click");
+
+        // ====== PATH DO EXE ======
         string caminhoExecutavel = Server.MapPath("~/_MotorNFSe_REFORMA_TRIB/FC.NFSe.Sandbox.exe");
-        string arquivoLog = Server.MapPath("~/Log_Ultima_Execucao.txt");
+        Trace("caminhoExecutavel=" + caminhoExecutavel);
 
         if (!System.IO.File.Exists(caminhoExecutavel))
         {
+            Trace("ERRO: Robô não encontrado");
             ScriptManager.RegisterStartupScript(this, GetType(), "Erro", "alert('Robô não encontrado!');", true);
             return;
         }
 
-        StringBuilder listaRps = new StringBuilder();
-        List<int> idsParaAtualizar = new List<int>();
+        // ====== COLETA RPS ======
+        System.Text.StringBuilder listaRps = new System.Text.StringBuilder();
+        System.Collections.Generic.List<int> idsParaAtualizar = new System.Collections.Generic.List<int>();
         int qtdSelecionada = 0;
 
-        // 1. Coleta os dados
-        foreach (RepeaterItem item in repeaterDados.Items)
+        foreach (System.Web.UI.WebControls.RepeaterItem item in repeaterDados.Items)
         {
-            if (item.ItemType != ListItemType.Separator)
-            {
-                HtmlInputCheckBox check = (HtmlInputCheckBox)item.FindControl("check");
-                Label lblRps = (Label)item.FindControl("numero_rps");
+            if (item.ItemType == System.Web.UI.WebControls.ListItemType.Separator) continue;
 
-                if (check.Checked)
-                {
-                    listaRps.Append(lblRps.Text + " ");
-                    idsParaAtualizar.Add(Convert.ToInt32(check.Value));
-                    qtdSelecionada++;
-                }
+            System.Web.UI.HtmlControls.HtmlInputCheckBox check =
+                (System.Web.UI.HtmlControls.HtmlInputCheckBox)item.FindControl("check");
+            System.Web.UI.WebControls.Label lblRps =
+                (System.Web.UI.WebControls.Label)item.FindControl("numero_rps");
+
+            if (check != null && check.Checked)
+            {
+                listaRps.Append((lblRps != null ? lblRps.Text : "") + " ");
+                idsParaAtualizar.Add(Convert.ToInt32(check.Value));
+                qtdSelecionada++;
             }
         }
+
+        string argsRps = listaRps.ToString().Trim();
+        Trace("qtdSelecionada=" + qtdSelecionada + " | argsRps=[" + argsRps + "]");
 
         if (qtdSelecionada == 0)
         {
@@ -984,60 +1015,146 @@ public partial class FormGridConsultaNF : BaseGridForm
             return;
         }
 
+        // ====== CERTIFICADO SELECIONADO ======
+        int certId;
+        if (!int.TryParse(hdfCertSelecionado.Value, out certId) || certId <= 0)
+        {
+            Trace("ERRO: hdfCertSelecionado inválido: " + (hdfCertSelecionado.Value ?? ""));
+            ScriptManager.RegisterStartupScript(this, GetType(), "AvisoCert", "alert('Selecione um certificado antes de continuar.');", true);
+            return;
+        }
+
+        var certRow = GetCertificadoById(certId);
+        if (certRow == null)
+        {
+            Trace("ERRO: Certificado não encontrado. certId=" + certId);
+            ScriptManager.RegisterStartupScript(this, GetType(), "AvisoCert2", "alert('Certificado não encontrado (ou inativo).');", true);
+            return;
+        }
+
+        string senhaPlain = DecryptSenhaCompat(certRow.SenhaDb);
+        string certTempPath = null;
+
         try
         {
-            ProcessStartInfo info = new ProcessStartInfo();
-            info.FileName = caminhoExecutavel;
-            info.Arguments = listaRps.ToString().Trim();
-            info.WorkingDirectory = System.IO.Path.GetDirectoryName(caminhoExecutavel);
+            // ====== MATERIALIZA CERT TEMP ======
+            certTempPath = SalvarCertificadoTemp(certId, certRow.ArquivoNome, certRow.ArquivoBin);
+            Trace("certTempPath=" + certTempPath);
 
+            // valida se abre (senha/arquivo batem)
+            try
+            {
+                var _ = new System.Security.Cryptography.X509Certificates.X509Certificate2(
+                    certRow.ArquivoBin,
+                    senhaPlain,
+                    System.Security.Cryptography.X509Certificates.X509KeyStorageFlags.MachineKeySet |
+                    System.Security.Cryptography.X509Certificates.X509KeyStorageFlags.PersistKeySet |
+                    System.Security.Cryptography.X509Certificates.X509KeyStorageFlags.Exportable
+                );
+            }
+            catch (Exception exCert)
+            {
+                Trace("ERRO: Certificado não abriu: " + exCert.Message);
+                ScriptManager.RegisterStartupScript(this, GetType(), "CertInvalido",
+                    "alert('O certificado selecionado não pôde ser aberto. Verifique o arquivo/senha armazenados no banco.');", true);
+                return;
+            }
+
+            // ====== PROCESS START ======
+            System.Diagnostics.ProcessStartInfo info = new System.Diagnostics.ProcessStartInfo();
+            info.FileName = caminhoExecutavel;
+            info.Arguments = argsRps;
+            info.WorkingDirectory = System.IO.Path.GetDirectoryName(caminhoExecutavel);
             info.UseShellExecute = false;
             info.RedirectStandardOutput = true;
             info.RedirectStandardError = true;
             info.CreateNoWindow = true;
 
-            using (Process p = Process.Start(info))
+            // ENV VARS com certificado + senha
+            info.EnvironmentVariables["NFSE_CERT_PATH"] = certTempPath;
+            info.EnvironmentVariables["NFSE_CERT_PASS"] = senhaPlain;
+            info.EnvironmentVariables["NFSE_CERT_ID"] = certId.ToString();
+            info.EnvironmentVariables["NFSE_CERT_ALIAS"] = certRow.Alias ?? "";
+            info.EnvironmentVariables["NFSE_CERT_THUMBPRINT"] = certRow.Thumbprint ?? "";
+
+            Trace("Iniciando Process.Start... wd=" + info.WorkingDirectory);
+
+            using (System.Diagnostics.Process p = System.Diagnostics.Process.Start(info))
             {
-                // 2. Executa e Lê o retorno
+                if (p == null)
+                    throw new Exception("Falha ao iniciar o robô (Process.Start retornou null).");
+
                 string saidaSucesso = p.StandardOutput.ReadToEnd();
                 string saidaErro = p.StandardError.ReadToEnd();
 
-                p.WaitForExit(30000);
-
-                // 📝 MANTIDO: GRAVA O LOG NO DISCO (Para análise de erros futura)
-                string conteudoLog = "DATA: " + DateTime.Now.ToString() + "\nEXIT: " + p.ExitCode +
-                                     "\nERROS:\n" + saidaErro + "\nSUCESSO:\n" + saidaSucesso;
-
-                try { System.IO.File.WriteAllText(arquivoLog, conteudoLog); } catch { } // Tenta gravar, se der erro de permissão segue o baile
-
-                // 3. ANÁLISE DO RETORNO PARA O USUÁRIO
-                if (saidaSucesso.Contains("<Sucesso>true</Sucesso>"))
+                bool finalizou = p.WaitForExit(30000);
+                if (!finalizou)
                 {
-                    // SUCESSO: Atualiza o banco para ficar VERDE na tela
-                    AtualizarStatusNotas(idsParaAtualizar);
-
-                    ScriptManager.RegisterStartupScript(this, GetType(), "Sucesso", "alert('✅ SUCESSO! Notas aceitas. O status foi atualizado na tela.');", true);
+                    try { p.Kill(); } catch { }
+                    Trace("TIMEOUT: robô não finalizou em 30s");
+                    throw new Exception("Timeout: o robô não finalizou em 30 segundos.");
                 }
-                else if (saidaSucesso.Contains("<Sucesso>false</Sucesso>"))
+
+                int exitCode = p.ExitCode;
+                Trace("Process finalizou. ExitCode=" + exitCode);
+
+                // Log consolidado
+                string conteudoLog =
+                    "DATA: " + DateTime.Now.ToString() +
+                    "\nEXIT: " + exitCode +
+                    "\nARGS: " + argsRps +
+                    "\nCERT_ID: " + certId +
+                    "\nCERT_THUMB: " + (certRow.Thumbprint ?? "") +
+                    "\nCERT_PATH: " + (certTempPath ?? "") +
+                    "\nERROS:\n" + saidaErro +
+                    "\nSUCESSO:\n" + saidaSucesso;
+
+                try { System.IO.File.WriteAllText(execLogPath, conteudoLog); } catch { }
+
+                // Análise retorno
+                if (!string.IsNullOrEmpty(saidaSucesso) && saidaSucesso.Contains("<Sucesso>true</Sucesso>"))
                 {
-                    // REJEIÇÃO: Avisa para olhar o log
-                    ScriptManager.RegisterStartupScript(this, GetType(), "Rejeicao", "alert('❌ A Prefeitura rejeitou. Abra o arquivo Log_Ultima_Execucao.txt para ver o motivo.');", true);
+                    AtualizarStatusNotas(idsParaAtualizar);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "Sucesso",
+                        "alert('SUCESSO! Notas aceitas. O status foi atualizado na tela.');", true);
+                }
+                else if (!string.IsNullOrEmpty(saidaSucesso) && saidaSucesso.Contains("<Sucesso>false</Sucesso>"))
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "Rejeicao",
+                        "alert('A Prefeitura rejeitou. Verifique App_Data/Log_Ultima_Execucao.txt.');", true);
                 }
                 else
                 {
-                    // ERRO TÉCNICO
-                    ScriptManager.RegisterStartupScript(this, GetType(), "ErroTecnico", "alert('⚠️ Erro técnico. O Robô não retornou confirmação. Verifique o Log.');", true);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "ErroTecnico",
+                        "alert('Erro técnico. O Robô não retornou confirmação. Verifique App_Data/Log_Ultima_Execucao.txt.');", true);
                 }
             }
         }
         catch (Exception ex)
         {
-            ScriptManager.RegisterStartupScript(this, GetType(), "ErroGeral", "alert('Erro crítico: " + ex.Message.Replace("'", "") + "');", true);
-        }
+            try
+            {
+                System.IO.File.AppendAllText(
+                    errPath,
+                    DateTime.Now.ToString("s") + " | " + ex.ToString() + Environment.NewLine
+                );
+            }
+            catch { }
 
-        // 4. Recarrega a Grid para ver a mudança de status
-        montaGrid();
+            string msg = (ex.Message ?? "").Replace("'", "").Replace("\r", " ").Replace("\n", " ");
+            ScriptManager.RegisterStartupScript(this, GetType(), "ErroGeral", "alert('Erro crítico: " + msg + "');", true);
+        }
+        finally
+        {
+            TryDeleteFile(certTempPath);
+            Trace("finally: apagou certTemp e vai montar grid");
+            montaGrid();
+        }
     }
+
+
+
+
 
     // 👇 MÉTODO AUXILIAR DE UPDATE (MANTENHA ELE NA CLASSE)
     private void AtualizarStatusNotas(List<int> ids)
@@ -1068,6 +1185,95 @@ public partial class FormGridConsultaNF : BaseGridForm
 
 
     // Certificados FELIPE -----
+
+
+
+
+    private class CertDbRow
+    {
+        public int CertId;
+        public string Alias;
+        public string ArquivoNome;
+        public byte[] ArquivoBin;
+        public string SenhaDb;
+        public string Thumbprint;
+        public DateTime ValidadeFim;
+    }
+
+    private CertDbRow GetCertificadoById(int certId)
+    {
+        using (var conn = new SqlConnection(GetConnString()))
+        using (var cmd = conn.CreateCommand())
+        {
+            cmd.CommandText = @"
+SELECT CertId, Alias, ArquivoNome, ArquivoBin, Senha, Thumbprint, ValidadeFim
+FROM dbo.NFSe_Certificados
+WHERE CertId = @CertId AND Ativo = 1;";
+            cmd.Parameters.AddWithValue("@CertId", certId);
+
+            conn.Open();
+            using (var rd = cmd.ExecuteReader())
+            {
+                if (!rd.Read()) return null;
+
+                var row = new CertDbRow();
+                row.CertId = Convert.ToInt32(rd["CertId"]);
+                row.Alias = rd["Alias"] == DBNull.Value ? "" : rd["Alias"].ToString();
+                row.ArquivoNome = rd["ArquivoNome"] == DBNull.Value ? "" : rd["ArquivoNome"].ToString();
+                row.ArquivoBin = rd["ArquivoBin"] == DBNull.Value ? null : (byte[])rd["ArquivoBin"];
+                row.SenhaDb = rd["Senha"] == DBNull.Value ? "" : rd["Senha"].ToString();
+                row.Thumbprint = rd["Thumbprint"] == DBNull.Value ? "" : rd["Thumbprint"].ToString();
+                row.ValidadeFim = rd["ValidadeFim"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(rd["ValidadeFim"]);
+
+                return row;
+            }
+        }
+    }
+
+    private string DecryptSenhaCompat(string senhaDb)
+    {
+        if (string.IsNullOrEmpty(senhaDb)) return "";
+
+        // Compat: se já existirem registros antigos em texto puro, não derruba o fluxo
+        try
+        {
+            return Aes256Crypto.Decrypt(senhaDb);
+        }
+        catch
+        {
+            return senhaDb; // fallback: considera que está em texto puro
+        }
+    }
+
+    private string SalvarCertificadoTemp(int certId, string arquivoNome, byte[] bin)
+    {
+        if (bin == null || bin.Length == 0)
+            throw new Exception("Certificado no banco está sem arquivo (ArquivoBin vazio).");
+
+        string dir = Server.MapPath("~/App_Data/NFSeCertTemp");
+        if (!Directory.Exists(dir))
+            Directory.CreateDirectory(dir);
+
+        string ext = Path.GetExtension(arquivoNome ?? "");
+        if (string.IsNullOrEmpty(ext)) ext = ".pfx";
+
+        string safeName = "cert_" + certId.ToString() + "_" + Guid.NewGuid().ToString("N") + ext;
+        string fullPath = Path.Combine(dir, safeName);
+
+        File.WriteAllBytes(fullPath, bin);
+        return fullPath;
+    }
+
+    private void TryDeleteFile(string path)
+    {
+        try
+        {
+            if (!string.IsNullOrEmpty(path) && File.Exists(path))
+                File.Delete(path);
+        }
+        catch { }
+    }
+
 
     private string GetConnString()
     {
@@ -1117,72 +1323,56 @@ public partial class FormGridConsultaNF : BaseGridForm
     {
         lblUploadErro.Text = "";
 
-        // Proteção simples contra double-click / double-postback
-        var lockKey = "CERT_UPLOAD_LOCK";
-        var now = DateTime.Now;
-
-        if (Session[lockKey] != null)
-        {
-            DateTime last;
-            if (DateTime.TryParse(Session[lockKey].ToString(), out last))
-            {
-                if ((now - last).TotalSeconds < 3)
-                {
-                    lblUploadErro.Text = "Upload já em andamento. Aguarde um momento.";
-                    return;
-                }
-            }
-        }
-        Session[lockKey] = now.ToString("o");
-
         try
         {
             var alias = (txtAliasCert.Text ?? "").Trim();
             if (alias.Length == 0)
                 throw new Exception("Informe o Alias / Identificação do certificado.");
 
-            if (!fuCertificado.HasFile)
-                throw new Exception("Selecione um arquivo .pfx ou .p12.");
-
             var senha = txtSenhaCert.Text ?? "";
             if (senha.Length == 0)
                 throw new Exception("Informe a senha do certificado.");
 
-            var fileName = Path.GetFileName(fuCertificado.FileName);
-            var ext = (Path.GetExtension(fileName) ?? "").ToLowerInvariant();
+            if (!fuCertificado.HasFile)
+                throw new Exception("Selecione um arquivo .pfx ou .p12 antes de salvar.");
+
+            var fileName = System.IO.Path.GetFileName(fuCertificado.FileName);
+            var ext = (System.IO.Path.GetExtension(fileName) ?? "").ToLowerInvariant();
             if (ext != ".pfx" && ext != ".p12")
-                throw new Exception("Formato inválido. Envie um arquivo .pfx ou .p12.");
+                throw new Exception("Arquivo inválido. Envie um certificado no formato .pfx ou .p12.");
 
             byte[] bin;
-            using (var ms = new MemoryStream())
+            using (var ms = new System.IO.MemoryStream())
             {
                 fuCertificado.PostedFile.InputStream.CopyTo(ms);
                 bin = ms.ToArray();
             }
 
-            X509Certificate2 cert;
+            System.Security.Cryptography.X509Certificates.X509Certificate2 cert;
             try
             {
-                cert = new X509Certificate2(
+                cert = new System.Security.Cryptography.X509Certificates.X509Certificate2(
                     bin,
                     senha,
-                    X509KeyStorageFlags.MachineKeySet |
-                    X509KeyStorageFlags.PersistKeySet |
-                    X509KeyStorageFlags.Exportable
+                    System.Security.Cryptography.X509Certificates.X509KeyStorageFlags.MachineKeySet |
+                    System.Security.Cryptography.X509Certificates.X509KeyStorageFlags.PersistKeySet |
+                    System.Security.Cryptography.X509Certificates.X509KeyStorageFlags.Exportable
                 );
             }
             catch
             {
-                throw new Exception("Não foi possível ler o certificado. Verifique o arquivo e a senha.");
+                throw new Exception("Não foi possível abrir o certificado. Verifique se o arquivo e a senha estão corretos.");
             }
 
-            DateTime validadeFim = cert.NotAfter;
+            var validadeFim = cert.NotAfter;
             var thumb = (cert.Thumbprint ?? "").Trim().ToUpperInvariant();
-
             if (thumb.Length == 0)
                 throw new Exception("Não foi possível obter o Thumbprint do certificado.");
 
-            using (var conn = new SqlConnection(GetConnString()))
+            // Criptografa a senha para armazenar no banco (AES-256)
+            var senhaCriptografada = Aes256Crypto.Encrypt(senha);
+
+            using (var conn = new System.Data.SqlClient.SqlConnection(GetConnString()))
             using (var cmd = conn.CreateCommand())
             {
                 cmd.CommandText = @"
@@ -1191,11 +1381,10 @@ INSERT INTO dbo.NFSe_Certificados
 VALUES
     (@Alias, @ArquivoNome, @ArquivoBin, @Senha, @ValidadeFim, @Thumbprint, 1, GETDATE());
 ";
-
                 cmd.Parameters.AddWithValue("@Alias", alias);
                 cmd.Parameters.AddWithValue("@ArquivoNome", (object)fileName ?? DBNull.Value);
-                cmd.Parameters.Add("@ArquivoBin", SqlDbType.VarBinary, -1).Value = bin;
-                cmd.Parameters.AddWithValue("@Senha", senha);
+                cmd.Parameters.Add("@ArquivoBin", System.Data.SqlDbType.VarBinary, -1).Value = bin;
+                cmd.Parameters.Add("@Senha", System.Data.SqlDbType.NVarChar, 600).Value = senhaCriptografada;
                 cmd.Parameters.AddWithValue("@ValidadeFim", validadeFim);
                 cmd.Parameters.AddWithValue("@Thumbprint", thumb);
 
@@ -1205,36 +1394,72 @@ VALUES
                 {
                     cmd.ExecuteNonQuery();
                 }
-                catch (SqlException ex)
+                catch (System.Data.SqlClient.SqlException ex)
                 {
-                    // 2601/2627 = violação de UNIQUE (duplicado)
+                    // 2601 e 2627 = UNIQUE/PK violado
                     if (ex.Number == 2601 || ex.Number == 2627)
                     {
-                        lblUploadErro.Text = "Esse certificado já existe no banco (upload duplicado).";
+                        // Se for especificamente o índice/constraint do Thumbprint, personaliza a msg
+                        var msg = (ex.Message ?? "");
+
+                        if (msg.IndexOf("UX_NFSe_Certificados_Thumbprint", StringComparison.OrdinalIgnoreCase) >= 0
+                            || msg.IndexOf("Thumbprint", StringComparison.OrdinalIgnoreCase) >= 0)
+                        {
+                            lblUploadErro.Text =
+                                "Este certificado já está cadastrado (mesmo Thumbprint). " +
+                                "Para usar outro, selecione um certificado diferente ou remova o existente na lista.";
+                        }
+                        else
+                        {
+                            lblUploadErro.Text =
+                                "Não foi possível salvar porque já existe um registro com os mesmos dados (duplicidade).";
+                        }
+
+                        // Mantém modal aberto para exibir a mensagem
+                        try { mpeUploadCert.Show(); } catch { }
                         return;
                     }
 
-                    // outro erro de SQL: propaga
-                    throw;
+                    // Truncation (coluna pequena) — mensagem amigável
+                    if (ex.Number == 8152)
+                    {
+                        lblUploadErro.Text =
+                            "Não foi possível salvar porque algum campo excede o tamanho permitido no banco. " +
+                            "Verifique principalmente o tamanho da coluna 'Senha' e 'ArquivoNome'.";
+                        try { mpeUploadCert.Show(); } catch { }
+                        return;
+                    }
+
+                    // Qualquer outro erro de SQL: mensagem genérica + (opcional) log
+                    lblUploadErro.Text = "Erro ao salvar no banco de dados. Detalhe: " + ex.Message;
+                    try { mpeUploadCert.Show(); } catch { }
+                    return;
                 }
             }
 
+            // Sucesso: recarrega lista e limpa campos
             BindCertificados();
-
             txtAliasCert.Text = "";
             txtSenhaCert.Text = "";
-
             hdfVoltarListaAposUpload.Value = "1";
         }
         catch (Exception ex)
         {
             lblUploadErro.Text = ex.Message;
-        }
-        finally
-        {
-            Session.Remove(lockKey);
+
+            // mantém modal aberto para mostrar o erro
+            try { mpeUploadCert.Show(); } catch { }
         }
     }
+
+
+    protected void btnConfirmarCertificado_Click(object sender, EventArgs e)
+    {
+        // Reusa o mesmo fluxo do robô
+        btnAcaoRoboV2_Click(sender, e);
+    }
+
+
 
 
 

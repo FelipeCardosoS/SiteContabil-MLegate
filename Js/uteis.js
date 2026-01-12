@@ -136,23 +136,25 @@ function filtraCampo(campo) {
 
 function horizontal(idMenu) {
 
-    var navItems = document.getElementById("ulMenu").getElementsByTagName("li");
+    var ul = document.getElementById("ulMenu");
+    if (!ul) return; // <-- impede crash se o menu não existir / id mudou
+
+    var navItems = ul.getElementsByTagName("li");
 
     for (var i = 0; i < navItems.length; i++) {
         if (navItems[i].className == "submenu") {
             if (navItems[i].getElementsByTagName('ul')[0] != null) {
                 navItems[i].onmouseover = function () {
                     this.getElementsByTagName('ul')[0].style.display = "block";
-                    //this.getElementsByTagName('a')[0].style.color="#DE5D29";
                 }
                 navItems[i].onmouseout = function () {
                     this.getElementsByTagName('ul')[0].style.display = "none";
-                    //this.getElementsByTagName('a')[0].style.color="#fff";
                 }
             }
         }
     }
 }
+
 
 function marcaTodos() {
     //$("input[type='checkbox']").attr("checked", "checked");

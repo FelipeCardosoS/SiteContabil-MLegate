@@ -1,5 +1,5 @@
-// =============================
-// Certificados - JS (mÌnimo e est·vel)
+Ôªø// =============================
+// Certificados - JS (m√≠nimo e est√°vel)
 // =============================
 
 window.CERT_UI = window.CERT_UI || {
@@ -10,21 +10,21 @@ window.CERT_UI = window.CERT_UI || {
 };
 
 (function () {
-    // Se jQuery n„o existe ainda, tenta depois (legado)
+    // Se jQuery n√£o existe ainda, tenta depois (legado)
     if (!window.jQuery) { setTimeout(arguments.callee, 50); return; }
     var $ = window.jQuery;
 
-    // Libera UM postback para o bot„o de salvar certificado
+    // Libera UM postback para o bot√£o de salvar certificado
     $(document).on("click", "#btnSalvarCertificado", function () {
         window.CERT_UI.lastSubmitterId = "btnSalvarCertificado";
         window.CERT_UI.allowOnePostback = true;
     });
 
-    // Bloqueia submit enquanto modal principal est· aberto (evita fluxo legado)
+    // Bloqueia submit enquanto modal principal est√° aberto (evita fluxo legado)
     $(document).on("submit", "form", function (e) {
         if (window.CERT_UI.active && !window.CERT_UI.confirmed) {
 
-            // exceÁ„o: permitir postback do upload
+            // exce√ß√£o: permitir postback do upload
             if (window.CERT_UI.allowOnePostback && window.CERT_UI.lastSubmitterId === "btnSalvarCertificado") {
                 window.CERT_UI.allowOnePostback = false;
                 window.CERT_UI.lastSubmitterId = null;
@@ -38,14 +38,14 @@ window.CERT_UI = window.CERT_UI || {
         return true;
     });
 
-    // Bloqueia __doPostBack enquanto modal principal est· aberto
+    // Bloqueia __doPostBack enquanto modal principal est√° aberto
     if (typeof window.__doPostBack === "function" && !window.__doPostBack.__certWrapped) {
         var _old = window.__doPostBack;
 
         window.__doPostBack = function (eventTarget, eventArgument) {
             if (window.CERT_UI.active && !window.CERT_UI.confirmed) {
 
-                // exceÁ„o: permitir postback do upload
+                // exce√ß√£o: permitir postback do upload
                 if (window.CERT_UI.allowOnePostback && window.CERT_UI.lastSubmitterId === "btnSalvarCertificado") {
                     window.CERT_UI.allowOnePostback = false;
                     window.CERT_UI.lastSubmitterId = null;
@@ -61,7 +61,7 @@ window.CERT_UI = window.CERT_UI || {
         window.__doPostBack.__certWrapped = true;
     }
 
-    // ApÛs salvar, voltar para lista automaticamente
+    // Ap√≥s salvar, voltar para lista automaticamente
     $(function () {
         if ($("#hdfVoltarListaAposUpload").val() === "1") {
             try { $find("mpeUploadCertBehavior").hide(); } catch (e) { }
@@ -69,7 +69,7 @@ window.CERT_UI = window.CERT_UI || {
 
             $("#hdfVoltarListaAposUpload").val("");
 
-            // mantÈm travado atÈ confirmar certificado
+            // mant√©m travado at√© confirmar certificado
             window.CERT_UI.active = true;
             window.CERT_UI.confirmed = false;
 
@@ -79,7 +79,7 @@ window.CERT_UI = window.CERT_UI || {
 
 })();
 
-// ---------- SeleÁ„o de notas ----------
+// ---------- Sele√ß√£o de notas ----------
 function getNotasSelecionadas() {
     var $checks = $("#tabelaGrid input[type=checkbox].nf-check:checked");
     var notas = [];
@@ -178,7 +178,25 @@ function voltarParaListaCertificados() {
     return false;
 }
 
-// Confirmar certificado (por enquanto sÛ fecha e guarda o ID)
+// ---------- Confirmar certificado ----------
+
+function dispararRoboV2() {
+    // pega o UniqueID do bot√£o servidor (setado no Page_Load)
+    var uid = $("#hdfBtnAcaoRoboV2Uid").val() || $("[id$='hdfBtnAcaoRoboV2Uid']").val();
+
+    if (!uid) {
+        alert("Erro interno: n√£o localizei o bot√£o do rob√¥ (hdfBtnAcaoRoboV2Uid vazio).");
+        return false;
+    }
+
+    // DEBUG
+    console.log("Disparando rob√¥. uid=", uid);
+
+    __doPostBack(uid, "");
+    return false;
+}
+
+// Bot√£o "Confirmar" do modal chama esta fun√ß√£o
 function usarCertificadoSelecionado() {
     var certId = $('input[name="rbCert"]:checked').val();
     if (!certId) {
@@ -186,12 +204,52 @@ function usarCertificadoSelecionado() {
         return false;
     }
 
+    // salva o CertId no hidden field (server vai ler)
     $("#hdfCertSelecionado").val(certId);
+
+    // libera postback (pra n√£o ser bloqueado pelos wrappers)
+    window.CERT_UI.confirmed = true;
+    window.CERT_UI.active = false;
+
+    // fecha modal
+    try { $find("mpeCertificadosBehavior").hide(); }
+    catch (e) { $("#pciCertificados").hide(); }
+
+    // DEBUG
+    console.log("Cert selecionado certId=", certId);
+
+    // dispara o fluxo servidor do rob√¥
+    return dispararRoboV2();
+}
+
+
+/*
+ * Se voc√™ trocou o bot√£o do modal para <asp:Button OnClientClick="return confirmarEContinuar();">,
+ * use esta fun√ß√£o. Se n√£o estiver usando asp:Button, pode ignorar.
+ */
+function confirmarEContinuar() {
+    // mesma l√≥gica do usarCertificadoSelecionado, mas retorna true para permitir o postback do asp:Button
+    var notas = getNotasSelecionadas();
+    if (!notas || notas.length === 0) {
+        $("#spnAvisosCert").text("Selecione ao menos 1 nota fiscal para enviar.");
+        return false;
+    }
+
+    var certId = $('input[name="rbCert"]:checked').val();
+    if (!certId) {
+        $("#spnAvisosCert").text("Selecione um certificado antes de continuar.");
+        return false;
+    }
+
+    $("#hdfCertSelecionado").val(certId);
+
     window.CERT_UI.confirmed = true;
     window.CERT_UI.active = false;
 
     try { $find("mpeCertificadosBehavior").hide(); } catch (e) { $("#pciCertificados").hide(); }
 
-    // N√O disparar fluxo legado agora. Vamos focar no upload primeiro.
-    return false;
+    return true; // permite o postback do asp:Button
 }
+
+
+
